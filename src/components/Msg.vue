@@ -6,7 +6,7 @@
     <div class="content">{text}</div>
   </div>
 </template>
-<style>
+<style scoped lang="scss">
 
 </style>
 <script>
