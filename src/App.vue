@@ -1,20 +1,24 @@
 <template>
-  <div v-if="isAuth" class="app">
+  <div v-if="isAuth" class="app" id="app">
     <chat />
     <router-view />
 
+
   </div>
+  <signIn v-else />
 </template>
 
 
 <script>
 
 import chat from './components/v-chat.vue'
+import signIn from './views/SignInView.vue'
 
 export default {
   name: 'app',
   components: {
     chat,
+    signIn
   },
   data() {
     return {
@@ -41,17 +45,14 @@ export default {
 }
 
 * {
-  font-family: Inter;
-}
-
-* {
   padding: 0;
   margin: 0;
-  box-sizing: border-box;
+  font-family: Inter;
 }
 
 .app {
   display: flex;
-
+  width: 100%;
+  height: 100vh;
 }
 </style>
