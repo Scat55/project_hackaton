@@ -28,10 +28,13 @@ export default {
     }
   },
    methods:{
+    addNewDialog()
+    {
+
+    },
     logOut(){
       const api = new Api();
       api.logOut();
-      this.$router.go(0);
     }
   },
 };

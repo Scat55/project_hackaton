@@ -1,6 +1,7 @@
 <script>
     import RoleItem from '@/components/RoleItem.vue';
     import router from "../router";
+import Api from '@/Api';
     export default {
 
         data(){
@@ -44,7 +45,14 @@
                 ]
             };
         },
-
+        methods:{
+            openDialog(e)
+            {
+                const idRole  = e.currentTarget.id;
+                const api = new Api();
+                router.push({ name: 'openDialog', params: { id:idRole  } })
+            }
+        },
         components: {
             RoleItem,
         }
@@ -62,9 +70,8 @@
         </div>
         
             <ul class="roles_list">
-                <li v-for="role in roles">
+                <li v-for="role in roles" :id="role.id" @click="openDialog">
                     <RoleItem
-                        :id="role.id"
                         :imgUrl="role.imgUrl"
                         :name="role.name"
                     ></RoleItem>
