@@ -60,25 +60,25 @@ export default {
 
   &__title {
     font-weight: 500;
-    font-size: 24px;
-    line-height: 24px;
+    font-size: 1.5rem;
+    line-height: 1.5rem;
     text-align: center;
   }
 
   &__subtitle {
     font-weight: 400;
-    font-size: 16px;
-    line-height: 24px;
+    font-size: 1rem;
+    line-height: 1.5rem;
     color: #404B62;
-    margin-top: 6px;
+    margin-top: 0.375rem;
   }
 
   label {
     font-weight: 500;
-    font-size: 14px;
-    line-height: 24px;
+    font-size: 0.875rem;
+    line-height: 1.5rem;
     color: #404B62;
-    margin-top: 12px;
+    margin-top: 0.75rem;
   }
 
   &__form {
@@ -88,12 +88,12 @@ export default {
 
   .form {
     &__name {
-      padding: 10px 16px;
-      border: 1px solid #B5AEAE;
-      border-radius: 8px;
+      padding: 0.625rem 1rem;
+      border: 0.063rem solid #B5AEAE;
+      border-radius: 0.5rem;
       font-weight: 400;
-      font-size: 16px;
-      line-height: 24px;
+      font-size: 1rem;
+      line-height: 1.5rem;
       outline: #827D7D;
       color: #827D7D;
 
@@ -109,43 +109,43 @@ export default {
       .form__password-outline {
         width: 90%;
         position: relative;
-        padding: 10px 16px;
-        border: 1px solid #B5AEAE;
-        border-radius: 8px;
+        padding: 0.625rem 1rem;
+        border: 0.063rem solid #B5AEAE;
+        border-radius: 0.5rem;
         font-weight: 400;
-        font-size: 16px;
-        line-height: 24px;
+        font-size: 1rem;
+        line-height: 1.5rem;
         outline: #827D7D;
         color: #827D7D;
       }
 
       &-img {
         position: absolute;
-        top: 14px;
-        right: 10px;
+        top: 0.875rem;
+        right: 0.625rem;
         cursor: pointer;
       }
     }
 
     &__link {
       font-weight: 400;
-      font-size: 14px;
-      line-height: 24px;
+      font-size: 0.625rem;
+      line-height: 1.5rem;
       text-decoration: none;
       color: #2C3343;
-      margin-top: 14px;
-      margin-bottom: 34px;
+      margin-top: 0.875rem;
+      margin-bottom: 2.125rem;
     }
 
     &__btn {
-      width: 325px;
-      height: 44px;
-      padding: 10px 16px;
+      width: 20.313rem;
+      height: 2.75rem;
+      padding: 0.625rem 1rem;
       background: #404B62;
-      border-radius: 8px;
+      border-radius: 0.5rem;
       font-weight: 400;
-      font-size: 16px;
-      line-height: 24px;
+      font-size: 1rem;
+      line-height: 1.5rem;
       text-align: center;
       color: #FFFFFF;
       outline: none;
@@ -155,17 +155,17 @@ export default {
 
     &__text {
       font-weight: 400;
-      font-size: 16px;
-      line-height: 24px;
-      margin-top: 16px;
+      font-size: 1rem;
+      line-height: 1.5rem;
+      margin-top: 1rem;
       text-align: center;
       color: #827D7D;
     }
 
     &__registr {
       text-decoration: none;
-      font-size: 16px;
-      line-height: 24px;
+      font-size: 1rem;
+      line-height: 1.5rem;
       text-align: center;
       color: #2C3343;
 
