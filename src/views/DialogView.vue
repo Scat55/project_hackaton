@@ -17,7 +17,24 @@
 }
 </style>
 <script>
-export default function DialogView(params) {
-  return ;
+export default {
+  data() {
+    return {
+     dialogId:0,
+     props:"",
+    };
+  },
+  created() {
+    this.load();
+  },
+  methods: {
+    load() {
+      
+      this.dialogId = api.getById(this.$route.params.id)[0];
+    
+    }
+    ,
+}
+
 }
 </script>
