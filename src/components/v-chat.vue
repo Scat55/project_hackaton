@@ -6,8 +6,8 @@
       </button>
 
       <div class="aside__text">
-        <p class="aside__delete"><img src="../assets/images/trash.svg" alt="Trach">Удалить чат</p>
-        <p class="aside__delete"><img src="../assets/images/log-out.svg" alt="Trach">Выйти</p>
+        <p class="aside__text-delete"><img src="../assets/images/trash.svg" alt="Trach">Удалить чат</p>
+        <p class="aside__text-logOut"><img src="../assets/images/log-out.svg" alt="Trach">Выйти</p>
       </div>
     </aside>
 
@@ -35,6 +35,7 @@ export default {
 }
 
 .chat {
+
   display: flex;
 }
 
@@ -78,11 +79,30 @@ export default {
   &__text {
     display: flex;
     flex-direction: column;
-
+    gap: 30px;
     padding: 10px;
     margin-left: 10px;
+
+    &-delete {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 19px;
+    }
+
+    &-logOut {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 19px;
+      margin-bottom: 20px;
+    }
   }
 
-  // &__delete {}
+
 }
 </style>
