@@ -98,7 +98,7 @@
       align-items: center;
       padding: 0.5rem 0.75rem;
       gap: 0.5rem;
-      margin-bottom: 1rem;
+      margin-bottom: 2rem;
       border-radius: 8px;
   
       input{
