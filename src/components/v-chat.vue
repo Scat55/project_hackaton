@@ -5,8 +5,10 @@
         <img class="aside__btn-plus" src="../assets/images/plus.svg" alt="Plus">Новый чат
       </button>
 
-      <p class="aside__delete"><img src="../assets/images/trash.svg" alt="Trach">Удалить чат</p>
-      <p class="aside__delete"><img src="../assets/images/log-out.svg" alt="Trach">Выйти</p>
+      <div class="aside__text">
+        <p class="aside__delete"><img src="../assets/images/trash.svg" alt="Trach">Удалить чат</p>
+        <p class="aside__delete"><img src="../assets/images/log-out.svg" alt="Trach">Выйти</p>
+      </div>
     </aside>
 
   </div>
@@ -39,11 +41,13 @@ export default {
 .aside {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   background-color: #161515;
   width: 286px;
   height: 100vh;
   color: #fff;
   padding-top: 16px;
+
 
   &__btn {
     display: flex;
@@ -70,5 +74,15 @@ export default {
       margin-right: 10px;
     }
   }
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+
+    padding: 10px;
+    margin-left: 10px;
+  }
+
+  // &__delete {}
 }
 </style>
