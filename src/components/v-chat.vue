@@ -4,6 +4,9 @@
       <button class="aside__btn">
         <img class="aside__btn-plus" src="../assets/images/plus.svg" alt="Plus">Новый чат
       </button>
+
+      <p class="aside__delete"><img src="../assets/images/trash.svg" alt="Trach">Удалить чат</p>
+      <p class="aside__delete"><img src="../assets/images/log-out.svg" alt="Trach">Выйти</p>
     </aside>
 
   </div>
@@ -34,6 +37,8 @@ export default {
 }
 
 .aside {
+  display: flex;
+  flex-direction: column;
   background-color: #161515;
   width: 286px;
   height: 100vh;
