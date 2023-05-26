@@ -1,5 +1,5 @@
 <template>
-  <div class="app">
+  <div v-if="isAuth" class="app">
     <chat />
     <router-view />
 
@@ -8,12 +8,26 @@
 
 
 <script>
+
 import chat from './components/v-chat.vue'
 
 export default {
   name: 'app',
   components: {
     chat,
+  },
+  data() {
+    return {
+      isAuth: false,
+    }
+  },
+  created() {
+    const data = localStorage.getItem('tocken')
+    console.log(data)
+    if (data) {
+      this.isAuth = true;
+    }
+
   }
 }
 </script>
