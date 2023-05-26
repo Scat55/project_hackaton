@@ -15,7 +15,11 @@
           <img class="form__password-img" src="../assets/images/eye.svg" alt="Eye" @click="showYourPass">
         </div>
         <a href="#" class="form__link">Восстановить пароль</a>
+<<<<<<< Updated upstream
         <button class="form__btn" type="button">Войти</button>
+=======
+        <button class="form__btn" type="submit" @click="">Войти</button>
+>>>>>>> Stashed changes
         <p class="form__text">Нет аккаунта?<a href="/registration" class="form__registr"> Зарегистрироваться </a></p>
 
       </form>
@@ -24,6 +28,8 @@
 </template>
 
 <script>
+import Api from '@/Api';
+
 export default {
   name: 'SignInView',
   data() {
@@ -39,6 +45,18 @@ export default {
         this.typeInput = 'text';
       } else {
         this.typeInput = 'password';
+      }
+    },
+    auth()
+    {
+      const api = new Api();
+      token = api.login(this.dataLogin,this.dataPassword);
+      if(token)
+      {
+        
+      }
+      else{
+
       }
     }
   }
