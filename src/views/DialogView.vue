@@ -1,23 +1,23 @@
 <template>
-    <div class="openDialog">
-        <div class="header">
-            <img class="logo"/>
-            
-        </div>
-
+  <div class="openDialog">
+    <div class="header">
+      <img class="logo" />
+      <span class="state"></span>
+      <div class="find"></div>
     </div>
+    <div class="msgs">
+        
+    </div>
+  </div>
 </template>
 <style lang="scss">
-.openDialog{
-    .header
-    {
-
-    }
+.openDialog {
+  .header {
+  }
 }
 </style>
 <script>
 export default function DialogView(params) {
-  return(null);
-
-};
+  return null;
+}
 </script>
