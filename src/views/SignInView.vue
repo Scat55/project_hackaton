@@ -6,7 +6,7 @@
         <div class="signin__subtitle">Введите логин и пароль в форме ниже</div>
       </div>
 
-      <form action="#" class="signin__form">
+      <form action="" class="signin__form">
         <label>Имя</label>
         <input class="form__name" type="text" placeholder="Введите имя пользователя" v-model="dataLogin">
         <label>Пароль*</label>
@@ -16,7 +16,8 @@
           <img class="form__password-img" src="../assets/images/eye.svg" alt="Eye" @click="showYourPass">
         </div>
         <a href="#" class="form__link">Восстановить пароль</a>
-        <button class="form__btn" type="submit">Войти</button>
+
+        <button class="form__btn" type="submit" @click="auth">Войти</button>
         <p class="form__text">Нет аккаунта?<a href="/registration" class="form__registr"> Зарегистрироваться </a></p>
 
       </form>
@@ -25,6 +26,9 @@
 </template>
 
 <script>
+import Api from '@/Api';
+import router from '../router';
+
 export default {
   name: 'SignInView',
   data() {
@@ -41,6 +45,14 @@ export default {
       } else {
         this.typeInput = 'password';
       }
+    },
+    auth() {
+      const api = new Api();
+      const data = api.login(this.dataLogin, this.dataPassword);
+      
+      data.then(response => router.push('register')).
+      catch(err=>  aletr("Ты дебил"));
+    
     }
   }
 }

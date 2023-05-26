@@ -7,7 +7,7 @@
 
       <div class="aside__text">
         <p class="aside__text-delete"><img src="../assets/images/trash.svg" alt="Trach">Удалить все чаты</p>
-        <p class="aside__text-logOut"><img src="../assets/images/log-out.svg" alt="Trach">Выйти</p>
+        <p class="aside__text-logOut" @click="logOut"><img src="../assets/images/log-out.svg" alt="Trach">Выйти</p>
       </div>
     </aside>
 
@@ -15,6 +15,9 @@
 </template>
 
 <script>
+import Api from '@/Api';
+import router from '@/router';
+
 
 export default {
   name: 'chat',
@@ -23,7 +26,14 @@ export default {
     return {
 
     }
-  }
+  },
+   methods:{
+    logOut(){
+      const api = new Api();
+      api.logOut();
+      this.$router.go(0);
+    }
+  },
 };
 </script>
 
