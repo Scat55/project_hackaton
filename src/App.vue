@@ -41,6 +41,15 @@ export default {
     // redirect the user to the login page
     router.push("auth");
   }
+  else if (
+     // make sure the user is authenticated
+     this.isAuth &&
+    // ❗️ Avoid an infinite redirect
+    (to.name === 'auth'||to.name === 'registration')
+  )
+  {
+    router.push({name:'roles'});
+  }
 })
     
   },
