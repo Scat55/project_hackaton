@@ -21,7 +21,7 @@ const routes = [
     component: RegistrationView,
   },
   {
-    path: '/id:id',
+    path: '/dialog/:id',
     name: 'openDialog',
     component: DialogView,
   },
