@@ -1,10 +1,22 @@
 import DialogView from '../views/DialogView.vue';
 import RolesView from '../views/RolesView.vue';
+import RegistrationView from '../views/RegistrationView.vue';
+import SignInView from '../views/SignInView.vue';
 
 import { createRouter, createWebHistory } from 'vue-router';
 const routes = [
   {
-    path: '/:id',
+    path: '/auth',
+    name: 'auth',
+    component: SignInView,
+  },
+  {
+    path: '/registration',
+    name: 'registration',
+    component: RegistrationView,
+  },
+  {
+    path: '/id:id',
     name: 'openDialog',
     component: DialogView,
   },

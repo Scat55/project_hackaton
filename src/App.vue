@@ -1,24 +1,26 @@
 <template>
-  <div v-if="isAuth" class="app" id="app">
-    <chat />
+  <div class="app" id="app">
+    <chat v-if="isAuth" />
     <router-view />
 
 
   </div>
-  <signIn v-else />
 </template>
 
 
 <script>
 
 import chat from './components/v-chat.vue'
+import router from './router'
 import signIn from './views/SignInView.vue'
+
 
 export default {
   name: 'app',
   components: {
     chat,
-    signIn
+    signIn,
+
   },
   data() {
     return {
@@ -26,11 +28,19 @@ export default {
     }
   },
   created() {
-    const data = localStorage.getItem('token')
+    if(!this.isAuth)
+    {
+      router.push("auth");
+    }
+    else
+    {
+      const data = localStorage.getItem('token')
     console.log(data)
     if (data) {
       this.isAuth = true;
     }
+    }
+    
 
   }
 }
