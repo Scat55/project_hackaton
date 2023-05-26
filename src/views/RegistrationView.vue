@@ -36,6 +36,8 @@
 </template>
 
 <script>
+import Api from '@/Api';
+import router from '../router'
 
 export default {
   name: 'RegistrationView',
@@ -58,13 +60,19 @@ export default {
         this.typeInput = 'password';
       }
     },
-
-
     correctedPasswords() {
+      const api = new Api();
+      const token = api.login(this.dataLogin, this.dataPassword);
+      if (token) {
+        //успешно
+        router.push("roles");
+      }
       if (this.dataPassword !== this.dataPasswordDouble) {
         this.typeBtn = 'button'
         alert("Пароли не совпадают")
       }
+
+
     }
   }
 }

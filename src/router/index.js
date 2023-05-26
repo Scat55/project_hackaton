@@ -25,8 +25,6 @@ const routes = [
     name: 'openDialog',
     component: DialogView,
   },
-
-
 ];
 
 const router = createRouter({

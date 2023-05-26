@@ -17,7 +17,7 @@
         </div>
         <a href="#" class="form__link">Восстановить пароль</a>
 
-        <button class="form__btn" type="submit" @click="auth">Войти</button>>
+        <button class="form__btn" type="submit" @click="auth">Войти</button>
         <p class="form__text">Нет аккаунта?<a href="/registration" class="form__registr"> Зарегистрироваться </a></p>
 
       </form>
@@ -27,6 +27,7 @@
 
 <script>
 import Api from '@/Api';
+import router from '../router';
 
 export default {
   name: 'SignInView',
@@ -45,16 +46,16 @@ export default {
         this.typeInput = 'password';
       }
     },
-    auth()
-    {
+    auth() {
       const api = new Api();
-      token = api.login(this.dataLogin,this.dataPassword);
-      if(token)
-      {
+      const token = api.login(this.dataLogin, this.dataPassword);
+      if (token) {
         //успешно
+        router.push("/");
       }
-      else{
+      else {
         //ошибка
+        aletr("Ты дебил")
       }
     }
   }
