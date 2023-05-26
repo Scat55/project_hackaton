@@ -28,6 +28,8 @@
           </p>
         </div>
         <button class="form__btn" :type="typeBtn" @click="correctedPasswords">Зарегистрироваться</button>
+        <p class="form__text">Есть аккаунт?<a href="/auth" class="form__registr"> Войти </a></p>
+
       </form>
     </div>
   </div>
