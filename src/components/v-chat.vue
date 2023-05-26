@@ -35,7 +35,6 @@ export default {
 }
 
 .chat {
-
   display: flex;
 }
 
@@ -44,7 +43,7 @@ export default {
   flex-direction: column;
   justify-content: space-between;
   background-color: #161515;
-  width: 17.875rem;
+  width: 15.875rem;
   height: 100vh;
   color: #fff;
   padding-top: 1rem;

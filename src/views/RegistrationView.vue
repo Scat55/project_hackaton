@@ -1,36 +1,47 @@
 <template>
-  <div class="registr__window">
-    <div class="registr">
-      <div class="registr__text">
-        <div class="registr__title">Регистрация</div>
-        <div class="registr__subtitle">Введите данные по форме ниже</div>
+  <div class="forFlex">
+    <div class="header">
+      <div class="container">
+        <div class="header__logo">
+          <img src="../assets/images/logo.svg" alt="Logo" class="header__logo-img">
+          <p class="header__logo-text">Gachi <span>Chat</span></p>
+        </div>
       </div>
-      <form action="#" class="registr__form">
-        <label>Имя пользователя*</label>
-        <input class="form__name" type="text" placeholder="Введите имя пользователя" v-model="dataLogin" required>
-        <label>Пароль*</label>
-        <div class="form__password">
-          <input class="form__password-outline" :type="typeInput" placeholder="Введите пароль" v-model="dataPassword"
-            required>
-          <img class="form__password-img" src="../assets/images/eye.svg" alt="Eye" @click="showYourPass">
+    </div>
+    <div class="registr__window">
+      <div class="registr">
+        <img src="../assets/images/cup.svg" alt="Cup" class="registr__img">
+        <div class="registr__text">
+          <div class="registr__title">Регистрация</div>
+          <div class="registr__subtitle">Введите данные по форме ниже</div>
         </div>
-        <label> Повторите пароль*</label>
-        <div class="form__password">
-          <input class="form__password-outline" :type="typeInput" placeholder="Введите пароль"
-            v-model="dataPasswordDouble" required>
-          <img class="form__password-img" src="../assets/images/eye.svg" alt="Eye" @click="showYourPass">
-        </div>
-        <label>E-mail*</label>
-        <input class="form__email" type="email" placeholder="Введите E-mail" v-model="dataEmail" required>
-        <div class="form__info">
-          <p class="form__info__text">Нажимая кнопку «Зарегистрироваться» вы даёте согласие на <span
-              class="form__info-red">обработку своих персональных данных</span>
-          </p>
-        </div>
-        <button class="form__btn" :type="typeBtn" @click="correctedPasswords">Зарегистрироваться</button>
-        <p class="form__text">Есть аккаунт?<a href="/auth" class="form__registr"> Войти </a></p>
+        <form action="#" class="registr__form">
+          <label>Имя пользователя*</label>
+          <input class="form__name" type="text" placeholder="Введите имя пользователя" v-model="dataLogin" required>
+          <label>Пароль*</label>
+          <div class="form__password">
+            <input class="form__password-outline" :type="typeInput" placeholder="Введите пароль" v-model="dataPassword"
+              required>
+            <img class="form__password-img" src="../assets/images/eye.svg" alt="Eye" @click="showYourPass">
+          </div>
+          <label> Повторите пароль*</label>
+          <div class="form__password">
+            <input class="form__password-outline" :type="typeInput" placeholder="Введите пароль"
+              v-model="dataPasswordDouble" required>
+            <img class="form__password-img" src="../assets/images/eye.svg" alt="Eye" @click="showYourPass">
+          </div>
+          <label>E-mail*</label>
+          <input class="form__email" type="email" placeholder="Введите E-mail" v-model="dataEmail" required>
+          <div class="form__info">
+            <p class="form__info__text">Нажимая кнопку «Зарегистрироваться» вы даёте согласие на <span
+                class="form__info-red">обработку своих персональных данных</span>
+            </p>
+          </div>
+          <button class="form__btn" :type="typeBtn" @click="correctedPasswords">Зарегистрироваться</button>
+          <p class="form__text">Есть аккаунт?<a href="/auth" class="form__registr"> Войти </a></p>
 
-      </form>
+        </form>
+      </div>
     </div>
   </div>
 </template>
@@ -79,6 +90,48 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.forFlex {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  margin: 0 auto;
+}
+
+.container {
+  max-width: 94.5rem;
+  padding: 0 12.75rem;
+  margin: 0 auto;
+}
+
+.header {
+  height: 2.75rem;
+  border-bottom: 0.063rem solid #F4EEEE;
+  padding-bottom: 0.5rem;
+}
+
+.header__logo {
+  display: flex;
+  align-items: center;
+  gap: 0.313rem;
+  margin-top: 0.5rem;
+
+  &-img {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  &-text {
+    display: flex;
+    font-weight: 900;
+    font-size: 1.5rem;
+    line-height: 1.813;
+
+    span {
+      color: #ED5761;
+    }
+  }
+}
+
 .registr__window {
   height: 100vh;
   width: 100vw;
