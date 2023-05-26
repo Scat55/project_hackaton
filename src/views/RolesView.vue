@@ -7,27 +7,27 @@
             return{
                 roles: [
                     {
-                        id: 001,
+                        id: 1,
                         imgUrl: "public/icons/iconRole.svg",
                         name: "Роль 1"
                     },
                     {
-                        id: 002,
+                        id: 2,
                         imgUrl: "public/icons/iconRole.svg",
                         name: "Роль 2"
                     },
                     {
-                        id: 003,
+                        id: 3,
                         imgUrl: "public/icons/iconRole.svg",
                         name: "Роль 3"
                     },
                     {
-                        id: 004,
+                        id: 4,
                         imgUrl: "public/icons/iconRole.svg",
                         name: "Роль 4"
                     },
                     {
-                        id: 005,
+                        id: 5,
                         imgUrl: "public/icons/iconRole.svg",
                         name: "Роль 5"
                     },
