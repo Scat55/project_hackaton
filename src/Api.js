@@ -10,14 +10,13 @@ export default function Api() {
     ));
     return matches ? decodeURIComponent(matches[1]) : undefined;
   }
-  this.query= async (data, link)=> {
+  async function query(data, link) {
     const response = await fetch("http://26.72.40.57:7000/" + link);
     const jsonData = await response.json();
   }
   //
 this.login=(login, password) =>{
     const data = query({ login: login, password: password }, "auth/login");
-    
     return JSON.parse(data);
   }
   this.registration=(email,name, login, password)=> {
