@@ -6,7 +6,7 @@
       </button>
 
       <div class="aside__text">
-        <p class="aside__text-delete"><img src="../assets/images/trash.svg" alt="Trach">Удалить чат</p>
+        <p class="aside__text-delete"><img src="../assets/images/trash.svg" alt="Trach">Удалить все чаты</p>
         <p class="aside__text-logOut"><img src="../assets/images/log-out.svg" alt="Trach">Выйти</p>
       </div>
     </aside>
