@@ -29,7 +29,7 @@
         </div>
         <a href="#" class="form__link">Восстановить пароль</a>
 
-        <button class="form__btn" type="submit" @click="auth">Войти</button>
+        <button class="form__btn" type="button" @click="auth">Войти</button>
         <p class="form__text">Нет аккаунта?<a href="/registration" class="form__registr"> Зарегистрироваться </a></p>
 
         </form>
