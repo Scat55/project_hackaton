@@ -31,6 +31,16 @@
                         imgUrl: "./icons/iconRole.svg",
                         name: "Роль 5"
                     },
+                    {
+                        id: 6,
+                        imgUrl: "./icons/iconRole.svg",
+                        name: "Роль 6"
+                    },
+                    {
+                        id: 7,
+                        imgUrl: "./icons/iconRole.svg",
+                        name: "Роль 7"
+                    },
                 ]
             };
         },
@@ -58,6 +68,11 @@
                         :imgUrl="role.imgUrl"
                         :name="role.name"
                     ></RoleItem>
+                </li>
+                <li>
+                    <div class="add_roleItem" :on-click="addRole">
+                        <img src="/icons/iconPlus.svg">
+                    </div>
                 </li>
             </ul>
         
@@ -131,13 +146,38 @@
             display: flex;
             flex-direction: row;
             align-items: flex-start;
+            flex-wrap: wrap;
+            max-width: 52rem;
             padding: 1rem;
             gap: 1rem;
+            //row-gap: 1rem;
             
-            height: 27.25rem;
+            
 
             li{
                 list-style: none;
+            }
+
+            .add_roleItem{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                background: #827D7D;
+
+                width: 9.125rem;
+                height: 7.75rem;
+
+                border-radius: 0.5rem;
+
+                border: 1px solid #B5AEAE;
+                filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+
+                
+            }
+
+            .add_roleItem:hover{
+                background: #635F5F;
             }
         }
     }
