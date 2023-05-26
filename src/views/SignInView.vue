@@ -8,7 +8,7 @@
 
       <form action="#" class="signin__form">
         <label>Имя</label>
-        <input class="form__name" type="text" placeholder="Введите имя пользователя" :value="dataLogin">
+        <input class="form__name" type="text" placeholder="Введите имя пользователя" v-model="dataLogin">
         <label>Пароль*</label>
         <div class="form__password">
           <input class="form__password-outline" :type="typeInput" placeholder="Введите пароль" v-model="dataPassword">
@@ -16,7 +16,8 @@
         </div>
         <a href="#" class="form__link">Восстановить пароль</a>
         <button class="form__btn" type="button">Войти</button>
-        <p class="form__text">Нет аккаунта?<a href="#" class="form__registr"> Зарегистрироваться </a></p>
+        <p class="form__text">Нет аккаунта?<a href="/registration" class="form__registr"> Зарегистрироваться </a></p>
+
       </form>
     </div>
   </div>
