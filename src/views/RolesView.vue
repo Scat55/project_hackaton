@@ -1,6 +1,6 @@
 <script>
     import RoleItem from '@/components/RoleItem.vue';
-
+    import router from "../router";
     export default {
 
         data(){
