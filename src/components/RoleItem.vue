@@ -19,17 +19,17 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        padding: 12px;
-        gap: 6px;
+        padding: 0.75rem;
+        gap: 0.375rem;
 
-        width: 146px;
-        height: 124px;
+        width: 9.125rem;
+        height: 7.75rem;
 
-        border-radius: 8px;
+        border-radius: 0.5rem;
 
         .role_image{
-            width: 56px;
-            height: 56px;
+            
+            height: 3.5rem;
 
             img{
 
@@ -41,10 +41,10 @@
             flex-direction: column;
             align-items: center;
             padding: 0px;
-            gap: 4px;
+            gap: 0.25rem;
 
-            width: 50px;
-            height: 19px;      
+            
+            height: 1.188rem;      
         }
     }
 </style>

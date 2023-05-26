@@ -82,7 +82,7 @@
         justify-content: center;
         align-items: center;
         align-self: center;
-        gap: 8px;
+        gap: 0.5rem;
 
 
         
@@ -93,35 +93,35 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 14px;
-            gap: 16px;
+            padding: 0.875rem;
+            gap: 1rem;
 
-            width: 538px;
-            height: 107px;
+            
+            height: 6.688rem;
 
 
             .header_top{
-                width: 510px;
-                height: 39px;
+                
+                height: 2.438rem;
 
                 font-family: 'Inter';
                 font-style: normal;
                 font-weight: 900;
-                font-size: 32px;
-                line-height: 39px;
+                font-size: 2rem;
+                line-height: 2.438rem;
                 
                 color: #000000;
             }
 
             .header_bottom{
-                width: 375px;
-                height: 24px;
+                
+                height: 1.5rem;
 
                 font-family: 'Inter';
                 font-style: normal;
                 font-weight: 400;
-                font-size: 20px;
-                line-height: 24px;
+                font-size: 1.25rem;
+                line-height: 1.5rem;
 
                 color: #413E3E;
             }
@@ -131,10 +131,10 @@
             display: flex;
             flex-direction: row;
             align-items: flex-start;
-            padding: 16px;
-            gap: 16px;
-            width: 826px;
-            height: 436px;
+            padding: 1rem;
+            gap: 1rem;
+            
+            height: 27.25rem;
 
             li{
                 list-style: none;
