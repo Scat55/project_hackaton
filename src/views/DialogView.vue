@@ -14,7 +14,7 @@
       </div>
     </div>
     <div class="msgs">
-        
+        <Msg v-for="msg in msgs" :id="msg.id"></Msg>
     </div>
   </div>
 </template>
@@ -46,6 +46,7 @@
       height: 2.5rem;
 
       input {
+        font-size: large;
         width: 20rem;
         border: 0;
         border-bottom: 1px solid black;
