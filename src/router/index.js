@@ -9,7 +9,7 @@ const routes = [
     component: DialogView,
   },
   {
-    path: '/about',
+    path: '/',
     name: 'roles',
     component: RolesView,
     // route level code-splitting
