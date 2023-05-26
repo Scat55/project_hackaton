@@ -17,7 +17,7 @@
         </div>
         <a href="#" class="form__link">Восстановить пароль</a>
 
-        <button class="form__btn" type="submit" @click="">Войти</button>>
+        <button class="form__btn" type="submit" @click="auth">Войти</button>>
         <p class="form__text">Нет аккаунта?<a href="/registration" class="form__registr"> Зарегистрироваться </a></p>
 
       </form>
@@ -51,10 +51,10 @@ export default {
       token = api.login(this.dataLogin,this.dataPassword);
       if(token)
       {
-        
+        //успешно
       }
       else{
-
+        //ошибка
       }
     }
   }
