@@ -89,7 +89,7 @@ export default {
       align-items: center;
       gap: 0.938rem;
       border-top: 1px solid #302E2E;
-      padding-top: 20px;
+      padding-top: 1.25rem;
       font-weight: 400;
       font-size: 1.125rem;
       line-height: 1.188rem;
