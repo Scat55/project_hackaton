@@ -6,8 +6,8 @@
       </button>
 
       <div class="aside__text">
-        <p class="aside__delete"><img src="../assets/images/trash.svg" alt="Trach">Удалить чат</p>
-        <p class="aside__delete"><img src="../assets/images/log-out.svg" alt="Trach">Выйти</p>
+        <p class="aside__text-delete"><img src="../assets/images/trash.svg" alt="Trach">Удалить чат</p>
+        <p class="aside__text-logOut"><img src="../assets/images/log-out.svg" alt="Trach">Выйти</p>
       </div>
     </aside>
 
@@ -35,6 +35,7 @@ export default {
 }
 
 .chat {
+
   display: flex;
 }
 
@@ -43,10 +44,10 @@ export default {
   flex-direction: column;
   justify-content: space-between;
   background-color: #161515;
-  width: 286px;
+  width: 17.875rem;
   height: 100vh;
   color: #fff;
-  padding-top: 16px;
+  padding-top: 1rem;
 
 
   &__btn {
@@ -55,13 +56,13 @@ export default {
     width: 80%;
     background-color: transparent;
     color: #fff;
-    border: 1px solid #fff;
+    border: 0.063rem solid #fff;
     font-weight: 400;
-    font-size: 20px;
-    line-height: 24px;
-    border-radius: 8px;
-    padding: 10px;
-    margin-left: 10px;
+    font-size: 1.25rem;
+    line-height: 1.5rem;
+    border-radius: 0.5rem;
+    padding: 0.625rem;
+    margin-left: 0.625rem;
     outline: none;
     cursor: pointer;
     transition: all .3s;
@@ -71,18 +72,42 @@ export default {
     }
 
     &-plus {
-      margin-right: 10px;
+      margin-right: 0.625rem;
     }
   }
 
   &__text {
     display: flex;
     flex-direction: column;
+    gap: 1.875rem;
+    padding: 0.625rem;
+    margin-left: 0.625rem;
 
-    padding: 10px;
-    margin-left: 10px;
+
+    &-delete {
+      display: flex;
+      align-items: center;
+      gap: 0.938rem;
+      border-top: 1px solid #302E2E;
+      padding-top: 20px;
+      font-weight: 400;
+      font-size: 1.125rem;
+      line-height: 1.188rem;
+      cursor: pointer;
+    }
+
+    &-logOut {
+      display: flex;
+      align-items: center;
+      gap: 0.938rem;
+      font-weight: 400;
+      font-size: 1.125rem;
+      line-height: 1.188rem;
+      margin-bottom: 1.25rem;
+      cursor: pointer;
+    }
   }
 
-  // &__delete {}
+
 }
 </style>

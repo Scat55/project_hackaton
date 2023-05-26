@@ -19,6 +19,17 @@ export default {
 </script>
 
 <style lang="scss">
+@font-face {
+  font-family: Inter;
+  /* Гарнитура шрифта */
+  src: url('./assets/fonts/Inter.ttf');
+
+}
+
+* {
+  font-family: Inter;
+}
+
 * {
   padding: 0;
   margin: 0;
