@@ -1,8 +1,8 @@
 <template>
   <div id="chat">
     <aside class="aside">
-      <button class="aside__btn">
-        <img class="aside__btn-plus" src="../assets/images/plus.svg" alt="Plus">Новый чат
+      <button class="aside__btn" @click="addNewDialog">
+        <img class="aside__btn-plus"  src="../assets/images/plus.svg" alt="Plus">Новый чат
       </button>
 
       <div class="aside__text">
@@ -30,7 +30,7 @@ export default {
    methods:{
     addNewDialog()
     {
-
+      router.push({name:"roles"});
     },
     logOut(){
       const api = new Api();
