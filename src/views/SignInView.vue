@@ -129,7 +129,7 @@ export default {
 
     &__link {
       font-weight: 400;
-      font-size: 0.625rem;
+      font-size: 1rem;
       line-height: 1.5rem;
       text-decoration: none;
       color: #2C3343;
