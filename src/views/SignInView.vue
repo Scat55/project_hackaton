@@ -8,13 +8,16 @@
 
       <form action="#" class="signin__form">
         <label>Имя</label>
-        <input class="form__name" type="text" placeholder="Введите имя пользователя">
+        <input class="form__name" type="text" placeholder="Введите имя пользователя" v-model="dataLogin">
         <label>Пароль*</label>
-        <div class="form__password"><input class="form__password-outline" type="password" placeholder="Введите пароль">
+        <div class="form__password">
+          <input class="form__password-outline" :type="typeInput" placeholder="Введите пароль" v-model="dataPassword">
+          <img class="form__password-img" src="../assets/images/eye.svg" alt="Eye" @click="showYourPass">
         </div>
         <a href="#" class="form__link">Восстановить пароль</a>
         <button class="form__btn" type="button">Войти</button>
-        <p class="form__text">Нет аккаунта?<a href="#" class="form__registr"> Зарегистрироваться </a></p>
+        <p class="form__text">Нет аккаунта?<a href="/registration" class="form__registr"> Зарегистрироваться </a></p>
+
       </form>
     </div>
   </div>
@@ -25,7 +28,18 @@ export default {
   name: 'SignInView',
   data() {
     return {
-
+      typeInput: 'password',
+      dataLogin: '',
+      dataPassword: '',
+    }
+  },
+  methods: {
+    showYourPass() {
+      if (this.typeInput == 'password') {
+        this.typeInput = 'text';
+      } else {
+        this.typeInput = 'password';
+      }
     }
   }
 }
@@ -47,25 +61,25 @@ export default {
 
   &__title {
     font-weight: 500;
-    font-size: 24px;
-    line-height: 24px;
+    font-size: 1.5rem;
+    line-height: 1.5rem;
     text-align: center;
   }
 
   &__subtitle {
     font-weight: 400;
-    font-size: 16px;
-    line-height: 24px;
+    font-size: 1rem;
+    line-height: 1.5rem;
     color: #404B62;
-    margin-top: 6px;
+    margin-top: 0.375rem;
   }
 
   label {
     font-weight: 500;
-    font-size: 14px;
-    line-height: 24px;
+    font-size: 0.875rem;
+    line-height: 1.5rem;
     color: #404B62;
-    margin-top: 12px;
+    margin-top: 0.75rem;
   }
 
   &__form {
@@ -75,12 +89,12 @@ export default {
 
   .form {
     &__name {
-      padding: 10px 16px;
-      border: 1px solid #B5AEAE;
-      border-radius: 8px;
+      padding: 0.625rem 1rem;
+      border: 0.063rem solid #B5AEAE;
+      border-radius: 0.5rem;
       font-weight: 400;
-      font-size: 16px;
-      line-height: 24px;
+      font-size: 1rem;
+      line-height: 1.5rem;
       outline: #827D7D;
       color: #827D7D;
 
@@ -90,52 +104,49 @@ export default {
     }
 
     &__password {
+      display: flex;
+      position: relative;
 
       .form__password-outline {
         width: 90%;
         position: relative;
-        padding: 10px 16px;
-        border: 1px solid #B5AEAE;
-        border-radius: 8px;
+        padding: 0.625rem 1rem;
+        border: 0.063rem solid #B5AEAE;
+        border-radius: 0.5rem;
         font-weight: 400;
-        font-size: 16px;
-        line-height: 24px;
+        font-size: 1rem;
+        line-height: 1.5rem;
         outline: #827D7D;
         color: #827D7D;
       }
 
-      &::before {
-        content: '';
+      &-img {
         position: absolute;
-        top: 215px;
-        right: 620px;
-        width: 16px;
-        height: 16px;
-        background: url(' ../assets/images/eye.svg') center;
-        z-index: 1;
+        top: 0.875rem;
+        right: 0.625rem;
         cursor: pointer;
       }
     }
 
     &__link {
       font-weight: 400;
-      font-size: 14px;
-      line-height: 24px;
+      font-size: 1rem;
+      line-height: 1.5rem;
       text-decoration: none;
       color: #2C3343;
-      margin-top: 14px;
-      margin-bottom: 34px;
+      margin-top: 0.875rem;
+      margin-bottom: 2.125rem;
     }
 
     &__btn {
-      width: 325px;
-      height: 44px;
-      padding: 10px 16px;
+      width: 20.313rem;
+      height: 2.75rem;
+      padding: 0.625rem 1rem;
       background: #404B62;
-      border-radius: 8px;
+      border-radius: 0.5rem;
       font-weight: 400;
-      font-size: 16px;
-      line-height: 24px;
+      font-size: 1rem;
+      line-height: 1.5rem;
       text-align: center;
       color: #FFFFFF;
       outline: none;
@@ -145,17 +156,17 @@ export default {
 
     &__text {
       font-weight: 400;
-      font-size: 16px;
-      line-height: 24px;
-      margin-top: 16px;
+      font-size: 1rem;
+      line-height: 1.5rem;
+      margin-top: 1rem;
       text-align: center;
       color: #827D7D;
     }
 
     &__registr {
       text-decoration: none;
-      font-size: 16px;
-      line-height: 24px;
+      font-size: 1rem;
+      line-height: 1.5rem;
       text-align: center;
       color: #2C3343;
 

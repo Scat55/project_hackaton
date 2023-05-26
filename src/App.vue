@@ -1,11 +1,10 @@
 <template>
-  <div v-if="isAuth" class="app" id="app">
-    <chat />
+  <div class="app" id="app">
+    <chat v-if="isAuth" />
     <router-view />
 
 
   </div>
-  <signIn v-else />
 </template>
 
 
@@ -14,11 +13,13 @@
 import chat from './components/v-chat.vue'
 import signIn from './views/SignInView.vue'
 
+
 export default {
   name: 'app',
   components: {
     chat,
-    signIn
+    signIn,
+
   },
   data() {
     return {
