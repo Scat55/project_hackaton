@@ -82,15 +82,18 @@ export default {
     gap: 1.875rem;
     padding: 0.625rem;
     margin-left: 0.625rem;
-    cursor: pointer;
+
 
     &-delete {
       display: flex;
       align-items: center;
       gap: 0.938rem;
+      border-top: 1px solid #302E2E;
+      padding-top: 20px;
       font-weight: 400;
       font-size: 1.125rem;
       line-height: 1.188rem;
+      cursor: pointer;
     }
 
     &-logOut {
@@ -101,6 +104,7 @@ export default {
       font-size: 1.125rem;
       line-height: 1.188rem;
       margin-bottom: 1.25rem;
+      cursor: pointer;
     }
   }
 
