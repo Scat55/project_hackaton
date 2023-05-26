@@ -22,7 +22,7 @@ export default {
     }
   },
   created() {
-    const data = localStorage.getItem('tocken')
+    const data = localStorage.getItem('token')
     console.log(data)
     if (data) {
       this.isAuth = true;
