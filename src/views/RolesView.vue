@@ -1,11 +1,14 @@
 <script>
     import RoleItem from '@/components/RoleItem.vue';
     import router from "../router";
+    
 import Api from '@/Api';
+import NewRole from '@/components/newRole.vue';
     export default {
 
         data(){
             return{
+                isShowNewRoles:false,
                 roles: [
                     {
                         id: 1,
@@ -46,6 +49,11 @@ import Api from '@/Api';
             };
         },
         methods:{
+            showAddRoleDialog()
+            {
+                console.log("ol");
+                this.isShowNewRoles = true;
+            },
             openDialog(e)
             {
                 const idRole  = e.currentTarget.id;
@@ -54,14 +62,15 @@ import Api from '@/Api';
             }
         },
         components: {
-            RoleItem,
-        }
+    RoleItem,
+    NewRole
+}
     }
 </script>
 
 <template>
     <div class="content">
-
+        <NewRole v-if="isShowNewRoles"></NewRole>
    
     <div class="roles">
         <div class="roles_header">
@@ -77,7 +86,7 @@ import Api from '@/Api';
                     ></RoleItem>
                 </li>
                 <li>
-                    <div class="add_roleItem" :on-click="addRole">
+                    <div class="add_roleItem" @click="showAddRoleDialog">
                         <img src="/icons/iconPlus.svg">
                     </div>
                 </li>
@@ -91,6 +100,7 @@ import Api from '@/Api';
 <style scoped lang="scss">
 .content{ 
     display: flex;
+    position: relative;
     justify-content: center;
     align-items: center;
     width: 100%;
