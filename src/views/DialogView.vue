@@ -18,6 +18,6 @@
 </style>
 <script>
 export default function DialogView(params) {
-  return null;
+  return ;
 }
 </script>
