@@ -16,12 +16,11 @@ export default function Api() {
     return matches ? decodeURIComponent(matches[1]) : undefined;
   };
   async function query(data, link) {
-    try{
-    const response = await fetch("http://26.72.40.57:7000/" + link);
-   
-     return await response.json();
-    }
-    catch{
+    try {
+      const response = await fetch("http://26.72.40.57:7000/" + link);
+
+      return await response.json();
+    } catch {
       return "{answ:false}";
     }
   }
@@ -29,7 +28,6 @@ export default function Api() {
   this.login = (login, password) => {
     const data = query({ login: login, password: password }, "auth/login");
     return data;
-  
   };
   this.registration = (email, name, login, password) => {
     const data = query(
@@ -43,5 +41,16 @@ export default function Api() {
     );
     return data;
   };
-  this.User = () => {};
+  this.Dialogs = () => {
+    this.GetAll = () => {};
+    this.Create = () => {};
+  };
+  this.Msgs = () => {
+    this.Get=()=>{}
+    this.New=()=>{}
+  };
+  this.User = () => {
+    this.Get = () => {};
+    this.Set = () => {};
+  };
 }
