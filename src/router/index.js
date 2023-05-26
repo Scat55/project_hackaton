@@ -6,6 +6,11 @@ import SignInView from '../views/SignInView.vue';
 import { createRouter, createWebHistory } from 'vue-router';
 const routes = [
   {
+    path: '/',
+    name: 'roles',
+    component: RolesView,
+  },
+  {
     path: '/auth',
     name: 'auth',
     component: SignInView,
@@ -20,14 +25,8 @@ const routes = [
     name: 'openDialog',
     component: DialogView,
   },
-  {
-    path: '/',
-    name: 'roles',
-    component: RolesView,
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-  },
+
+
 ];
 
 const router = createRouter({
