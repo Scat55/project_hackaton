@@ -1,19 +1,3 @@
-# project_hackaton
+Трело: https://app.moo.team/WSCUXrcBQc/projects/5769/dashboard
 
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+Дизайн: https://www.figma.com/file/m4pFGl26UycM3wfD028Nte/GPT-Chat?type=design&node-id=0%3A1&t=WZSaUw12lbuSdoeh-1
