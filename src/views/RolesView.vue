@@ -8,27 +8,27 @@
                 roles: [
                     {
                         id: 1,
-                        imgUrl: "public/icons/iconRole.svg",
+                        imgUrl: "./icons/iconRole.svg",
                         name: "Роль 1"
                     },
                     {
                         id: 2,
-                        imgUrl: "public/icons/iconRole.svg",
+                        imgUrl: "./icons/iconRole.svg",
                         name: "Роль 2"
                     },
                     {
                         id: 3,
-                        imgUrl: "public/icons/iconRole.svg",
+                        imgUrl: "./icons/iconRole.svg",
                         name: "Роль 3"
                     },
                     {
                         id: 4,
-                        imgUrl: "public/icons/iconRole.svg",
+                        imgUrl: "./icons/iconRole.svg",
                         name: "Роль 4"
                     },
                     {
                         id: 5,
-                        imgUrl: "public/icons/iconRole.svg",
+                        imgUrl: "./icons/iconRole.svg",
                         name: "Роль 5"
                     },
                 ]
@@ -42,12 +42,15 @@
 </script>
 
 <template>
+    <div class="content">
+
+   
     <div class="roles">
         <div class="roles_header">
             <span class="header_top">Добро пожаловать в GachiChat!</span>
             <span class="header_bottom">Выберете собеседника или создайте своего</span>
         </div>
-        <div class="roles_grid">
+        
             <ul class="roles_list">
                 <li v-for="role in roles">
                     <RoleItem
@@ -57,26 +60,34 @@
                     ></RoleItem>
                 </li>
             </ul>
-        </div>
+        
     </div>
+</div>
 
 </template>
 
 <style scoped lang="scss">
+.content{ 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
 
+
+}
     .roles{
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        padding: 0px;
+        align-self: center;
         gap: 8px;
 
-        position: absolute;
-        width: 826px;
-        height: 551px;
-        left: 690px;
-        top: 242px;
+
+        
+        
+        
 
         .roles_header{
             display: flex;
@@ -116,17 +127,18 @@
             }
         }
 
-        .roles_grid{
+        .roles_list{
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
             align-items: flex-start;
             padding: 16px;
             gap: 16px;
-
             width: 826px;
             height: 436px;
 
-            
+            li{
+                list-style: none;
+            }
         }
     }
 
