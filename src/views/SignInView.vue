@@ -8,9 +8,11 @@
 
       <form action="#" class="signin__form">
         <label>Имя</label>
-        <input class="form__name" type="text" placeholder="Введите имя пользователя">
+        <input class="form__name" type="text" placeholder="Введите имя пользователя" :value="dataLogin">
         <label>Пароль*</label>
-        <div class="form__password"><input class="form__password-outline" type="password" placeholder="Введите пароль">
+        <div class="form__password">
+          <input class="form__password-outline" :type="typeInput" placeholder="Введите пароль" v-model="dataPassword">
+          <img class="form__password-img" src="../assets/images/eye.svg" alt="Eye" @click="showYourPass">
         </div>
         <a href="#" class="form__link">Восстановить пароль</a>
         <button class="form__btn" type="button">Войти</button>
@@ -25,7 +27,18 @@ export default {
   name: 'SignInView',
   data() {
     return {
-
+      typeInput: 'password',
+      dataLogin: '',
+      dataPassword: '',
+    }
+  },
+  methods: {
+    showYourPass() {
+      if (this.typeInput == 'password') {
+        this.typeInput = 'text';
+      } else {
+        this.typeInput = 'password';
+      }
     }
   }
 }
@@ -90,6 +103,8 @@ export default {
     }
 
     &__password {
+      display: flex;
+      position: relative;
 
       .form__password-outline {
         width: 90%;
@@ -104,15 +119,10 @@ export default {
         color: #827D7D;
       }
 
-      &::before {
-        content: '';
+      &-img {
         position: absolute;
-        top: 215px;
-        right: 620px;
-        width: 16px;
-        height: 16px;
-        background: url(' ../assets/images/eye.svg') center;
-        z-index: 1;
+        top: 14px;
+        right: 10px;
         cursor: pointer;
       }
     }
