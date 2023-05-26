@@ -13,13 +13,29 @@
         <img class="find" src="../assets/search.svg" />
       </div>
     </div>
-    <div class="msgs">
-        <Msg v-for="msg in msgs" :id="msg.id"></Msg>
+    <div class="dialog_content">
+      <div class="msgs">
+        <Msg v-for="msg in msgs" 
+          :id="msg.id"
+          :time-and-date="msg.timeAndDate"
+          :sender="msg.sender"
+          :urlLogo="msg.urlLogo"
+          :text="msg.text"
+        ></Msg>
+      </div>
+      <div class="dialog_textfield">
+        <input placeholder="Введите сообщение...">
+        <button class="msg_button_send">Отправить</button>
+      </div>
     </div>
+    
   </div>
 </template>
 <style scoped lang="scss">
 .openDialog {
+  //display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   width: 100%;
   max-width: 1500px;
   height: 100%;
@@ -57,6 +73,71 @@
       }
     }
   }
+
+  .dialog_content{
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-left: 7.625rem;
+    padding-right: 7.625rem;
+    .msgs{
+      height: 90%;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: start;
+      gap: 1rem;
+  
+    }
+  
+    .dialog_textfield{
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      padding: 0.5rem 0.75rem;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+      border-radius: 8px;
+  
+      input{
+        box-sizing: border-box;
+  
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 10px;
+        gap: 10px;
+  
+        width: 100%;
+        height: 39px;
+  
+        border: 1px solid #F4EEEE;
+      }
+  
+      .msg_button_send{
+        width: 112px;
+        height: 39px;
+  
+        background: #404B62;
+        border-radius: 8px;
+  
+        padding: 10px;
+  
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 19px;
+        text-align: center;
+  
+        color: #FFFFFF;
+      }
+    }
+  }
+
+  
 }
 </style>
 <script>
@@ -65,25 +146,28 @@ export default {
   data() {
     return {
       title: "Name 1",
+      user: "User (You)",
       logoUrl: "./icons/iconRole.svg",
       dialogId: 0,
       props: "",
-      msgs: [
-        { id: 0, text: "example", date: Date.now() },
-        { id: 2, text: "example 2", date: Date.now() },
-      ],
+      msgs: [],
     };
   },
   created() {
     this.load();
+    
   },
   components:{
-Msg
+    Msg
   },
   methods: {
     load() {
       this.dialogId = this.$route.params.id;
       console.log(this.dialogId);
+      this.msgs = [
+        { id: 0, text: "I want you to act as a real estate agent. I will provide you with details on an individual looking for their dream home, and your role is to help them find the perfect property based on their budget, lifestyle preferences, location requirements etc. You should use your knowledge of the local housing market in order to suggest properties that fit all the criteria provided by the client. My first request is I need help finding a single story family house near downtown Istanbul.", timeAndDate: Date.now(), sender: this.user, urlLogo: this.logoUrl},
+        { id: 1, text: "Привет, нормально, а ты?", timeAndDate: Date.now(),sender: this.title, urlLogo: this.logoUrl}
+      ]
     },
   },
 };
