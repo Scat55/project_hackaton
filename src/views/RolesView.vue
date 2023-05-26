@@ -147,7 +147,7 @@
             flex-direction: row;
             align-items: flex-start;
             flex-wrap: wrap;
-            max-width: 52rem;
+            max-width: 58rem;
             padding: 1rem;
             gap: 1rem;
             //row-gap: 1rem;
@@ -164,6 +164,8 @@
                 justify-content: center;
                 align-items: center;
                 background: #827D7D;
+                padding: 0.75rem;
+                gap: 0.375rem;
 
                 width: 9.125rem;
                 height: 7.75rem;
