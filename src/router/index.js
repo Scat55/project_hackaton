@@ -6,8 +6,8 @@ import SignInView from '../views/SignInView.vue';
 import { createRouter, createWebHistory } from 'vue-router';
 const routes = [
   {
-    path: '/signin',
-    name: 'signin',
+    path: '/auth',
+    name: 'auth',
     component: SignInView,
   },
   {
@@ -16,7 +16,7 @@ const routes = [
     component: RegistrationView,
   },
   {
-    path: '/:id',
+    path: '/id:id',
     name: 'openDialog',
     component: DialogView,
   },

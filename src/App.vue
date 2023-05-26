@@ -11,6 +11,7 @@
 <script>
 
 import chat from './components/v-chat.vue'
+import router from './router'
 import signIn from './views/SignInView.vue'
 
 
@@ -27,11 +28,19 @@ export default {
     }
   },
   created() {
-    const data = localStorage.getItem('token')
+    if(!this.isAuth)
+    {
+      router.push("auth");
+    }
+    else
+    {
+      const data = localStorage.getItem('token')
     console.log(data)
     if (data) {
       this.isAuth = true;
     }
+    }
+    
 
   }
 }
