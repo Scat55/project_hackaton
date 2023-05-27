@@ -152,8 +152,6 @@ export default {
       }
     },
     correctedPasswords() {
-      const api = new Api();
-      const token = api.login(this.dataLogin, this.dataPassword);
       if (token && this.validForm && this.dataPassword === this.dataPasswordDouble) {
         //успешно
         router.push('roles');
