@@ -3,12 +3,16 @@
     <label>Вы действительно хотите удалить все чаты?</label>
     <div>
       <button id="yes">Да</button>
-      <button id="no">Нет</button>
+      <button id="no" @click="onHide">Нет</button>
     </div>
   </div>
 </template>
 <script>
 export default {
+  props:["onHide"],
+  methods:{
+    
+  },
   data() {},
 };
 </script>

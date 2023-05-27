@@ -2,40 +2,54 @@
   <div id="chat">
     <aside class="aside">
       <button class="aside__btn" @click="addNewDialog">
-        <img class="aside__btn-plus"  src="../assets/images/plus.svg" alt="Plus">Новый чат
+        <img
+          class="aside__btn-plus"
+          src="../assets/images/plus.svg"
+          alt="Plus"
+        />Новый чат
       </button>
-   
+
       <div class="aside__text">
-        <DialogWindowDeleteAllChat></DialogWindowDeleteAllChat>
-        <p class="aside__text-delete"><img src="../assets/images/trash.svg" alt="Trach">Удалить все чаты</p>
-        <p class="aside__text-logOut" @click="logOut"><img src="../assets/images/log-out.svg" alt="Trach">Выйти</p>
+        <DialogWindowDeleteAllChat v-if="isShowDialogDeleteAll" :onHide="hideDeleteAllDialogs"></DialogWindowDeleteAllChat>
+        <p class="aside__text-delete" @click="showDeleteAllDialogs">
+          <img src="../assets/images/trash.svg" alt="Trach" />Удалить все чаты
+        </p>
+        <p class="aside__text-logOut" @click="logOut">
+          <img src="../assets/images/log-out.svg" alt="Trach" />Выйти
+        </p>
       </div>
     </aside>
-
   </div>
 </template>
 
 <script>
-import Api from '@/Api';
-import router from '@/router';
-import DialogWindowDeleteAllChat from './dialogWindowDeleteAllChat.vue';
-
+import Api from "@/Api";
+import router from "@/router";
+import DialogWindowDeleteAllChat from "./dialogWindowDeleteAllChat.vue";
 
 export default {
-    name: "chat",
-    data() {
-        return {};
+  name: "chat",
+  data() {
+    return {
+      isShowDialogDeleteAll: false,
+    };
+  },
+  methods: {
+    hideDeleteAllDialogs() {
+      this.isShowDialogDeleteAll = false;
     },
-    methods: {
-        addNewDialog() {
-            router.push({ name: "roles" });
-        },
-        logOut() {
-            const api = new Api();
-            api.logOut();
-        }
+    showDeleteAllDialogs() {
+      this.isShowDialogDeleteAll = true;
     },
-    components: { DialogWindowDeleteAllChat }
+    addNewDialog() {
+      router.push({ name: "roles" });
+    },
+    logOut() {
+      const api = new Api();
+      api.logOut();
+    },
+  },
+  components: { DialogWindowDeleteAllChat },
 };
 </script>
 
@@ -60,7 +74,6 @@ export default {
   color: #fff;
   padding-top: 1rem;
 
-
   &__btn {
     display: flex;
     align-items: center;
@@ -76,7 +89,7 @@ export default {
     margin-left: 0.625rem;
     outline: none;
     cursor: pointer;
-    transition: all .3s;
+    transition: all 0.3s;
 
     &:hover {
       transform: scale(1.04);
@@ -94,12 +107,11 @@ export default {
     padding: 0.625rem;
     margin-left: 0.625rem;
 
-
     &-delete {
       display: flex;
       align-items: center;
       gap: 0.938rem;
-      border-top: 1px solid #302E2E;
+      border-top: 1px solid #302e2e;
       padding-top: 1.25rem;
       font-weight: 400;
       font-size: 1.125rem;
@@ -118,7 +130,5 @@ export default {
       cursor: pointer;
     }
   }
-
-
 }
 </style>
