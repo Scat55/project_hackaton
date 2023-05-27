@@ -19,6 +19,7 @@
           <label>Имя пользователя*</label>
           <input
             class="form__name"
+            :class="borderLogin"
             type="text"
             placeholder="Введите имя пользователя"
             v-model="dataLogin"
@@ -28,6 +29,7 @@
           <div class="form__password">
             <input
               class="form__password-outline"
+              :class="borderPassword"
               :type="typeInput"
               placeholder="Введите пароль"
               v-model="dataPassword"
@@ -44,6 +46,7 @@
           <div class="form__password">
             <input
               class="form__password-outline"
+              :class="borderPasswordDouble"
               :type="typeInput"
               placeholder="Введите пароль"
               v-model="dataPasswordDouble"
@@ -59,6 +62,7 @@
           <label>E-mail*</label>
           <input
             class="form__email"
+            :class="borderEmail"
             type="email"
             placeholder="Введите E-mail"
             v-model="dataEmail"
@@ -95,9 +99,51 @@ export default {
       dataPassword: '',
       dataPasswordDouble: '',
       dataEmail: '',
+      borderPassword: '',
+      borderPasswordDouble: '',
+      borderLogin: '',
+      borderEmail: '',
+      border: '',
+      validForm: false,
     };
   },
+  updated() {
+    this.checkValidForm();
+  },
   methods: {
+    checkValidForm() {
+      if (this.dataPassword.length === 0) {
+        this.borderPassword = 'border';
+      } else {
+        this.borderPassword = '';
+      }
+      if (this.dataPasswordDouble.length === 0) {
+        this.borderPasswordDouble = 'border';
+      } else {
+        this.borderPasswordDouble = '';
+      }
+
+      if (this.dataLogin.length === 0) {
+        this.borderLogin = 'border';
+      } else {
+        this.borderLogin = '';
+      }
+      if (this.dataEmail.length === 0) {
+        this.borderEmail = 'border';
+      } else {
+        this.borderEmail = '';
+      }
+      if (
+        this.dataLogin.length !== 0 &&
+        this.dataPassword.length !== 0 &&
+        this.dataPasswordDouble &&
+        this.dataEmail
+      ) {
+        this.validForm = true;
+      } else {
+        this.validForm = false;
+      }
+    },
     showYourPass() {
       if (this.typeInput == 'password') {
         this.typeInput = 'text';
@@ -108,12 +154,11 @@ export default {
     correctedPasswords() {
       const api = new Api();
       const token = api.login(this.dataLogin, this.dataPassword);
-      if (token) {
+      if (token && this.validForm && this.dataPassword === this.dataPasswordDouble) {
         //успешно
         router.push('roles');
       }
       if (this.dataPassword !== this.dataPasswordDouble) {
-        this.typeBtn = 'button';
         alert('Пароли не совпадают');
       }
     },
@@ -122,6 +167,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.border {
+  border: 1px solid red !important;
+  border-radius: 0.5rem;
+}
 .forFlex {
   display: flex;
   flex-direction: column;
