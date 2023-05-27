@@ -19,7 +19,7 @@ export default function Api() {
   }
 
   async function query(data, link) {
-    return fetch("http://26.72.40.57/" +link, {
+    return fetch("http://26.72.40.57:7000/" +link, {
       method: "POST",
       body: data,
     })
@@ -81,11 +81,11 @@ export default function Api() {
   };
 
   this.Msgs = () => {
-    this.Get = () => {
-
+    this.Get = (dialogueId) => {
+      return query({token:getLocalToken(), id:dialogueId})
     };
     this.New = () => {
-
+      return query({})
     };
   };
 
@@ -96,10 +96,21 @@ export default function Api() {
           token:getLocalToken(),
         },
         "users/"
-        )
+      )
     };
     this.Set = () => {
-
+      return query({})
     };
+  };
+
+  this.Roles = () => {
+    this.GetAll = () => {
+      return query(
+        {
+          token:getLocalToken(),
+        },
+        "roles/"
+        )
+    }
   };
 }
