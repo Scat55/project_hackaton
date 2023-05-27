@@ -162,6 +162,19 @@ export default {
         alert('Пароли не совпадают');
       }
     },
+    registr() {
+      if (this.validForm) {
+        console.log(this.dataLogin, this.dataPassword);
+
+        const api = new Api();
+        api
+          .registration(this.dataEmail, this.dataLogin, this.dataPassword)
+          .then((response) => (response ? router.go(0) : alert('ошибка')))
+          .catch((err) => alert(err));
+      } else {
+        alert('Ты ');
+      }
+    },
   },
 };
 </script>
