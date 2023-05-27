@@ -45,10 +45,12 @@ export default {
     saveAndOpen() {
       const api = new Api();
       api.Roles.Add(this.promt, this.name)
-        .then((result) => {
-          api.Dialogs.Create(result.id)
+        .then((response) => {
+          console.log(response.id,"роль");
+          api.Dialogs.Create(response.id)
             .then((result) => {
-              router.push({ name: "openDialog", params: { id: idRole } });
+              console.log(result);
+              router.push({ name: "openDialog", params: { id: result.id} });
             })
         })
         .catch((err) => {});
