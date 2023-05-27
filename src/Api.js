@@ -122,7 +122,7 @@ export default function Api() {
         
     };
 
-    this.Dialogs.GetById = (dialogId) => {    //TODO
+    this.Dialogs.GetById = (dialogId) => {    
       return query(
         "dialogues/" + dialogId,"GET"
       )
@@ -131,7 +131,7 @@ export default function Api() {
     this.Dialogs.Create = (roleId) => {
       return queryPOST(
         {
-          role:roleId
+          roleId:roleId
         },
         "dialogues",
         "POST"
