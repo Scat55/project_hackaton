@@ -1,38 +1,36 @@
 export default function Api() {
-  function saveToken( val) {
-  localStorage.setItem("token",val)
+  function saveToken(val) {
+    localStorage.setItem('token', val);
   }
 
   function getLocalToken() {
-    return localStorage.getItem("token")
+    return localStorage.getItem('token');
   }
   function deleteAllCookies() {
-    var cookies = document.cookie.split(";");
+    var cookies = document.cookie.split(';');
     for (var i = 0; i < cookies.length; i++) {
       var cookie = cookies[i];
-      var eqPos = cookie.indexOf("=");
+      var eqPos = cookie.indexOf('=');
       var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
-      document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;";
-      document.cookie =
-        name + "=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;";
+      document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:00 GMT;';
+      document.cookie = name + '=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
     }
   }
 
-  async function query( link,) {
-    return fetch("http://26.72.40.57:7000/" +link, {
-      method: "GET", // *GET, POST, PUT, DELETE, etc.
-      mode: "cors", // no-cors, *cors, same-origin
-      cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-      credentials: "same-origin", // include, *same-origin, omit
+  async function query(link) {
+    return fetch('http://26.72.40.57:7000/' + link, {
+      method: 'GET', // *GET, POST, PUT, DELETE, etc.
+      mode: 'cors', // no-cors, *cors, same-origin
+      cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+      credentials: 'same-origin', // include, *same-origin, omit
       headers: {
-        "Content-Type": "application/json",
-        "authorization": "Bearer "+ getLocalToken(),
+        'Content-Type': 'application/json',
+        authorization: 'Bearer ' + getLocalToken(),
         // 'Content-Type': 'application/x-www-form-urlencoded',
       },
-      redirect: "follow", // manual, *follow, error
-      referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+      redirect: 'follow', // manual, *follow, error
+      referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
       //body: JSON.stringify(data), // body data type must match "Content-Type" header
-      
     })
       .then((response) => response.json())
       .then((responseData) => {
@@ -45,20 +43,19 @@ export default function Api() {
       });
   }
   async function queryPOST(data, link, type) {
-    return fetch("http://26.72.40.57:7000/" +link, {
+    return fetch('http://26.72.40.57:7000/' + link, {
       method: type, // *GET, POST, PUT, DELETE, etc.
-      mode: "cors", // no-cors, *cors, same-origin
-      cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-      credentials: "same-origin", // include, *same-origin, omit
+      mode: 'cors', // no-cors, *cors, same-origin
+      cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+      credentials: 'same-origin', // include, *same-origin, omit
       headers: {
-        "Content-Type": "application/json",
-        "authorization": "Bearer "+ getLocalToken(),
+        'Content-Type': 'application/json',
+        authorization: 'Bearer ' + getLocalToken(),
         // 'Content-Type': 'application/x-www-form-urlencoded',
       },
-      redirect: "follow", // manual, *follow, error
-      referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+      redirect: 'follow', // manual, *follow, error
+      referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
       body: JSON.stringify(data), // body data type must match "Content-Type" header
-      
     })
       .then((response) => response.json())
       .then((responseData) => {
@@ -76,7 +73,7 @@ export default function Api() {
   };
 
   this.login = async (login, password) => {
-    return queryPOST({ email: login, password: password }, "auth/login", "POST")
+    return queryPOST({ email: login, password: password }, 'auth/login', 'POST')
       .then((response) => {
         if (response.token) {
           saveToken(response.token);
@@ -91,7 +88,7 @@ export default function Api() {
 
   this.logOut = () => {
     localStorage.clear();
-    location. reload();
+    location.reload();
   };
   this.registration = (email, name, password) => {
     return queryPOST(
@@ -100,82 +97,69 @@ export default function Api() {
         email: email,
         password: password,
       },
-      "auth/registration",
-      "POST"
-    ).then((response) => {
-      if (response.token) {
-        saveToken(response.token);
-        return true;
-      }
-      return false;
+      'auth/registration',
+      'POST',
+    )
+      .then((response) => {
+        if (response.token) {
+          saveToken(response.token);
+          return true;
+        }
+        return false;
 
-      console.log(response);
-    })
-    .catch((err) => alert(err));
+        console.log(response);
+      })
+      .catch((err) => alert(err));
   };
 
-  this.Dialogs = () => {}
-    this.Dialogs.GetAll = () => {
-      return query(
-        "dialogues"
-      )
-        
-    };
-    this.Dialogs.Create = (roleId) => {
-      return queryPOST(
-        {
-          role:roleId
-        },
-        "dialogues",
-        "POST"
-        )
-    };
+  this.Dialogs = () => {};
+  this.Dialogs.GetAll = () => {
+    return query('dialogues');
+  };
+  this.Dialogs.Create = (roleId) => {
+    return queryPOST(
+      {
+        role: roleId,
+      },
+      'dialogues',
+      'POST',
+    );
+  };
 
-    this.Dialogs.Delete = (chatId) => {
-      return queryPOST({},"dialogues/" + chatId,"DELETE")
-    }
+  this.Dialogs.Delete = (chatId) => {
+    return queryPOST({}, 'dialogues/' + chatId, 'DELETE');
+  };
 
-    this.Dialogs.DeleteAll = () => {
-      return queryPOST({}, "","DELETE")
-    }
-  
+  this.Dialogs.DeleteAll = () => {
+    return queryPOST({}, '', 'DELETE');
+  };
 
-  this.Msgs = () => {}
-    this.Msgs.Get = (dialogueId) => {
-      return query("dialogues/"+ dialogueId +"/messages")
-    };
-    this.Msgs.New = (dialogueId, messageContent) => {
-      return queryPOST({content:messageContent},
-        "dialogues/"+ dialogueId +"/messages", 
-        "POST"
-      )
-    };
+  this.Msgs = () => {};
+  this.Msgs.Get = (dialogueId) => {
+    return query('dialogues/' + dialogueId + '/messages');
+  };
+  this.Msgs.New = (dialogueId, messageContent) => {
+    return queryPOST({ content: messageContent }, 'dialogues/' + dialogueId + '/messages', 'POST');
+  };
 
+  this.User = () => {};
+  this.User.Get = () => {
+    return query('users');
+  };
+  this.User.Set = (userId, changes) => {
+    return queryPOST(changes, 'users/profile/' + userId, 'PATCH');
+  };
 
-  this.User = () => {}
-    this.User.Get = () => {
-      return query(
-        "users"
-      )
-    };
-    this.User.Set = (userId, changes) => {
-      return queryPOST(changes, "users/profile/"+userId, "PATCH")
-    };
-  
+  this.Roles = () => {};
+  this.Roles.Get = () => {
+    return query('roles');
+  };
 
-  this.Roles = () => {}
-    this.Roles.Get = () => {
-      return query(
-        "roles"
-      )
-    }
+  this.Roles.Add = (firstPrompt, roleName) => {
+    return queryPOST({ value: firstPrompt, name: roleName }, 'roles', 'POST');
+  };
 
-    this.Roles.Add = (firstPrompt, roleName) => {
-      return queryPOST({value:firstPrompt, name:roleName}, "roles", "POST")
-    }
-
-    this.Roles.Delete = () => {
-      return queryPOST({},"","DELETE")
-    }
-  
+  this.Roles.Delete = () => {
+    return queryPOST({}, '', 'DELETE');
+  };
 }
