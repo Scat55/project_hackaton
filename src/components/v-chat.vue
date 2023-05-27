@@ -49,14 +49,25 @@ import Lk from "./lk.vue";
 
 export default {
   name: "chat",
+
   created() {
     const api = new Api();
-    api.Dialogs.GetAll()
+    
+      ;
+      this.$watch(
+      () => this.$route.params,
+      () => {
+        api.Dialogs.GetAll()
       .then((result) => {
         console.log(result);
         this.dialogs = result;
       })
-      .catch((err) => {});
+
+      },
+      // fetch the data when the view is created and the data is
+      // already being observed
+      { immediate: true }
+    );
   },
   data() {
     return {

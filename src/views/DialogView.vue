@@ -163,6 +163,7 @@ export default {
       justify-content: flex-start;
       align-items: start;
       gap: 1rem;
+      color: black;
     }
 
     .dialog_textfield {
