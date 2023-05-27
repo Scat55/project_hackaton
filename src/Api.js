@@ -76,7 +76,7 @@ export default function Api() {
   };
 
   this.login = async (login, password) => {
-    return query({ email: login, password: password }, "auth/login")
+    return queryPOST({ email: login, password: password }, "auth/login", "POST")
       .then((response) => {
         if (response.token) {
           saveToken(response.token);
@@ -94,13 +94,14 @@ export default function Api() {
     location. reload();
   };
   this.registration = (email, name, password) => {
-    return query(
+    return queryPOST(
       {
         name: name,
         email: email,
         password: password,
       },
-      "auth/registration"
+      "auth/registration",
+      "POST"
     ).then((response) => {
       if (response.token) {
         saveToken(response.token);
