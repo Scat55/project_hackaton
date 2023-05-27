@@ -3,43 +3,77 @@
     <div class="header">
       <div class="container">
         <div class="header__logo">
-          <img src="../assets/images/logo.svg" alt="Logo" class="header__logo-img">
+          <img src="../assets/images/logo.svg" alt="Logo" class="header__logo-img" />
           <p class="header__logo-text">Gachi <span>Chat</span></p>
         </div>
       </div>
     </div>
     <div class="registr__window">
       <div class="registr">
-        <img src="../assets/images/cup.svg" alt="Cup" class="registr__img">
+        <img src="../assets/images/cup.svg" alt="Cup" class="registr__img" />
         <div class="registr__text">
           <div class="registr__title">Регистрация</div>
           <div class="registr__subtitle">Введите данные по форме ниже</div>
         </div>
         <form action="#" class="registr__form">
           <label>Имя пользователя*</label>
-          <input class="form__name" type="text" placeholder="Введите имя пользователя" v-model="dataLogin" required>
+          <input
+            class="form__name"
+            type="text"
+            placeholder="Введите имя пользователя"
+            v-model="dataLogin"
+            required
+          />
           <label>Пароль*</label>
           <div class="form__password">
-            <input class="form__password-outline" :type="typeInput" placeholder="Введите пароль" v-model="dataPassword"
-              required>
-            <img class="form__password-img" src="../assets/images/eye.svg" alt="Eye" @click="showYourPass">
+            <input
+              class="form__password-outline"
+              :type="typeInput"
+              placeholder="Введите пароль"
+              v-model="dataPassword"
+              required
+            />
+            <img
+              class="form__password-img"
+              src="../assets/images/eye.svg"
+              alt="Eye"
+              @click="showYourPass"
+            />
           </div>
           <label> Повторите пароль*</label>
           <div class="form__password">
-            <input class="form__password-outline" :type="typeInput" placeholder="Введите пароль"
-              v-model="dataPasswordDouble" required>
-            <img class="form__password-img" src="../assets/images/eye.svg" alt="Eye" @click="showYourPass">
+            <input
+              class="form__password-outline"
+              :type="typeInput"
+              placeholder="Введите пароль"
+              v-model="dataPasswordDouble"
+              required
+            />
+            <img
+              class="form__password-img"
+              src="../assets/images/eye.svg"
+              alt="Eye"
+              @click="showYourPass"
+            />
           </div>
           <label>E-mail*</label>
-          <input class="form__email" type="email" placeholder="Введите E-mail" v-model="dataEmail" required>
+          <input
+            class="form__email"
+            type="email"
+            placeholder="Введите E-mail"
+            v-model="dataEmail"
+            required
+          />
           <div class="form__info">
-            <p class="form__info__text">Нажимая кнопку «Зарегистрироваться» вы даёте согласие на <span
-                class="form__info-red">обработку своих персональных данных</span>
+            <p class="form__info__text">
+              Нажимая кнопку «Зарегистрироваться» вы даёте согласие на
+              <span class="form__info-red">обработку своих персональных данных</span>
             </p>
           </div>
-          <button class="form__btn" :type="typeBtn" @click="correctedPasswords">Зарегистрироваться</button>
+          <button class="form__btn" :type="typeBtn" @click="correctedPasswords">
+            Зарегистрироваться
+          </button>
           <p class="form__text">Есть аккаунт?<a href="/auth" class="form__registr"> Войти </a></p>
-
         </form>
       </div>
     </div>
@@ -48,7 +82,7 @@
 
 <script>
 import Api from '@/Api';
-import router from '../router'
+import router from '../router';
 
 export default {
   name: 'RegistrationView',
@@ -60,8 +94,8 @@ export default {
       dataLogin: '',
       dataPassword: '',
       dataPasswordDouble: '',
-      dataEmail: ''
-    }
+      dataEmail: '',
+    };
   },
   methods: {
     showYourPass() {
@@ -76,17 +110,15 @@ export default {
       const token = api.login(this.dataLogin, this.dataPassword);
       if (token) {
         //успешно
-        router.push("roles");
+        router.push('roles');
       }
       if (this.dataPassword !== this.dataPasswordDouble) {
-        this.typeBtn = 'button'
-        alert("Пароли не совпадают")
+        this.typeBtn = 'button';
+        alert('Пароли не совпадают');
       }
-
-
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
@@ -105,7 +137,7 @@ export default {
 
 .header {
   height: 2.75rem;
-  border-bottom: 0.063rem solid #F4EEEE;
+  border-bottom: 0.063rem solid #f4eeee;
   padding-bottom: 0.5rem;
 }
 
@@ -127,7 +159,7 @@ export default {
     line-height: 1.813;
 
     span {
-      color: #ED5761;
+      color: #ed5761;
     }
   }
 }
@@ -156,7 +188,7 @@ export default {
     font-weight: 400;
     font-size: 1rem;
     line-height: 1.5rem;
-    color: #404B62;
+    color: #404b62;
     margin-top: 0.375rem;
   }
 
@@ -164,7 +196,7 @@ export default {
     font-weight: 500;
     font-size: 0.875rem;
     line-height: 1.5rem;
-    color: #404B62;
+    color: #404b62;
     margin-top: 0.75rem;
   }
 
@@ -177,28 +209,28 @@ export default {
 .form {
   &__name {
     padding: 0.625rem 1rem;
-    border: 0.063rem solid #B5AEAE;
+    border: 0.063rem solid #b5aeae;
     border-radius: 0.5rem;
     font-weight: 400;
     font-size: 1rem;
     line-height: 1.5rem;
-    outline: #827D7D;
-    color: #827D7D;
+    outline: #827d7d;
+    color: #827d7d;
 
     &::placeholder {
-      color: #827D7D;
+      color: #827d7d;
     }
   }
 
   &__email {
     padding: 0.625rem 1rem;
-    border: 0.063rem solid #B5AEAE;
+    border: 0.063rem solid #b5aeae;
     border-radius: 0.5rem;
     font-weight: 400;
     font-size: 1rem;
     line-height: 1.5rem;
-    outline: #827D7D;
-    color: #827D7D;
+    outline: #827d7d;
+    color: #827d7d;
   }
 
   &__password {
@@ -209,13 +241,13 @@ export default {
       width: 90%;
       position: relative;
       padding: 0.625rem 1rem;
-      border: 0.063rem solid #B5AEAE;
+      border: 0.063rem solid #b5aeae;
       border-radius: 0.5rem;
       font-weight: 400;
       font-size: 1rem;
       line-height: 1.5rem;
-      outline: #827D7D;
-      color: #827D7D;
+      outline: #827d7d;
+      color: #827d7d;
     }
 
     &-img {
@@ -231,7 +263,7 @@ export default {
     font-size: 1rem;
     line-height: 1.5rem;
     text-decoration: none;
-    color: #2C3343;
+    color: #2c3343;
     margin-top: 0.875rem;
     margin-bottom: 2.125rem;
   }
@@ -252,13 +284,13 @@ export default {
     width: 20.313rem;
     height: 2.75rem;
     padding: 0.625rem 1rem;
-    background: #404B62;
+    background: #404b62;
     border-radius: 0.5rem;
     font-weight: 400;
     font-size: 1rem;
     line-height: 1.5rem;
     text-align: center;
-    color: #FFFFFF;
+    color: #ffffff;
     outline: none;
     cursor: pointer;
     border: none;
@@ -270,7 +302,7 @@ export default {
     line-height: 1.5rem;
     margin-top: 1rem;
     text-align: center;
-    color: #827D7D;
+    color: #827d7d;
   }
 
   &__registr {
@@ -278,8 +310,7 @@ export default {
     font-size: 1rem;
     line-height: 1.5rem;
     text-align: center;
-    color: #2C3343;
-
+    color: #2c3343;
   }
 }
 </style>
