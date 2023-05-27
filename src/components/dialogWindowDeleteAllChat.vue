@@ -13,7 +13,6 @@ export default {
   props: ["onHide"],
   methods: {
     delete() {
-    
       const api = new Api();
       api.Dialogs.DeleteAll()
         .then((result) => {})

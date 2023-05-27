@@ -46,12 +46,11 @@ export default {
       const api = new Api();
       api.Roles.Add(this.promt, this.name)
         .then((response) => {
-          console.log(response.id,"роль");
-          api.Dialogs.Create(response.id)
-            .then((result) => {
-              console.log(result);
-              router.push({ name: "openDialog", params: { id: result.id} });
-            })
+          console.log(response.id, "роль");
+          api.Dialogs.Create(response.id).then((result) => {
+            console.log(result);
+            router.push({ name: "openDialog", params: { id: result.id } });
+          });
         })
         .catch((err) => {});
     },

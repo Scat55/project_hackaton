@@ -68,7 +68,7 @@ export default {
   methods: {
     chooseDialog(e) {
       const dialogId = e.currentTarget.id;
-      router.push({ name: "openDialog", params: { id:dialogId } });
+      router.push({ name: "openDialog", params: { id: dialogId } });
     },
     hideDeleteAllDialogs() {
       this.isShowDialogDeleteAll = false;
@@ -106,7 +106,7 @@ export default {
 }
 
 .aside {
-  ul{
+  ul {
     overflow: auto;
     height: 60vh;
   }
