@@ -3,11 +3,10 @@
     <div class="back"></div>
     <div class="box">
       <div class="header">
-        <img class="logo" src="icons/iconRole.svg" />
-        <input v-model="name" type="text" class="title" placeholder="title" />
+        <input v-model="name" type="text" class="title" placeholder="Название роли" />
       </div>
       <div class="text">
-        <textarea v-model="promt" placeholder="promt"> </textarea>
+        <textarea v-model="promt" placeholder="Описание роли"> </textarea>
       </div>
       <div class="footer">
         <button @click="saveAndOpen">Сохранить и создать чат</button>
@@ -70,7 +69,7 @@ export default {
   justify-content: center;
   .back {
     position: absolute;
-    z-index: 998;
+    z-index: 99;
     height: 100%;
     width: 100%;
     background: linear-gradient(
@@ -86,13 +85,14 @@ export default {
     );
   }
   .box {
-    z-index: 999;
+    z-index: 100;
     padding: 1rem;
     background-color: white;
     border-radius: 0.3rem;
+    width: 40rem;
     .header {
       display: flex;
-      width: 40rem;
+     
       margin-bottom: 1rem;
       .logo {
         margin: 0;
@@ -106,7 +106,7 @@ export default {
         padding: 0;
         display: inline-block;
         height: 2rem;
-        width: 38rem;
+        width: 100%;
       }
     }
     .text {

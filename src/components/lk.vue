@@ -90,9 +90,10 @@ export default {
   width: 100%;
   height: 100vh;
   background-color: rgba(22, 21, 21, 0.5);
-  z-index: 3;
+  z-index: 999;
 }
 .person {
+  
   position: absolute;
   display: flex;
   flex-direction: column;
@@ -102,7 +103,7 @@ export default {
   height: 100vh;
   overflow: auto;
   width: 25.188rem;
-  z-index: 5;
+ 
   &__img {
     display: flex;
     justify-content: center;
