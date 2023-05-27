@@ -81,6 +81,7 @@ export default {
     newMsg(){
       if(this.msgText)
       {
+        this.msgs.push({role:"user",content:this.msgText})
         const api = new Api();
       api.Msgs.New(this.dialogId,this.msgText).then((result) => {
         this.msgs.push({role:"assistent",content:result})
