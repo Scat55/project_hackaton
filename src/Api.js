@@ -17,9 +17,9 @@ export default function Api() {
     }
   }
 
-  async function query(link) {
+  async function query(link, type) {
     return fetch('http://26.72.40.57:7000/' + link, {
-      method: 'GET', // *GET, POST, PUT, DELETE, etc.
+      method: type, // *GET, POST, PUT, DELETE, etc.
       mode: 'cors', // no-cors, *cors, same-origin
       cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
       credentials: 'same-origin', // include, *same-origin, omit
@@ -169,6 +169,10 @@ export default function Api() {
     this.User.SetPassword = (userId, newPassword) => {
       return queryPOST({password:newPassword}, "users/profile/"+userId, "PATCH")
     };
+    this.User.SetPremium = (userId, newPremium) => {
+      return queryPOST({}, "users/profile/"+userId, "PATCH")
+    }
+    
   
 
   this.Roles = () => {}
@@ -188,7 +192,7 @@ export default function Api() {
     return queryPOST({ value: firstPrompt, name: roleName }, 'roles', 'POST');
   };
 
-  this.Roles.Delete = () => {
-    return queryPOST({}, '', 'DELETE');
+  this.Roles.Delete = (roleId) => {
+    return queryPOST({roleId:roleId}, 'roles', 'DELETE');
   };
 }
