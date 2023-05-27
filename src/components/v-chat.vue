@@ -1,8 +1,8 @@
 <template>
   <div id="chat">
     <aside class="aside">
-      <button class="aside__btn">
-        <img class="aside__btn-plus" src="../assets/images/plus.svg" alt="Plus">Новый чат
+      <button class="aside__btn" @click="addNewDialog">
+        <img class="aside__btn-plus"  src="../assets/images/plus.svg" alt="Plus">Новый чат
       </button>
 
       <div class="aside__text">
@@ -30,7 +30,7 @@ export default {
    methods:{
     addNewDialog()
     {
-
+      router.push({name:"roles"});
     },
     logOut(){
       const api = new Api();
@@ -48,7 +48,6 @@ export default {
 }
 
 .chat {
-
   display: flex;
 }
 
@@ -57,7 +56,7 @@ export default {
   flex-direction: column;
   justify-content: space-between;
   background-color: #161515;
-  width: 17.875rem;
+  width: 15.875rem;
   height: 100vh;
   color: #fff;
   padding-top: 1rem;

@@ -6,7 +6,6 @@
 </template>
 
 <script>
-import { pushScopeId } from "vue";
 import chat from "./components/v-chat.vue";
 import router from "./router";
 import signIn from "./views/SignInView.vue";
@@ -42,21 +41,17 @@ export default {
     // redirect the user to the login page
     router.push("auth");
   }
-  if (
-    // make sure the user is authenticated
-    this.isAuth &&
+  else if (
+     // make sure the user is authenticated
+     this.isAuth &&
     // ❗️ Avoid an infinite redirect
     (to.name === 'auth'||to.name === 'registration')
-  ) {
-    // redirect the user to the login page
-    router.push("/");
+  )
+  {
+    router.push({name:'roles'});
   }
 })
     
-  },watch: {
-    $route() {
-       this.upd++;
-    },
   },
 }
 </script>
