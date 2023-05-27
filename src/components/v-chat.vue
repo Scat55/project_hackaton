@@ -6,11 +6,11 @@
           <img class="aside__btn-plus" src="../assets/images/plus.svg" alt="Plus" />Новый чат
         </button>
         <ul>
-          <DialogItem v-for="dialog in dialogs" :id="dialog.id" :name="dialog.name"> </DialogItem>
+          <DialogItem v-for="dialog in dialogs" :id="dialog.id" :name="dialog.name" :state="dialog.state"> </DialogItem>
         </ul>
       </div>
       <div class="aside__text">
-        <lk />
+        <lk v-if="isShowLk"/>
         <DialogWindowDeleteAllChat
           v-if="isShowDialogDeleteAll"
           :onHide="hideDeleteAllDialogs"
@@ -18,8 +18,8 @@
         <p class="aside__text-delete" @click="showDeleteAllDialogs">
           <img src="../assets/images/trash.svg" alt="Trach" />Удалить все чаты
         </p>
-        <p class="aside__text-delete" @click="showLkWindow">
-          <img src="../assets/images/trash.svg" alt="Trach" />Личный кабинет
+        <p class="aside__text-LK" @click="showLkWindow">
+          <img src="../assets/images/lk.svg" alt="Trach" />Личный кабинет
         </p>
         <p class="aside__text-logOut" @click="logOut">
           <img src="../assets/images/log-out.svg" alt="Trach" />Выйти
@@ -38,10 +38,20 @@ import Lk from './lk.vue';
 
 export default {
   name: 'chat',
+  created(){
+    const api = new Api();
+      api.Dialogs.GetAll().then((result) => {
+        console.log(result);
+        this.dialogs = result;
+      }).catch((err) => {
+        
+      });;
+     //d.GetAll();
+  },
   data() {
     return {
       isShowDialogDeleteAll: false,
-      dialogs: [{ id: 0, name: 'Billy' }],
+      dialogs: [],
       isShowLk: false,
     };
   },
@@ -135,7 +145,16 @@ export default {
       line-height: 1.188rem;
       cursor: pointer;
     }
-
+    &-LK{
+      display: flex;
+      align-items: center;
+      gap: 0.938rem;
+      font-weight: 400;
+      font-size: 1.125rem;
+      line-height: 1.188rem;
+    
+      cursor: pointer;
+    }
     &-logOut {
       display: flex;
       align-items: center;
