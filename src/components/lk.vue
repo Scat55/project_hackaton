@@ -1,5 +1,5 @@
 <template>
-  <div class="person__shadow" v-if="isShow">
+  <div class="person__shadow" v-show="isShow">
     <div class="person">
       <div class="person__img">
         <img class="person__image" src="../assets/images/avatar.svg" alt="PersonAvatar" />
@@ -7,30 +7,25 @@
       <div class="person__inputs">
         <input
           class="input__name"
-          type="text"
+          
           placeholder="Введите имя пользователя"
-          :value="userName"
-          v-modal="newUserName"
-          :readonly="isActive"
+          v-model="userName"
+  
         />
         <input
           class="input__email"
           type="email"
           placeholder="Введите email"
-          :value="userEmail"
-          v-modal="userEmail"
-          :readonly="isActive"
+          v-model="userEmail"
         />
         <div class="change__pass">
           <input
             class="input__pass"
             type="password"
             placeholder="Введите пароль"
-            :value="userPassword"
-            v-modal="userPassword"
-            :readonly="isActive"
+            v-model="userPassword"
           />
-          <div class="change" @click="test"><img src="../assets/images/pen.svg" alt="" /></div>
+       
           <p class="change__pass-text" @click="changeInfoOfPerson">Сохранить изменения</p>
         </div>
       </div>
@@ -46,7 +41,7 @@
       </div>
       <div class="person__out">
         <img src="../assets/images/log-out.svg" alt="ArrowOut" class="out__img" />
-        <p class="person__text">Выйти</p>
+        <p class="person__text" @click="logOut">Выйти</p>
       </div></footer>
     
     </div>
@@ -67,43 +62,62 @@ export default {
   data() {
     return {
       isShow: true,
-      userName: 'Dima',
-      newUserName: '',
-      userEmail: 'test@mail.ru',
-      newUserEmail:'',
+      id:0,
+      userName: "",
+      userEmail: "",
+
+      oldName:"",
+      oldEmail:"",
       userPassword: '',
-      isActive: true,
+
+
+      isActive: false,
       premium:false
     };
   },
 beforeCreate(){
     const api = new Api();
     api.User.Get().then((result) => {
-      console.log(result);
+      console.log(result.name);
+      this.id = result.id;
       this.userName = result.name;
       this.userEmail = result.email;
-      this.premium =result.premium
+      this.premium =result.premium;
+     
+      this.oldName =this.userName;
+      this.oldEmail =this.userEmail;
     }).catch((err) => {
       
     });
   },
   methods: {
-   
+  
     closePerson(){
       this.onHide()
+    },
+    logOut() {
+      const api = new Api();
+      api.logOut();
     },
     changeInfoOfPerson() {
     
       console.log(this.userName);
       const api = new Api();
-      if(this.userEmail!==this.newUserEmail)
-      api.User.SetEmail(this.newUserEmail)
-      if(this.userName!==this.newUserName)
-      api.User.SetName(this.newUserName)
+      if(this.userEmail.length>0&&this.userEmail!==this.oldEmail)
+      api.User.SetEmail(this.id,this.userEmail)
+      if(this.userName.length>0&&this.oldName!==this.userName)
+      if(this.userPassword.length>0)
+      {
+        api.User.SetName(this.id,this.userName).then((result) => {
+          alert("Данные сохранены")
+        }).catch((err) => {
+          
+        });
+        this.userPassword='';
+      }
+      
     },
-    test() {
-      this.isActive = !this.isActive;
-    },
+   
   },
 };
 </script>
