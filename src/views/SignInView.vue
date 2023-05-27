@@ -3,14 +3,13 @@
     <div class="header">
       <div class="container">
         <div class="header__logo">
-          <img src="../assets/images/logo.svg" alt="Logo" class="header__logo-img">
+          <img src="../assets/images/logo.svg" alt="Logo" class="header__logo-img" />
           <p class="header__logo-text">Gachi <span>Chat</span></p>
         </div>
       </div>
     </div>
 
     <div class="signin__window">
-
       <div class="signin">
         <img src="../assets/images/cup.svg" alt="Cup" class="registr__img" />
         <div class="signin__text">
@@ -18,20 +17,38 @@
           <div class="signin__subtitle">Введите логин и пароль в форме ниже</div>
         </div>
 
-      <form action="#" class="signin__form">
-        <label>Имя</label>
-        <input class="form__name" type="text" placeholder="Введите имя пользователя" v-model="dataLogin">
-        <label>Пароль*</label>
-        <div class="form__password">
-          <input class="form__password-outline" :type="typeInput" placeholder="Введите пароль" v-model="dataPassword"
-            required>
-          <img class="form__password-img" src="../assets/images/eye.svg" alt="Eye" @click="showYourPass">
-        </div>
-        <a href="#" class="form__link">Восстановить пароль</a>
+        <form action="#" class="signin__form">
+          <label>Имя</label>
+          <input
+            class="form__name"
+            :class="borderLogin"
+            type="text"
+            placeholder="Введите имя пользователя"
+            v-model="dataLogin"
+            required
+          />
+          <label>Пароль*</label>
+          <div class="form__password" :class="borderPassword">
+            <input
+              class="form__password-outline"
+              :type="typeInput"
+              placeholder="Введите пароль"
+              v-model="dataPassword"
+              required
+            />
+            <img
+              class="form__password-img"
+              src="../assets/images/eye.svg"
+              alt="Eye"
+              @click="showYourPass"
+            />
+          </div>
+          <a href="#" class="form__link">Восстановить пароль</a>
 
-        <button class="form__btn" type="button" @click="auth">Войти</button>
-        <p class="form__text">Нет аккаунта?<a href="/registration" class="form__registr"> Зарегистрироваться </a></p>
-
+          <button class="form__btn" type="button" @click="auth">Войти</button>
+          <p class="form__text">
+            Нет аккаунта?<a href="/registration" class="form__registr"> Зарегистрироваться </a>
+          </p>
         </form>
       </div>
     </div>
@@ -49,7 +66,13 @@ export default {
       typeInput: 'password',
       dataLogin: '',
       dataPassword: '',
-    }
+      borderPassword: '',
+      borderLogin: '',
+      validForm: false,
+    };
+  },
+  updated() {
+    this.checkValidForm();
   },
   methods: {
     showYourPass() {
@@ -60,18 +83,36 @@ export default {
       }
     },
     auth() {
-      const api = new Api();
-      const data = api.login(this.dataLogin, this.dataPassword);
-      
-      data.then(response => router.go(0)).
-      catch(err=>  alert(err));
-    
-    }
-  }
-}
+      // const api = new Api();
+      // const data = api.login(this.dataLogin, this.dataPassword);
+      // data.then(response => router.go(0)).
+      //   catch(err => alert(err));
+    },
+
+    checkValidForm() {
+      if (this.dataPassword.length === 0) {
+        this.borderPassword = 'border';
+      } else {
+        this.borderPassword = '';
+      }
+
+      if (this.dataLogin.length === 0) {
+        this.borderLogin = 'border';
+        console.log(this.dataLogin);
+      } else {
+        this.borderLogin = '';
+      }
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
+.border {
+  border: 1px solid red !important;
+  border-radius: 0.5rem;
+}
+
 .forFlex {
   display: flex;
   flex-direction: column;
@@ -87,7 +128,7 @@ export default {
 
 .header {
   height: 2.75rem;
-  border-bottom: 0.063rem solid #F4EEEE;
+  border-bottom: 0.063rem solid #f4eeee;
   padding-bottom: 0.5rem;
 }
 
@@ -109,7 +150,7 @@ export default {
     line-height: 1.813;
 
     span {
-      color: #ED5761;
+      color: #ed5761;
     }
   }
 }
@@ -117,7 +158,6 @@ export default {
 .signin__window {
   height: 100vh;
   display: flex;
-
 }
 
 .signin {
@@ -138,7 +178,7 @@ export default {
     font-weight: 400;
     font-size: 1rem;
     line-height: 1.5rem;
-    color: #404B62;
+    color: #404b62;
     margin-top: 0.375rem;
   }
 
@@ -146,7 +186,7 @@ export default {
     font-weight: 500;
     font-size: 0.875rem;
     line-height: 1.5rem;
-    color: #404B62;
+    color: #404b62;
     margin-top: 0.75rem;
   }
 
@@ -158,16 +198,16 @@ export default {
   .form {
     &__name {
       padding: 0.625rem 1rem;
-      border: 0.063rem solid #B5AEAE;
+      border: 0.063rem solid #b5aeae;
       border-radius: 0.5rem;
       font-weight: 400;
       font-size: 1rem;
       line-height: 1.5rem;
-      outline: #827D7D;
-      color: #827D7D;
+      outline: #827d7d;
+      color: #827d7d;
 
       &::placeholder {
-        color: #827D7D;
+        color: #827d7d;
       }
     }
 
@@ -179,13 +219,13 @@ export default {
         width: 90%;
         position: relative;
         padding: 0.625rem 1rem;
-        border: 0.063rem solid #B5AEAE;
+        border: 0.063rem solid #b5aeae;
         border-radius: 0.5rem;
         font-weight: 400;
         font-size: 1rem;
         line-height: 1.5rem;
-        outline: #827D7D;
-        color: #827D7D;
+        outline: #827d7d;
+        color: #827d7d;
       }
 
       &-img {
@@ -201,7 +241,7 @@ export default {
       font-size: 1rem;
       line-height: 1.5rem;
       text-decoration: none;
-      color: #2C3343;
+      color: #2c3343;
       margin-top: 0.875rem;
       margin-bottom: 2.125rem;
     }
@@ -210,13 +250,13 @@ export default {
       width: 20.313rem;
       height: 2.75rem;
       padding: 0.625rem 1rem;
-      background: #404B62;
+      background: #404b62;
       border-radius: 0.5rem;
       font-weight: 400;
       font-size: 1rem;
       line-height: 1.5rem;
       text-align: center;
-      color: #FFFFFF;
+      color: #ffffff;
       outline: none;
       cursor: pointer;
       border: none;
@@ -228,7 +268,7 @@ export default {
       line-height: 1.5rem;
       margin-top: 1rem;
       text-align: center;
-      color: #827D7D;
+      color: #827d7d;
     }
 
     &__registr {
@@ -236,10 +276,8 @@ export default {
       font-size: 1rem;
       line-height: 1.5rem;
       text-align: center;
-      color: #2C3343;
-
+      color: #2c3343;
     }
   }
-
 }
 </style>
