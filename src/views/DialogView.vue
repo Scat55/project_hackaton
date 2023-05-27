@@ -23,8 +23,8 @@
         ></Msg>
       </div>
       <div class="dialog_textfield">
-        <input placeholder="Введите сообщение...">
-        <button class="msg_button_send">Отправить</button>
+        <input placeholder="Введите сообщение..." v-model="msgText">
+        <button @click="newMsg" class="msg_button_send">Отправить</button>
       </div>
     </div>
     
@@ -83,7 +83,8 @@ export default {
       {
         const api = new Api();
       api.Msgs.New(this.dialogId,this.msgText).then((result) => {
-        this.msgs=result
+        this.msgs.push({role:"assistent",content:result})
+        this.msgText = "";
       }).catch((err) => {
 
       });
