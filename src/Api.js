@@ -50,10 +50,14 @@ export default function Api() {
   this.login = async (login, password) => {
     return query({ email: login, password: password }, "auth/login")
       .then((response) => {
-        if(response.token)
-        saveToken(response.token);
-        
-        console.log(response);})
+        if (response.token) {
+          saveToken(response.token);
+          return true;
+        }
+        return false;
+
+        console.log(response);
+      })
       .catch((err) => alert(err));
   };
 
@@ -62,16 +66,23 @@ export default function Api() {
     location. reload();
   };
   this.registration = (email, name, login, password) => {
-    const data = query(
+    return query(
       {
         name: name,
         email: email,
-        login: login,
         password: password,
       },
       "auth/registration"
-    );
-    return data;
+    ).then((response) => {
+      if (response.token) {
+        saveToken(response.token);
+        return true;
+      }
+      return false;
+
+      console.log(response);
+    })
+    .catch((err) => alert(err));
   };
 
   this.Dialogs = () => {
@@ -84,10 +95,10 @@ export default function Api() {
         )
         
     };
-    this.Create = () => {
+    this.Create = (roleId) => {
       return query(
         {
-          token:getLocalToken(),
+          token:getLocalToken(), role:roleId
         },
         ""
         )
@@ -100,8 +111,10 @@ export default function Api() {
       "dialogues/"+ dialogueId +"/messages"
       )
     };
-    this.New = () => {
-      return query({})
+    this.New = (dialogueId) => {
+      return query({token:getLocalToken(), id:dialogueId},
+        ""
+      )
     };
   };
 
@@ -115,7 +128,7 @@ export default function Api() {
       )
     };
     this.Set = () => {
-      return query({})
+      return query({token:getLocalToken()}, "")
     };
   };
 
@@ -125,8 +138,12 @@ export default function Api() {
         {
           token:getLocalToken(),
         },
-        "roles/"
-        )
+        "roles"
+      )
+    }
+
+    this.Add = () => {
+      return query({token:getLocalToken()}, "")
     }
   };
 }
