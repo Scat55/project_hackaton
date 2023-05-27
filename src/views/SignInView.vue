@@ -89,7 +89,9 @@ export default {
         console.log(this.dataLogin,this.dataPassword);
     
         const api = new Api();
-       api.login(this.dataLogin, this.dataPassword).then((response) => console.log(response)).catch((err) => alert(err));;
+       api.login(this.dataLogin, this.dataPassword)
+       .then((response) => (response)?router.go(0):alert("ошибка"))
+       .catch((err) => alert(err));
 
       } else {
         alert('Ты ');
