@@ -188,7 +188,7 @@ export default function Api() {
     }
 
     this.Roles.Delete = (roleId) => {
-      return queryPOST({id:roleId},"","DELETE")
+      return queryPOST({id:roleId},"roles","DELETE")
     }
   
 }
