@@ -121,6 +121,13 @@ export default function Api() {
       )
         
     };
+
+    this.Dialogs.GetById = (dialogId) => {    //TODO
+      return query(
+        "dialogues/" + dialogId,"GET"
+      )
+    }
+
     this.Dialogs.Create = (roleId) => {
       return queryPOST(
         {
