@@ -21,7 +21,7 @@
         </ul>
       </div>
       <div class="aside__text">
-        <lk v-if="isShowLk" />
+        <lk v-if="isShowLk"  :onHide="hideLkWindow"/>
         <DialogWindowDeleteAllChat
           v-if="isShowDialogDeleteAll"
           :onHide="hideDeleteAllDialogs"
