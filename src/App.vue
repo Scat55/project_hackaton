@@ -1,6 +1,6 @@
 <template>
   <div class="app" id="app">
-    <chat v-show="isAuth" />
+    <chat v-if="isAuth" />
     <router-view />
   </div>
 </template>
