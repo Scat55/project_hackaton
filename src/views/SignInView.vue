@@ -83,10 +83,9 @@ export default {
       }
     },
     auth() {
-      // const api = new Api();
-      // const data = api.login(this.dataLogin, this.dataPassword);
-      // data.then(response => router.go(0)).
-      //   catch(err => alert(err));
+      const api = new Api();
+      const data = api.login(this.dataLogin, this.dataPassword);
+      data.then((response) => router.go(0)).catch((err) => alert(err));
     },
 
     checkValidForm() {
