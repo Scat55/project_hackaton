@@ -1,7 +1,7 @@
 <template>
   <div class="msg" :id="id">
     <div class="logo">
-      <img :src="urlLogo">
+      <img src="">
     </div>
     <div>
       <div class="msg_header">
@@ -79,7 +79,6 @@
 <script>
 export default {
   props: ["id", "sender","text", "urlLogo", "timeAndDate", ],
-
   data(){
     return{
       date: null,
