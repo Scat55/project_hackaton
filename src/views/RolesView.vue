@@ -13,6 +13,7 @@ import RoleInfo from '@/components/RoleInfo.vue';
                 showRoleInfo:false,
                 testRole: 
                         {
+                            id: 1,
                             name: 'Имя_тест',
                             logo: '../icons/iconRole.svg',
                             firstPrompt: 'I want you to act as a pet behaviorist. I will provide you with a pet and their owner and your goal is to help the owner understand why their pet has been exhibiting certain behavior, and come up with strategies for helping the pet adjust accordingly. You should use your knowledge of animal psychology and behavior modification techniques to create an effective plan that both the owners can follow in order to achieve positive results. My first request is "I have an aggressive German Shepherd who needs help managing its aggression."',
@@ -67,13 +68,14 @@ import RoleInfo from '@/components/RoleInfo.vue';
             },
             openDialog(e)
             {
-                const idRole  = e.currentTarget.id;
+                console.log(e.target.id)
+                const idRole  = e.target.id;
                 const api = new Api();
                 router.push({ name: 'openDialog', params: { id:idRole  } })
             },
-            openInfo(e){
-                const idRole  = e.currentTarget.id;
-                this.showRoleInfo = true;
+            openInfo(){
+                //const idRole  = e.currentTarget.id;
+                this.showRoleInfo = !this.showRoleInfo;
             }
         },
         components: {
@@ -87,7 +89,7 @@ import RoleInfo from '@/components/RoleInfo.vue';
 <template>
     <div class="content">
         <NewRole v-if="isShowNewRoles" :onHide="hideAddRoleDialog"></NewRole>
-        <RoleInfo v-if="showRoleInfo"
+        <RoleInfo v-if="showRoleInfo" :onHide="openInfo" :onOpen="openDialog"
             :role="testRole"
         ></RoleInfo>
     <div class="roles">
@@ -97,7 +99,7 @@ import RoleInfo from '@/components/RoleInfo.vue';
         </div>
         
             <ul class="roles_list">
-                <li v-for="role in roles" :id="role.id" @click="openDialog">
+                <li v-for="role in roles" :id="role.id" @click="openInfo">
                     <RoleItem
                         :imgUrl="role.imgUrl"
                         :name="role.name"

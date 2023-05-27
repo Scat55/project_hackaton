@@ -19,7 +19,7 @@ export default function Api() {
   }
 
   async function query(data, link) {
-    return fetch("https://jsonplaceholder.typicode.com/posts", {
+    return fetch("https://jsonplaceholder.typicode.com/posts" +link, {
       method: "POST",
       body: data,
     })
