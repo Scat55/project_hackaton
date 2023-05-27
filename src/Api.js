@@ -136,7 +136,7 @@ export default function Api() {
     }
 
     this.Dialogs.DeleteAll = () => {
-      return queryPOST({}, "","DELETE")
+      return queryPOST(null, "dialogues","DELETE")
     }
   
 
@@ -170,6 +170,12 @@ export default function Api() {
       )
     }
 
+    this.Roles.GetById = (userId) =>{
+      return query(
+        "roles/"+userId
+      )
+    }
+    
     this.Roles.Add = (firstPrompt, roleName) => {
       return queryPOST({value:firstPrompt, name:roleName}, "roles", "POST")
     }
