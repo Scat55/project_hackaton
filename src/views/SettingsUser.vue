@@ -98,7 +98,7 @@
       align-items: center;
       padding: 0.5rem 0.75rem;
       gap: 0.5rem;
-      margin-bottom: 2rem;
+      margin-bottom: 1rem;
       border-radius: 8px;
   
       input{
@@ -142,17 +142,15 @@
 </style>
 <script>
 import Msg from '@/components/Msg.vue';
-//import RoleInfo from '@/components/RoleInfo.vue';
 export default {
   data() {
     return {
       title: "Name 1",
       user: "User (You)",
-      logoUrl: "../icons/iconRole.svg",
+      logoUrl: "./icons/iconRole.svg",
       dialogId: 0,
       props: "",
       msgs: [],
-      
     };
   },
   created() {
@@ -160,8 +158,7 @@ export default {
     
   },
   components:{
-    Msg,
-    
+    Msg
   },
   methods: {
     load() {
