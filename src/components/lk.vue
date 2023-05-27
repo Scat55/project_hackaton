@@ -70,7 +70,8 @@ export default {
       userName: 'Dima',
       newUserName: '',
       userEmail: 'test@mail.ru',
-      userPassword: '123',
+      newUserEmail:'',
+      userPassword: '',
       isActive: true,
       premium:false
     };
@@ -80,6 +81,7 @@ beforeCreate(){
     api.User.Get().then((result) => {
       console.log(result);
       this.userName = result.name;
+      this.userEmail = result.email;
       this.premium =result.premium
     }).catch((err) => {
       
@@ -93,6 +95,11 @@ beforeCreate(){
     changeInfoOfPerson() {
     
       console.log(this.userName);
+      const api = new Api();
+      if(this.userEmail!==this.newUserEmail)
+      api.User.SetEmail(this.newUserEmail)
+      if(this.userName!==this.newUserName)
+      api.User.SetName(this.newUserName)
     },
     test() {
       this.isActive = !this.isActive;
