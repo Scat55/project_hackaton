@@ -84,12 +84,15 @@ export default {
       }
     },
     auth() {
+    
       if (this.validForm) {
+        console.log(this.dataLogin,this.dataPassword);
+    
         const api = new Api();
-        const data = api.login(this.dataLogin, this.dataPassword);
-        data.then((response) => router.go(0)).catch((err) => alert(err));
+       api.login(this.dataLogin, this.dataPassword).then((response) => console.log(response)).catch((err) => alert(err));;
+
       } else {
-        alert('Ты дебил? ');
+        alert('Ты ');
       }
     },
 
@@ -102,7 +105,7 @@ export default {
 
       if (this.dataLogin.length === 0) {
         this.borderLogin = 'border';
-        console.log(this.dataLogin);
+        
       } else {
         this.borderLogin = '';
       }
