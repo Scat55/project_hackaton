@@ -80,7 +80,7 @@
               >
             </p>
           </div>
-          <button class="form__btn" :type="typeBtn" @click="registr">
+          <button class="form__btn" type="button" @click="registr">
             Зарегистрироваться
           </button>
           <p class="form__text">
