@@ -144,14 +144,17 @@ export default {
   }
 
   .roles_list {
+    
     display: flex;
     flex-direction: row;
     align-items: flex-start;
     flex-wrap: wrap;
-    max-width: 58rem;
+    max-width: 59rem;
     padding: 1rem;
     gap: 1rem;
     //row-gap: 1rem;
+    max-height: 40vh;
+    overflow: auto;
 
     li {
       list-style: none;
