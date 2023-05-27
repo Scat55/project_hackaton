@@ -39,7 +39,11 @@ export default function Api() {
 
   this.login = async (login, password) => {
     return query({ login: login, password: password }, "auth/login")
-      .then((response) => saveToken(response.id))
+      .then((response) => {
+        if(response.token)
+        saveToken(response.token);
+        
+        console.log(response);})
       .catch((err) => alert(err));
   };
 
