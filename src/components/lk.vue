@@ -59,6 +59,7 @@
 </template>
 
 <script>
+import Api from "@/Api";
 import PremiumModal from "@/components/PremiumModal.vue";
 export default {
   props:["onHide"],
@@ -71,7 +72,18 @@ export default {
       userEmail: 'test@mail.ru',
       userPassword: '123',
       isActive: true,
+      premium:false
     };
+  },
+beforeCreate(){
+    const api = new Api();
+    api.User.Get().then((result) => {
+      console.log(result);
+      this.userName = result.name;
+      this.premium =result.premium
+    }).catch((err) => {
+      
+    });
   },
   methods: {
    
