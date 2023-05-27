@@ -1,6 +1,7 @@
 <template>
   <div id="chat">
     <aside class="aside">
+      <div>
       <button class="aside__btn" @click="addNewDialog">
         <img
           class="aside__btn-plus"
@@ -9,8 +10,9 @@
         />Новый чат
       </button>
       <ul>
-        <DialogItem></DialogItem>
+        <DialogItem v-for="dialog in dialogs" :id="dialog.id" :name="dialog.name"></DialogItem>
       </ul>
+    </div>
       <div class="aside__text">
         <DialogWindowDeleteAllChat v-if="isShowDialogDeleteAll" :onHide="hideDeleteAllDialogs"></DialogWindowDeleteAllChat>
         <p class="aside__text-delete" @click="showDeleteAllDialogs">
@@ -35,6 +37,7 @@ export default {
   data() {
     return {
       isShowDialogDeleteAll: false,
+      dialogs:[{id:0,name:"Billy"}]
     };
   },
   methods: {
@@ -93,7 +96,7 @@ export default {
     outline: none;
     cursor: pointer;
     transition: all 0.3s;
-
+    margin-bottom: 2rem;
     &:hover {
       transform: scale(1.04);
     }
