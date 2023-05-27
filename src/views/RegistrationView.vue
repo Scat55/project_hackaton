@@ -74,7 +74,7 @@
               <span class="form__info-red">обработку своих персональных данных</span>
             </p>
           </div>
-          <button class="form__btn" :type="typeBtn" @click="correctedPasswords">
+          <button class="form__btn" :type="typeBtn" @click="registr">
             Зарегистрироваться
           </button>
           <p class="form__text">Есть аккаунт?<a href="/auth" class="form__registr"> Войти </a></p>
@@ -154,7 +154,7 @@ export default {
     correctedPasswords() {
       if (token && this.validForm && this.dataPassword === this.dataPasswordDouble) {
         //успешно
-        router.push('roles');
+       // router.push('roles');
       }
       if (this.dataPassword !== this.dataPasswordDouble) {
         alert('Пароли не совпадают');
