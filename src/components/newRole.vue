@@ -21,15 +21,15 @@
 <script>
 export default{
     props:["onHide"],
-    methods(){
+    methods:{
         cancel()
         {
         this.onHide();
-        }
+        },
         save()
         {
 
-        }
+        },
         saveAndOpen()
         {
 
