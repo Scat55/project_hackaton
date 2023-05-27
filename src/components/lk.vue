@@ -2,15 +2,17 @@
   <div class="person__shadow" v-show="isShow">
     <div class="person">
       <div class="person__img">
-        <img class="person__image" src="../assets/images/avatar.svg" alt="PersonAvatar" />
+        <img
+          class="person__image"
+          src="../assets/images/avatar.svg"
+          alt="PersonAvatar"
+        />
       </div>
       <div class="person__inputs">
         <input
           class="input__name"
-          
           placeholder="Введите имя пользователя"
           v-model="userName"
-  
         />
         <input
           class="input__email"
@@ -25,99 +27,107 @@
             placeholder="Введите пароль"
             v-model="userPassword"
           />
-       
-          <p class="change__pass-text" @click="changeInfoOfPerson">Сохранить изменения</p>
+
+          <p class="change__pass-text" @click="changeInfoOfPerson">
+            Сохранить изменения
+          </p>
         </div>
       </div>
-      <footer>  <div class="subs">
-        <div class="subs__info">
-          <p class="subs__text">У вас не оформлена премиум подписка</p>
-          <a href="#" class="subs__pay">Оформить</a>
+      <footer>
+        <div class="subs activePrenium" v-if="(premium)">
+          <div class="subs__info">
+            <p class="subs__text">Подписка на премиум оформлена успешно</p>
+            <a href="#" class="subs__pay">Отключить</a>
+          </div>
         </div>
-      </div>
-      <div class="person__comeback">
-        <img src="../assets/images/arrow-left.svg" alt="Arrow__comeback" class="arrow__img" />
-        <p class="person__text" @click="closePerson">Вернуться в диалог</p>
-      </div>
-      <div class="person__out">
-        <img src="../assets/images/log-out.svg" alt="ArrowOut" class="out__img" />
-        <p class="person__text" @click="logOut">Выйти</p>
-      </div></footer>
-    
+        <div class="subs " v-else>
+          <div class="subs__info">
+            <p class="subs__text">У вас не оформлена премиум подписка</p>
+            <a href="#" class="subs__pay">Оформить</a>
+          </div>
+        </div>
+        <div class="person__comeback">
+          <img
+            src="../assets/images/arrow-left.svg"
+            alt="Arrow__comeback"
+            class="arrow__img"
+          />
+          <p class="person__text" @click="closePerson">Вернуться в диалог</p>
+        </div>
+        <div class="person__out">
+          <img
+            src="../assets/images/log-out.svg"
+            alt="ArrowOut"
+            class="out__img"
+          />
+          <p class="person__text" @click="logOut">Выйти</p>
+        </div>
+      </footer>
     </div>
-    <div class="PremuimM">
-      <PremiumModal></PremiumModal>
-    </div>
-  
-    
+
   </div>
 </template>
 
 <script>
 import Api from "@/Api";
-import PremiumModal from "@/components/PremiumModal.vue";
+
 export default {
-  props:["onHide"],
-  components:{PremiumModal},
+  props: ["onHide"],
+ 
   data() {
     return {
       isShow: true,
-      id:0,
+      id: 0,
       userName: "",
       userEmail: "",
 
-      oldName:"",
-      oldEmail:"",
-      userPassword: '',
-
+      oldName: "",
+      oldEmail: "",
+      userPassword: "",
 
       isActive: false,
-      premium:false
+      premium: true,
+
     };
   },
-beforeCreate(){
+  beforeCreate() {
     const api = new Api();
-    api.User.Get().then((result) => {
-      console.log(result.name);
-      this.id = result.id;
-      this.userName = result.name;
-      this.userEmail = result.email;
-      this.premium =result.premium;
-     
-      this.oldName =this.userName;
-      this.oldEmail =this.userEmail;
-    }).catch((err) => {
-      
-    });
+    api.User.Get()
+      .then((result) => {
+        console.log(result.name);
+        this.id = result.id;
+        this.userName = result.name;
+        this.userEmail = result.email;
+        this.premium = result.premium;
+
+        this.oldName = this.userName;
+        this.oldEmail = this.userEmail;
+      })
+      .catch((err) => {});
   },
   methods: {
-  
-    closePerson(){
-      this.onHide()
+    closePerson() {
+      this.onHide();
     },
     logOut() {
       const api = new Api();
       api.logOut();
     },
     changeInfoOfPerson() {
-    
       console.log(this.userName);
       const api = new Api();
-      if(this.userEmail.length>0&&this.userEmail!==this.oldEmail)
-      api.User.SetEmail(this.id,this.userEmail)
-      if(this.userName.length>0&&this.oldName!==this.userName)
-      if(this.userPassword.length>0)
-      {
-        api.User.SetName(this.id,this.userName).then((result) => {
-          alert("Данные сохранены")
-        }).catch((err) => {
-          
-        });
-        this.userPassword='';
-      }
-      
+      if (this.userEmail.length > 0 && this.userEmail !== this.oldEmail)
+        api.User.SetEmail(this.id, this.userEmail);
+      if (this.userName.length > 0 && this.oldName !== this.userName)
+        if (this.userPassword.length > 0) {
+          api.User.SetName(this.id, this.userName)
+            .then((result) => {
+              alert("Данные сохранены");
+            })
+            .catch((err) => {});
+          this.userPassword = "";
+        }
     },
-   
   },
 };
 </script>
@@ -131,17 +141,9 @@ beforeCreate(){
   height: 100vh;
   background-color: rgba(22, 21, 21, 0.5);
   z-index: 999;
-  .PremuimM
-  {
-    position: absolute;
-    top: 0;
-    display: flex;
-    bottom: auto;
-  }
+  
 }
 .person {
-  
-
   display: flex;
   flex-direction: column;
   top: 0;
@@ -150,7 +152,7 @@ beforeCreate(){
   height: 100vh;
   overflow: auto;
   width: 25.188rem;
- position: relative;
+  position: relative;
 
   &__img {
     display: flex;
@@ -165,14 +167,14 @@ beforeCreate(){
       border-radius: 50px;
     }
   }
-  footer{
+  footer {
     display: flex;
     flex-direction: column;
-    
+
     position: absolute;
     bottom: 1rem;
     width: 100%;
-    }
+  }
   &__inputs {
     position: relative;
     display: flex;
@@ -250,6 +252,9 @@ beforeCreate(){
       cursor: pointer;
     }
   }
+  .activePrenium{
+
+  }
   .subs {
     display: flex;
     justify-content: center;
@@ -270,7 +275,6 @@ beforeCreate(){
     cursor: pointer;
     line-height: 1.188rem;
     color: #ffffff;
-    
 
     &__info {
       text-align: center;
@@ -324,6 +328,5 @@ beforeCreate(){
     color: #ffffff;
     cursor: pointer;
   }
-  
 }
 </style>
