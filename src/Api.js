@@ -19,7 +19,7 @@ export default function Api() {
   }
 
   async function query(data, link) {
-    return fetch("https://jsonplaceholder.typicode.com/posts" +link, {
+    return fetch("http://26.72.40.57:7000/" +link, {
       method: "POST",
       body: data,
     })
@@ -39,7 +39,11 @@ export default function Api() {
 
   this.login = async (login, password) => {
     return query({ login: login, password: password }, "auth/login")
-      .then((response) => saveToken(response.id))
+      .then((response) => {
+        if(response.token)
+        saveToken(response.token);
+        
+        console.log(response);})
       .catch((err) => alert(err));
   };
 
@@ -61,17 +65,56 @@ export default function Api() {
   };
 
   this.Dialogs = () => {
-    this.GetAll = () => {};
-    this.Create = () => {};
+    this.GetAll = () => {
+      return query(
+        {
+          token:getLocalToken(),
+        },
+        "getAllDialogue"
+        )
+        
+    };
+    this.Create = () => {
+      return query(
+        {
+          token:getLocalToken(),
+        },
+        ""
+        )
+    };
   };
 
   this.Msgs = () => {
-    this.Get = () => {};
-    this.New = () => {};
+    this.Get = (dialogueId) => {
+      return query({token:getLocalToken(), id:dialogueId})
+    };
+    this.New = () => {
+      return query({})
+    };
   };
 
   this.User = () => {
-    this.Get = () => {};
-    this.Set = () => {};
+    this.Get = () => {
+      return query(
+        {
+          token:getLocalToken(),
+        },
+        "users/"
+      )
+    };
+    this.Set = () => {
+      return query({})
+    };
+  };
+
+  this.Roles = () => {
+    this.GetAll = () => {
+      return query(
+        {
+          token:getLocalToken(),
+        },
+        "roles/"
+        )
+    }
   };
 }
