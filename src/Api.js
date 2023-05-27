@@ -85,17 +85,17 @@ export default function Api() {
     .catch((err) => alert(err));
   };
 
-  this.Dialogs = () => {
-    this.GetAll = () => {
+  this.Dialogs = () => {}
+    this.Dialogs.GetAll = () => {
       return query(
         {
           token:getLocalToken(),
         },
-        "getAllDialogue"
+        "dialogues"
         )
         
     };
-    this.Create = (roleId) => {
+    this.Dialogs.Create = (roleId) => {
       return query(
         {
           token:getLocalToken(), role:roleId
@@ -104,30 +104,30 @@ export default function Api() {
         )
     };
 
-    this.Delete = () => {
+    this.Dialogs.Delete = () => {
       return query({},"")
     }
 
-    this.DeleteAll = () => {
+    this.Dialogs.DeleteAll = () => {
       return query({}, "")
     }
-  };
+  
 
-  this.Msgs = () => {
-    this.Get = (dialogueId) => {
-      return query({token:getLocalToken(), id:dialogueId},
+  this.Msgs = () => {}
+    this.Msgs.Get = (dialogueId) => {
+      return query({token:getLocalToken()},
       "dialogues/"+ dialogueId +"/messages"
       )
     };
-    this.New = (dialogueId, messageContent) => {
-      return query({token:getLocalToken(), id:dialogueId, content:messageContent},
+    this.Msgs.New = (dialogueId, messageContent) => {
+      return query({token:getLocalToken(), content:messageContent},
         "dialogues/"+ dialogueId +"/messages"
       )
     };
-  };
 
-  this.User = () => {
-    this.Get = () => {
+
+  this.User = () => {}
+    this.User.Get = () => {
       return query(
         {
           token:getLocalToken(),
@@ -135,13 +135,13 @@ export default function Api() {
         "users/"
       )
     };
-    this.Set = () => {
-      return query({token:getLocalToken()}, "")
+    this.User.Set = (userId, []) => {
+      return query({token:getLocalToken()}, "users/profile/"+userId)
     };
-  };
+  
 
-  this.Roles = () => {
-    this.Get = () => {
+  this.Roles = () => {}
+    this.Roles.Get = () => {
       return query(
         {
           token:getLocalToken(),
@@ -150,12 +150,12 @@ export default function Api() {
       )
     }
 
-    this.Add = (firstPrompt, roleName) => {
+    this.Roles.Add = (firstPrompt, roleName) => {
       return query({token:getLocalToken(), value:firstPrompt, name:roleName}, "roles")
     }
 
-    this.Delete = () => {
+    this.Roles.Delete = () => {
       return query({},"")
     }
-  };
+  
 }
