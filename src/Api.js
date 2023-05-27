@@ -165,8 +165,14 @@ export default function Api() {
         "users","GET"
       )
     };
-    this.User.Set = (userId, changes) => {
-      return queryPOST(changes, "users/profile/"+userId, "PATCH")
+    this.User.SetEmail = (userId, newEmail) => {
+      return queryPOST({email:newEmail}, "users/profile/"+userId, "PATCH")
+    };
+    this.User.SetName = (userId, newName) => {
+      return queryPOST({name:newName}, "users/profile/"+userId, "PATCH")
+    };
+    this.User.SetPassword = (userId, newPassword) => {
+      return queryPOST({password:newPassword}, "users/profile/"+userId, "PATCH")
     };
   
 
