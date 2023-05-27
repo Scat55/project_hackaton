@@ -17,7 +17,7 @@
       <div class="msgs">
         <Msg v-for="msg in msgs" 
           :id="msg.id"
-          :time-and-date="msg.createAt"
+          :timeAndDate="msg.createdAt"
           :sender="msg.role"
           :text="msg.content"
         ></Msg>
