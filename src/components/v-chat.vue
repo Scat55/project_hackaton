@@ -8,7 +8,9 @@
           alt="Plus"
         />Новый чат
       </button>
-
+      <ul>
+        <DialogItem></DialogItem>
+      </ul>
       <div class="aside__text">
         <DialogWindowDeleteAllChat v-if="isShowDialogDeleteAll" :onHide="hideDeleteAllDialogs"></DialogWindowDeleteAllChat>
         <p class="aside__text-delete" @click="showDeleteAllDialogs">
@@ -26,6 +28,7 @@
 import Api from "@/Api";
 import router from "@/router";
 import DialogWindowDeleteAllChat from "./dialogWindowDeleteAllChat.vue";
+import DialogItem from "./dialogItem.vue";
 
 export default {
   name: "chat",
@@ -49,7 +52,7 @@ export default {
       api.logOut();
     },
   },
-  components: { DialogWindowDeleteAllChat },
+  components: { DialogWindowDeleteAllChat, DialogItem },
 };
 </script>
 
