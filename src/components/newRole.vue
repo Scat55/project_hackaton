@@ -10,14 +10,34 @@
         <textarea placeholder="promt"> </textarea>
       </div>
       <div class="footer">
-        <button>Сохранить и создать чат</button>
-        <button>Сохранить</button>
-        <button>Отмена</button>
+        <button @click="saveAndOpen">Сохранить и создать чат</button>
+        <button @click="save">Сохранить</button>
+        <button @click="cancel">Отмена</button>
       </div>
     </div>
     <div class="back"></div>
   </div>
 </template>
+<script>
+export default{
+    props:["onHide"],
+    methods:{
+        cancel()
+        {
+        this.onHide();
+        },
+        save()
+        {
+
+        },
+        saveAndOpen()
+        {
+
+        }
+        
+    }
+}
+</script>
 <style scoped lang="scss">
 .newRole {
   display: flex;
