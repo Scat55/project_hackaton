@@ -66,14 +66,15 @@ export default {
       typeInput: 'password',
       dataLogin: '',
       dataPassword: '',
-      borderPassword: '',
-      borderLogin: '',
+      borderPassword: null,
+      borderLogin: null,
       validForm: false,
     };
   },
   updated() {
     this.checkValidForm();
   },
+  created() {},
   methods: {
     showYourPass() {
       if (this.typeInput == 'password') {
@@ -83,9 +84,13 @@ export default {
       }
     },
     auth() {
-      const api = new Api();
-      const data = api.login(this.dataLogin, this.dataPassword);
-      data.then((response) => router.go(0)).catch((err) => alert(err));
+      if (this.validForm) {
+        const api = new Api();
+        const data = api.login(this.dataLogin, this.dataPassword);
+        data.then((response) => router.go(0)).catch((err) => alert(err));
+      } else {
+        alert('Ты дебил? ');
+      }
     },
 
     checkValidForm() {
@@ -100,6 +105,11 @@ export default {
         console.log(this.dataLogin);
       } else {
         this.borderLogin = '';
+      }
+      if (this.dataLogin.length !== 0 && this.dataPassword.length !== 0) {
+        this.validForm = true;
+      } else {
+        this.validForm = false;
       }
     },
   },
