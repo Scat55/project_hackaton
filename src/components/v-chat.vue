@@ -3,14 +3,25 @@
     <aside class="aside">
       <div>
         <button class="aside__btn" @click="addNewDialog">
-          <img class="aside__btn-plus" src="../assets/images/plus.svg" alt="Plus" />Новый чат
+          <img
+            class="aside__btn-plus"
+            src="../assets/images/plus.svg"
+            alt="Plus"
+          />Новый чат
         </button>
         <ul>
-          <DialogItem v-for="dialog in dialogs" :id="dialog.id" :name="dialog.name" :state="dialog.state"> </DialogItem>
+          <DialogItem
+            @click="chooseDialog"
+            v-for="dialog in dialogs"
+            :id="dialog.id"
+            :name="dialog.name"
+            :state="dialog.state"
+          >
+          </DialogItem>
         </ul>
       </div>
       <div class="aside__text">
-        <lk v-if="isShowLk"/>
+        <lk v-if="isShowLk" />
         <DialogWindowDeleteAllChat
           v-if="isShowDialogDeleteAll"
           :onHide="hideDeleteAllDialogs"
@@ -30,23 +41,22 @@
 </template>
 
 <script>
-import Api from '@/Api';
-import router from '@/router';
-import DialogWindowDeleteAllChat from './dialogWindowDeleteAllChat.vue';
-import DialogItem from './dialogItem.vue';
-import Lk from './lk.vue';
+import Api from "@/Api";
+import router from "@/router";
+import DialogWindowDeleteAllChat from "./dialogWindowDeleteAllChat.vue";
+import DialogItem from "./dialogItem.vue";
+import Lk from "./lk.vue";
 
 export default {
-  name: 'chat',
-  created(){
+  name: "chat",
+  created() {
     const api = new Api();
-      api.Dialogs.GetAll().then((result) => {
+    api.Dialogs.GetAll()
+      .then((result) => {
         console.log(result);
         this.dialogs = result;
-      }).catch((err) => {
-        
-      });;
-     //d.GetAll();
+      })
+      .catch((err) => {});
   },
   data() {
     return {
@@ -56,6 +66,10 @@ export default {
     };
   },
   methods: {
+    chooseDialog(e) {
+      const dialogId = e.currentTarget.id;
+      router.push({ name: "openDialog", params: { id:dialogId } });
+    },
     hideDeleteAllDialogs() {
       this.isShowDialogDeleteAll = false;
     },
@@ -63,7 +77,7 @@ export default {
       this.isShowDialogDeleteAll = true;
     },
     addNewDialog() {
-      router.push({ name: 'roles' });
+      router.push({ name: "roles" });
     },
     logOut() {
       const api = new Api();
@@ -145,14 +159,14 @@ export default {
       line-height: 1.188rem;
       cursor: pointer;
     }
-    &-LK{
+    &-LK {
       display: flex;
       align-items: center;
       gap: 0.938rem;
       font-weight: 400;
       font-size: 1.125rem;
       line-height: 1.188rem;
-    
+
       cursor: pointer;
     }
     &-logOut {

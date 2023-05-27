@@ -1,16 +1,24 @@
 <template>
-  <div class="dialogItem" :id="id">
+  <div class="dialogItem" :class="(isActive)??active" :id="id">
     <img src="/icons/iconRole.svg"/>
     <div>
-      <h3>{{ name }}</h3>
-      <label>{{ status }}печатает...</label>
+      <h4>{{ name }}</h4>
+      <label>{{ status }}</label>
     </div>
   </div>
 </template>
 <script>
 export default {
-  props: ["id", "name", "status"],
-};
+  data() {
+    return {
+      
+    }
+  },
+  props: ["id", "name", "status","isActive"],
+  
+}
+
+;
 </script>
 <style scoped lang="scss">
 .dialogItem{
@@ -23,6 +31,12 @@ export default {
     div{
 
     }
+    &:hover{
+      background: #302E2E;
+    }
+}
+.active{
+  background: #413E3E;
 }
 </style>
 
