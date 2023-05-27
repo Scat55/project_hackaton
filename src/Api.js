@@ -65,7 +65,7 @@ export default function Api() {
     localStorage.clear();
     location. reload();
   };
-  this.registration = (email, name, login, password) => {
+  this.registration = (email, name, password) => {
     return query(
       {
         name: name,
