@@ -4,11 +4,19 @@
     
 import Api from '@/Api';
 import NewRole from '@/components/newRole.vue';
+import RoleInfo from '@/components/RoleInfo.vue';
     export default {
 
         data(){
             return{
                 isShowNewRoles:false,
+                showRoleInfo:false,
+                testRole: 
+                        {
+                            name: 'Имя_тест',
+                            logo: '../icons/iconRole.svg',
+                            firstPrompt: 'I want you to act as a pet behaviorist. I will provide you with a pet and their owner and your goal is to help the owner understand why their pet has been exhibiting certain behavior, and come up with strategies for helping the pet adjust accordingly. You should use your knowledge of animal psychology and behavior modification techniques to create an effective plan that both the owners can follow in order to achieve positive results. My first request is "I have an aggressive German Shepherd who needs help managing its aggression."',
+                        },
                 roles: [
                     {
                         id: 1,
@@ -59,19 +67,26 @@ import NewRole from '@/components/newRole.vue';
                 const idRole  = e.currentTarget.id;
                 const api = new Api();
                 router.push({ name: 'openDialog', params: { id:idRole  } })
+            },
+            openInfo(e){
+                const idRole  = e.currentTarget.id;
+                this.showRoleInfo = true;
             }
         },
         components: {
-    RoleItem,
-    NewRole
-}
+            RoleItem,
+            NewRole,
+            RoleInfo,
+        }
     }
 </script>
 
 <template>
     <div class="content">
         <NewRole v-if="isShowNewRoles"></NewRole>
-   
+        <RoleInfo v-if="showRoleInfo"
+            :role="testRole"
+        ></RoleInfo>
     <div class="roles">
         <div class="roles_header">
             <span class="header_top">Добро пожаловать в GachiChat!</span>
