@@ -26,9 +26,9 @@
           v-if="isShowDialogDeleteAll"
           :onHide="hideDeleteAllDialogs"
         ></DialogWindowDeleteAllChat>
-        <p class="aside__text-delete" @click="showDeleteAllDialogs">
+        <!-- <p class="aside__text-delete" @click="showDeleteAllDialogs">
           <img src="../assets/images/trash.svg" alt="Trach" />Удалить все чаты
-        </p>
+        </p> -->
         <p class="aside__text-LK" @click="showLkWindow">
           <img src="../assets/images/lk.svg" alt="Trach" />Личный кабинет
         </p>
