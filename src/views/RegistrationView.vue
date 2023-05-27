@@ -74,7 +74,7 @@
               <span class="form__info-red">обработку своих персональных данных</span>
             </p>
           </div>
-          <button class="form__btn" :type="typeBtn" @click="correctedPasswords">
+          <button class="form__btn" :type="typeBtn" @click="registr">
             Зарегистрироваться
           </button>
           <p class="form__text">Есть аккаунт?<a href="/auth" class="form__registr"> Войти </a></p>
@@ -152,14 +152,25 @@ export default {
       }
     },
     correctedPasswords() {
-      const api = new Api();
-      const token = api.login(this.dataLogin, this.dataPassword);
       if (token && this.validForm && this.dataPassword === this.dataPasswordDouble) {
         //успешно
-        router.push('roles');
+       // router.push('roles');
       }
       if (this.dataPassword !== this.dataPasswordDouble) {
         alert('Пароли не совпадают');
+      }
+    },
+    registr() {
+      if (this.validForm) {
+        console.log(this.dataLogin, this.dataPassword);
+
+        const api = new Api();
+        api
+          .registration(this.dataEmail, this.dataLogin, this.dataPassword)
+          .then((response) => (response ? router.go(0) : alert('ошибка')))
+          .catch((err) => alert(err));
+      } else {
+        alert('Ты ');
       }
     },
   },

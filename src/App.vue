@@ -6,13 +6,13 @@
 </template>
 
 <script>
-import chat from "./components/v-chat.vue";
-import router from "./router";
-import signIn from "./views/SignInView.vue";
-import Api from "./Api";
+import chat from './components/v-chat.vue';
+import router from './router';
+import signIn from './views/SignInView.vue';
+import Api from './Api';
 
 export default {
-  name: "app",
+  name: 'app',
   components: {
     chat,
     signIn,
@@ -20,47 +20,43 @@ export default {
   data() {
     return {
       isAuth: false,
-      upd:0,
+      upd: 0,
     };
   },
- 
+
   created() {
-    const api = new Api()
-      
-   
+    const api = new Api();
+
     if (api.checkToken()) {
       this.isAuth = true;
     }
     router.beforeEach(async (to, from) => {
-  if (
-    // make sure the user is authenticated
-    !this.isAuth &&
-    // ❗️ Avoid an infinite redirect
-    !(to.name === 'auth'||to.name === 'registration')
-  ) {
-    // redirect the user to the login page
-    router.push("auth");
-  }
-  else if (
-     // make sure the user is authenticated
-     this.isAuth &&
-    // ❗️ Avoid an infinite redirect
-    (to.name === 'auth'||to.name === 'registration')
-  )
-  {
-    router.push({name:'roles'});
-  }
-})
-    
+      if (
+        // make sure the user is authenticated
+        !this.isAuth &&
+        // ❗️ Avoid an infinite redirect
+        !(to.name === 'auth' || to.name === 'registration')
+      ) {
+        // redirect the user to the login page
+        router.push('auth');
+      } else if (
+        // make sure the user is authenticated
+        this.isAuth &&
+        // ❗️ Avoid an infinite redirect
+        (to.name === 'auth' || to.name === 'registration')
+      ) {
+        router.push({ name: 'roles' });
+      }
+    });
   },
-}
+};
 </script>
 
 <style lang="scss">
 @font-face {
   font-family: Inter;
   /* Гарнитура шрифта */
-  src: url("./assets/fonts/Inter.ttf");
+  src: url('./assets/fonts/Inter.ttf');
 }
 
 * {
