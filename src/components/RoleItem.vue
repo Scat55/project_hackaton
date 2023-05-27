@@ -5,9 +5,9 @@
 </script>
 
 <template>
-    <div class="roleItem" :id="id" :on-click="onClick">
+    <div class="roleItem" :id="id" @click="onClick">
         <div class="role_image">
-            <img :src="imgUrl">
+            <img src="/icons/iconRole.svg">
         </div>
         <span class="role_name">{{name}}</span>
     </div>
