@@ -17,10 +17,9 @@
       <div class="msgs">
         <Msg v-for="msg in msgs" 
           :id="msg.id"
-          :time-and-date="msg.timeAndDate"
-          :sender="msg.sender"
-          :urlLogo="msg.urlLogo"
-          :text="msg.text"
+          :timeAndDate="msg.createdAt"
+          :sender="msg.role"
+          :text="msg.content"
         ></Msg>
       </div>
       <div class="dialog_textfield">
@@ -82,14 +81,14 @@
     padding-left: 7.625rem;
     padding-right: 7.625rem;
     .msgs{
-      height: 90%;
+      height: 100%;
+      overflow: auto;
       width: 100%;
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
       align-items: start;
       gap: 1rem;
-  
     }
   
     .dialog_textfield{
@@ -141,6 +140,7 @@
 }
 </style>
 <script>
+import Api from '@/Api';
 import Msg from '@/components/Msg.vue';
 //import RoleInfo from '@/components/RoleInfo.vue';
 export default {
@@ -156,8 +156,16 @@ export default {
     };
   },
   created() {
-    this.load();
     
+    this.$watch(
+      () => this.$route.params,
+      () => {
+        this.load();
+      },
+      // fetch the data when the view is created and the data is
+      // already being observed
+      { immediate: true }
+    )
   },
   components:{
     Msg,
@@ -167,9 +175,15 @@ export default {
     load() {
       this.dialogId = this.$route.params.id;
       console.log(this.dialogId);
+      const api = new Api();
+      api.Msgs.Get(this.dialogId).then((result) => {
+        this.msgs=result
+      }).catch((err) => {
+
+      });
       this.msgs = [
-        { id: 0, text: "I want you to act as a real estate agent. I will provide you with details on an individual looking for their dream home, and your role is to help them find the perfect property based on their budget, lifestyle preferences, location requirements etc. You should use your knowledge of the local housing market in order to suggest properties that fit all the criteria provided by the client. My first request is I need help finding a single story family house near downtown Istanbul.", timeAndDate: Date.now(), sender: this.user, urlLogo: this.logoUrl},
-        { id: 1, text: "Привет, нормально, а ты?", timeAndDate: Date.now(),sender: this.title, urlLogo: this.logoUrl}
+        // { id: 0, text: "I want you to act as a real estate agent. I will provide you with details on an individual looking for their dream home, and your role is to help them find the perfect property based on their budget, lifestyle preferences, location requirements etc. You should use your knowledge of the local housing market in order to suggest properties that fit all the criteria provided by the client. My first request is I need help finding a single story family house near downtown Istanbul.", timeAndDate: Date.now(), sender: this.user, urlLogo: this.logoUrl},
+        // { id: 1, text: "Привет, нормально, а ты?", timeAndDate: Date.now(),sender: this.title, urlLogo: this.logoUrl}
       ]
     },
   },

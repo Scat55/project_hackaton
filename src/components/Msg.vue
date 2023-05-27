@@ -1,18 +1,43 @@
 <template>
   <div class="msg" :id="id">
     <div class="logo">
-      <img :src="urlLogo">
+      <img src="/icons/iconRole.svg">
     </div>
     <div>
       <div class="msg_header">
         <span class="sender_name">{{sender}}</span>
-        <span class="time">{{time}}</span>
+        <span class="time">{{timeAndDate}}</span>
       </div>
       <div class="msg_content">{{text}}</div>
     </div>
     
   </div>
 </template>
+
+<script>
+export default {
+  props: ["id", "sender","text", "urlLogo", "timeAndDate", ],
+  data(){
+    return{
+      date: null,
+      time: null,
+    }
+  },
+  created(){
+    //TODO: починить формат
+    
+    const dT = new Date(this.createAt)
+    this.date = dT.getDay()+"."+dT.getMonth()+"."+dT.getFullYear();
+    this.time = dT.getHours()+":"+dT.getMinutes();
+    console.log(this.date)
+  },
+  methods: {
+
+  }
+};
+
+
+</script>
 
 <style scoped lang="scss">
   .msg{
@@ -75,29 +100,3 @@
     }
   }
 </style>
-
-<script>
-export default {
-  props: ["id", "sender","text", "urlLogo", "timeAndDate", ],
-
-  data(){
-    return{
-      date: null,
-      time: null,
-    }
-  },
-  created(){
-    //TODO: починить формат
-    
-    const dT = new Date(this.timeAndDate)
-    this.date = dT.getDay()+"."+dT.getMonth()+"."+dT.getFullYear();
-    this.time = dT.getHours()+":"+dT.getMinutes();
-    console.log(this.date)
-  },
-  methods: {
-
-  }
-};
-
-
-</script>
