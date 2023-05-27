@@ -100,9 +100,17 @@ export default function Api() {
         {
           token:getLocalToken(), role:roleId
         },
-        ""
+        "dialogues"
         )
     };
+
+    this.Delete = () => {
+      return query({},"")
+    }
+
+    this.DeleteAll = () => {
+      return query({}, "")
+    }
   };
 
   this.Msgs = () => {
@@ -111,9 +119,9 @@ export default function Api() {
       "dialogues/"+ dialogueId +"/messages"
       )
     };
-    this.New = (dialogueId) => {
-      return query({token:getLocalToken(), id:dialogueId},
-        ""
+    this.New = (dialogueId, messageContent) => {
+      return query({token:getLocalToken(), id:dialogueId, content:messageContent},
+        "dialogues/"+ dialogueId +"/messages"
       )
     };
   };
@@ -133,7 +141,7 @@ export default function Api() {
   };
 
   this.Roles = () => {
-    this.GetAll = () => {
+    this.Get = () => {
       return query(
         {
           token:getLocalToken(),
@@ -142,8 +150,12 @@ export default function Api() {
       )
     }
 
-    this.Add = () => {
-      return query({token:getLocalToken()}, "")
+    this.Add = (firstPrompt, roleName) => {
+      return query({token:getLocalToken(), value:firstPrompt, name:roleName}, "roles")
+    }
+
+    this.Delete = () => {
+      return query({},"")
     }
   };
 }
