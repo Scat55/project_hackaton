@@ -2,21 +2,24 @@
   <div id="chat">
     <aside class="aside">
       <div>
-      <button class="aside__btn" @click="addNewDialog">
-        <img
-          class="aside__btn-plus"
-          src="../assets/images/plus.svg"
-          alt="Plus"
-        />Новый чат
-      </button>
-      <ul>
-        <DialogItem v-for="dialog in dialogs" :id="dialog.id" :name="dialog.name"></DialogItem>
-      </ul>
-    </div>
+        <button class="aside__btn" @click="addNewDialog">
+          <img class="aside__btn-plus" src="../assets/images/plus.svg" alt="Plus" />Новый чат
+        </button>
+        <ul>
+          <DialogItem v-for="dialog in dialogs" :id="dialog.id" :name="dialog.name"> </DialogItem>
+        </ul>
+      </div>
       <div class="aside__text">
-        <DialogWindowDeleteAllChat v-if="isShowDialogDeleteAll" :onHide="hideDeleteAllDialogs"></DialogWindowDeleteAllChat>
+        <lk />
+        <DialogWindowDeleteAllChat
+          v-if="isShowDialogDeleteAll"
+          :onHide="hideDeleteAllDialogs"
+        ></DialogWindowDeleteAllChat>
         <p class="aside__text-delete" @click="showDeleteAllDialogs">
           <img src="../assets/images/trash.svg" alt="Trach" />Удалить все чаты
+        </p>
+        <p class="aside__text-delete" @click="showLkWindow">
+          <img src="../assets/images/trash.svg" alt="Trach" />Личный кабинет
         </p>
         <p class="aside__text-logOut" @click="logOut">
           <img src="../assets/images/log-out.svg" alt="Trach" />Выйти
@@ -27,17 +30,19 @@
 </template>
 
 <script>
-import Api from "@/Api";
-import router from "@/router";
-import DialogWindowDeleteAllChat from "./dialogWindowDeleteAllChat.vue";
-import DialogItem from "./dialogItem.vue";
+import Api from '@/Api';
+import router from '@/router';
+import DialogWindowDeleteAllChat from './dialogWindowDeleteAllChat.vue';
+import DialogItem from './dialogItem.vue';
+import Lk from './lk.vue';
 
 export default {
-  name: "chat",
+  name: 'chat',
   data() {
     return {
       isShowDialogDeleteAll: false,
-      dialogs:[{id:0,name:"Billy"}]
+      dialogs: [{ id: 0, name: 'Billy' }],
+      isShowLk: false,
     };
   },
   methods: {
@@ -48,14 +53,20 @@ export default {
       this.isShowDialogDeleteAll = true;
     },
     addNewDialog() {
-      router.push({ name: "roles" });
+      router.push({ name: 'roles' });
     },
     logOut() {
       const api = new Api();
       api.logOut();
     },
+    hideLkWindow() {
+      this.isShowLk = false;
+    },
+    showLkWindow() {
+      this.isShowLk = true;
+    },
   },
-  components: { DialogWindowDeleteAllChat, DialogItem },
+  components: { DialogWindowDeleteAllChat, DialogItem, Lk },
 };
 </script>
 
