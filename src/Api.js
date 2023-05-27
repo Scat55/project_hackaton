@@ -153,18 +153,36 @@ export default function Api() {
     return queryPOST({ content: messageContent }, 'dialogues/' + dialogueId + '/messages', 'POST');
   };
 
-  this.User = () => {};
-  this.User.Get = () => {
-    return query('users');
-  };
-  this.User.Set = (userId, changes) => {
-    return queryPOST(changes, 'users/profile/' + userId, 'PATCH');
-  };
 
-  this.Roles = () => {};
-  this.Roles.Get = () => {
-    return query('roles');
-  };
+  this.User = () => {}
+    this.User.Get = () => {
+      return query(
+        "users","GET"
+      )
+    };
+    this.User.SetEmail = (userId, newEmail) => {
+      return queryPOST({email:newEmail}, "users/profile/"+userId, "PATCH")
+    };
+    this.User.SetName = (userId, newName) => {
+      return queryPOST({name:newName}, "users/profile/"+userId, "PATCH")
+    };
+    this.User.SetPassword = (userId, newPassword) => {
+      return queryPOST({password:newPassword}, "users/profile/"+userId, "PATCH")
+    };
+  
+
+  this.Roles = () => {}
+    this.Roles.Get = () => {
+      return query(
+        "roles","GET"
+      )
+    }
+
+    this.Roles.GetById = (userId) =>{
+      return query(
+        "roles/"+userId,"GET"
+      )
+    }
 
   this.Roles.Add = (firstPrompt, roleName) => {
     return queryPOST({ value: firstPrompt, name: roleName }, 'roles', 'POST');
