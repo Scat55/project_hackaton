@@ -5,13 +5,13 @@
         <img class="logo" :src="logoUrl" />
         <div>
           <h3>{{ title }}</h3>
-          <span class="state">печатает...</span>
+          <span class="state"></span>
         </div>
       </div>
-      <div class="right">
+      <!-- <div class="right">
         <input />
         <img class="find" src="../assets/search.svg" />
-      </div>
+      </div> -->
     </div>
     <div class="dialog_content">
       <div class="msgs">
@@ -30,6 +30,69 @@
     
   </div>
 </template>
+<script>
+import Api from '@/Api';
+import Msg from '@/components/Msg.vue';
+//import RoleInfo from '@/components/RoleInfo.vue';
+export default {
+  data() {
+    return {
+      title: "Name 1",
+      user: "User (You)",
+      logoUrl: "../icons/iconRole.svg",
+      dialogId: 0,
+      props: "",
+      msgs: [],
+      msgText:""
+    };
+  },
+  created() {
+    
+    this.$watch(
+      () => this.$route.params,
+      () => {
+        this.load();
+        this.title = sessionStorage.getItem("dialog"+this.dialogId);
+      },
+      // fetch the data when the view is created and the data is
+      // already being observed
+      { immediate: true }
+    )
+  },
+  components:{
+    Msg,
+    
+  },
+  methods: {
+    load() {
+      this.dialogId = this.$route.params.id;
+      console.log(this.dialogId);
+      const api = new Api();
+      api.Msgs.Get(this.dialogId).then((result) => {
+        this.msgs=result
+      }).catch((err) => {
+
+      });
+      this.msgs = [
+        // { id: 0, text: "I want you to act as a real estate agent. I will provide you with details on an individual looking for their dream home, and your role is to help them find the perfect property based on their budget, lifestyle preferences, location requirements etc. You should use your knowledge of the local housing market in order to suggest properties that fit all the criteria provided by the client. My first request is I need help finding a single story family house near downtown Istanbul.", timeAndDate: Date.now(), sender: this.user, urlLogo: this.logoUrl},
+        // { id: 1, text: "Привет, нормально, а ты?", timeAndDate: Date.now(),sender: this.title, urlLogo: this.logoUrl}
+      ]
+    },
+    newMsg(){
+      if(this.msgText)
+      {
+        const api = new Api();
+      api.Msgs.New(this.dialogId,this.msgText).then((result) => {
+        this.msgs=result
+      }).catch((err) => {
+
+      });
+
+      }
+    }
+  },
+};
+</script>
 <style scoped lang="scss">
 .openDialog {
   //display: flex;
@@ -139,53 +202,4 @@
   
 }
 </style>
-<script>
-import Api from '@/Api';
-import Msg from '@/components/Msg.vue';
-//import RoleInfo from '@/components/RoleInfo.vue';
-export default {
-  data() {
-    return {
-      title: "Name 1",
-      user: "User (You)",
-      logoUrl: "../icons/iconRole.svg",
-      dialogId: 0,
-      props: "",
-      msgs: [],
-      
-    };
-  },
-  created() {
-    
-    this.$watch(
-      () => this.$route.params,
-      () => {
-        this.load();
-      },
-      // fetch the data when the view is created and the data is
-      // already being observed
-      { immediate: true }
-    )
-  },
-  components:{
-    Msg,
-    
-  },
-  methods: {
-    load() {
-      this.dialogId = this.$route.params.id;
-      console.log(this.dialogId);
-      const api = new Api();
-      api.Msgs.Get(this.dialogId).then((result) => {
-        this.msgs=result
-      }).catch((err) => {
 
-      });
-      this.msgs = [
-        // { id: 0, text: "I want you to act as a real estate agent. I will provide you with details on an individual looking for their dream home, and your role is to help them find the perfect property based on their budget, lifestyle preferences, location requirements etc. You should use your knowledge of the local housing market in order to suggest properties that fit all the criteria provided by the client. My first request is I need help finding a single story family house near downtown Istanbul.", timeAndDate: Date.now(), sender: this.user, urlLogo: this.logoUrl},
-        // { id: 1, text: "Привет, нормально, а ты?", timeAndDate: Date.now(),sender: this.title, urlLogo: this.logoUrl}
-      ]
-    },
-  },
-};
-</script>

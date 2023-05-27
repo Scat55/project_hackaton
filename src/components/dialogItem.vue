@@ -15,7 +15,10 @@ export default {
     }
   },
   props: ["id", "name", "status","isActive"],
-  
+  created(){sessionStorage.setItem("dialog"+this.id, this.name);},
+  methods:{
+    
+  }
 }
 
 ;
