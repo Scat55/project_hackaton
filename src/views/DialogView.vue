@@ -21,6 +21,7 @@
           :timeAndDate="msg.createdAt"
           :sender="msg.role"
           :text="msg.content"
+          :GptName="title"
         ></Msg>
       </div>
       <div class="dialog_textfield">
@@ -160,7 +161,7 @@ export default {
     .msgs {
       height: 100%;
       overflow: auto;
-      width: 100%;
+    
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
@@ -189,7 +190,10 @@ export default {
         width: 100%;
         height: 39px;
 
-        border: 1px solid #f4eeee;
+     //  
+     border: 0;
+     border-bottom: 1px solid gray;
+     outline: none;
       }
 
       .msg_button_send {

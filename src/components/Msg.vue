@@ -5,8 +5,8 @@
     </div>
     <div>
       <div class="msg_header">
-        <span class="sender_name">{{sender}}</span>
-        <span class="time">{{timeAndDate}}</span>
+        <span class="sender_name">{{(sender==="user")?"Вы":GptName}}</span>
+        <span class="time" ></span>
       </div>
       <div class="msg_content">{{text}}</div>
     </div>
@@ -16,7 +16,7 @@
 
 <script>
 export default {
-  props: ["id", "sender","text", "urlLogo", "timeAndDate", ],
+  props: ["id", "sender","text", "urlLogo", "timeAndDate","GptName" ],
   data(){
     return{
       date: null,
@@ -46,7 +46,8 @@ export default {
     align-items: flex-start;
     padding: 0.5rem;
     gap: 0.5rem;
-
+    border: 1px solid #f4eeee;
+    width:95%;
     .logo{
       flex-shrink: 0;
       flex-grow: 0;
@@ -71,10 +72,10 @@ export default {
       .sender_name{
         font-family: 'Inter';
         font-style: normal;
-        font-weight: 400;
+        font-weight: 700;
+       
         font-size: 12px;
         line-height: 15px;
-
         color: #2C3343;
       }
 
