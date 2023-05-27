@@ -2,7 +2,7 @@
   <div class="deleteAllDi">
     <label>Вы действительно хотите удалить все чаты?</label>
     <div>
-      <button id="yes" @click="delete" :on-click="onHide">Да</button>
+      <button id="yes" @click="deleteAllDi" >Да</button>
       <button id="no" @click="onHide">Нет</button>
     </div>
   </div>
@@ -12,11 +12,12 @@ import Api from "@/Api";
 export default {
   props: ["onHide"],
   methods: {
-    delete() {
+    deleteAllDi() {
       const api = new Api();
       api.Dialogs.DeleteAll()
         .then((result) => {})
         .catch((err) => {});
+        this.onHide();
     },
   },
   data() {},

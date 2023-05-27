@@ -5,7 +5,7 @@
         <img class="logo" :src="logoUrl" />
         <div>
           <h3>{{ title }}</h3>
-          <span class="state"></span>
+          <span class="state">{{ status }}</span>
         </div>
       </div>
       <!-- <div class="right">
@@ -45,6 +45,7 @@ export default {
       props: "",
       msgs: [],
       msgText: "",
+      status:"Загрузка диалога"
     };
   },
   created() {
@@ -63,11 +64,13 @@ export default {
     Msg,
   },
   updated() {
+  
     const list = this.$refs.list;
     list.scrollTop = list.scrollHeight;
   },
   methods: {
     load() {
+      this.status="Загрузка диалога";
       this.dialogId = this.$route.params.id;
       console.log(this.dialogId);
       const api = new Api();
@@ -77,19 +80,22 @@ export default {
       api.Msgs.Get(this.dialogId)
         .then((result) => {
           this.msgs = result;
+          this.status = ""
         })
         .catch((err) => {});
     },
     newMsg() {
       if (this.msgText) {
+        this.status = "Генерируем ответ"
         const list = this.$refs.list;
         list.scrollTop = list.scrollHeight;
         this.msgs.push({ role: "user", content: this.msgText });
         const api = new Api();
         api.Msgs.New(this.dialogId, this.msgText)
           .then((result) => {
+          
             this.msgs.push({ role: "assistent", content: result });
-
+            this.status = ""
             console.log(this.$refs.list);
           })
           .then(() => {
