@@ -131,7 +131,7 @@ export default function Api() {
     this.Dialogs.Create = (roleId) => {
       return queryPOST(
         {
-          role:roleId
+          roleId:roleId
         },
         "dialogues",
         "POST"

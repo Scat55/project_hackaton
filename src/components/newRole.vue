@@ -4,10 +4,10 @@
     <div class="box">
       <div class="header">
         <img class="logo" src="icons/iconRole.svg" />
-        <input type="text" class="title" placeholder="title" />
+        <input v-model="name" type="text" class="title" placeholder="title" />
       </div>
       <div class="text">
-        <textarea placeholder="promt"> </textarea>
+        <textarea v-model="promt" placeholder="promt"> </textarea>
       </div>
       <div class="footer">
         <button @click="saveAndOpen">Сохранить и создать чат</button>
@@ -19,24 +19,44 @@
   </div>
 </template>
 <script>
-export default{
-    props:["onHide"],
-    methods:{
-        cancel()
-        {
-        this.onHide();
-        },
-        save()
-        {
-
-        },
-        saveAndOpen()
-        {
-
-        }
-        
-    }
-}
+import router from "@/router";
+import Api from "@/Api";
+export default {
+  props: ["onHide", "addRole"],
+  data() {
+    return {
+      promt: "",
+      name: "",
+    };
+  },
+  methods: {
+    cancel() {
+      this.onHide();
+    },
+    save() {
+      const api = new Api();
+      api.Roles.Add(this.promt, this.name)
+        .then((result) => {
+          this.addRole();
+          this.onHide();
+        })
+        .catch((err) => {});
+    },
+    saveAndOpen() {
+      const api = new Api();
+      api.Roles.Add(this.promt, this.name)
+        .then((response) => {
+          console.log(response.id,"роль");
+          api.Dialogs.Create(response.id)
+            .then((result) => {
+              console.log(result);
+              router.push({ name: "openDialog", params: { id: result.id} });
+            })
+        })
+        .catch((err) => {});
+    },
+  },
+};
 </script>
 <style scoped lang="scss">
 .newRole {

@@ -106,6 +106,10 @@ export default {
 }
 
 .aside {
+  ul{
+    overflow: auto;
+    height: 60vh;
+  }
   display: flex;
   flex-direction: column;
   justify-content: space-between;

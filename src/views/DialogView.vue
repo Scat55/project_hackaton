@@ -14,8 +14,9 @@
       </div> -->
     </div>
     <div class="dialog_content">
-      <div class="msgs">
-        <Msg v-for="msg in msgs" 
+      <div class="msgs" id="gadmsgs" ref="list">
+        <Msg
+          v-for="msg in msgs"
           :id="msg.id"
           :timeAndDate="msg.createdAt"
           :sender="msg.role"
@@ -23,16 +24,15 @@
         ></Msg>
       </div>
       <div class="dialog_textfield">
-        <input placeholder="Введите сообщение..." v-model="msgText">
+        <input placeholder="Введите сообщение..." v-model="msgText" />
         <button @click="newMsg" class="msg_button_send">Отправить</button>
       </div>
     </div>
-    
   </div>
 </template>
 <script>
-import Api from '@/Api';
-import Msg from '@/components/Msg.vue';
+import Api from "@/Api";
+import Msg from "@/components/Msg.vue";
 //import RoleInfo from '@/components/RoleInfo.vue';
 export default {
   data() {
@@ -43,55 +43,67 @@ export default {
       dialogId: 0,
       props: "",
       msgs: [],
-      msgText:""
+      msgText: "",
     };
   },
   created() {
-    
     this.$watch(
       () => this.$route.params,
       () => {
         this.load();
-        this.title = sessionStorage.getItem("dialog"+this.dialogId);
+        this.title = sessionStorage.getItem("dialog" + this.dialogId);
       },
       // fetch the data when the view is created and the data is
       // already being observed
       { immediate: true }
-    )
+    );
   },
-  components:{
+  components: {
     Msg,
-    
+  },
+  updated(){
+    const list = this.$refs.list;
+             list.scrollTop = list.scrollHeight
   },
   methods: {
     load() {
       this.dialogId = this.$route.params.id;
       console.log(this.dialogId);
       const api = new Api();
-      api.Msgs.Get(this.dialogId).then((result) => {
-        this.msgs=result
-      }).catch((err) => {
-
-      });
-      this.msgs = [
-        // { id: 0, text: "I want you to act as a real estate agent. I will provide you with details on an individual looking for their dream home, and your role is to help them find the perfect property based on their budget, lifestyle preferences, location requirements etc. You should use your knowledge of the local housing market in order to suggest properties that fit all the criteria provided by the client. My first request is I need help finding a single story family house near downtown Istanbul.", timeAndDate: Date.now(), sender: this.user, urlLogo: this.logoUrl},
-        // { id: 1, text: "Привет, нормально, а ты?", timeAndDate: Date.now(),sender: this.title, urlLogo: this.logoUrl}
-      ]
+      api.Dialogs.GetById(this.dialogId).then((response)=>{
+        this.title = response.name;
+      })   
+      api.Msgs.Get(this.dialogId)
+        .then((result) => {
+          this.msgs = result;
+        })
+        .catch((err) => {});
+     
+     
+      
     },
-    newMsg(){
-      if(this.msgText)
-      {
-        this.msgs.push({role:"user",content:this.msgText})
+    newMsg() {
+      if (this.msgText) {
+        const list = this.$refs.list;
+        list.scrollTop = list.scrollHeight
+        this.msgs.push({ role: "user", content: this.msgText });
         const api = new Api();
-      api.Msgs.New(this.dialogId,this.msgText).then((result) => {
-        this.msgs.push({role:"assistent",content:result})
-        this.msgText = "";
-      }).catch((err) => {
+        api.Msgs.New(this.dialogId, this.msgText)
+          .then((result) => {
+            this.msgs.push({ role: "assistent", content: result });
+            
+            console.log(this.$refs.list)
+             
+         
+          })
+          .then(()=>{const list = this.$refs.list;
+             list.scrollTop = list.scrollHeight})
 
-      });
-
+          
+          .catch((err) => {});
+          this.msgText = "";
       }
-    }
+    },
   },
 };
 </script>
@@ -138,14 +150,14 @@ export default {
     }
   }
 
-  .dialog_content{
+  .dialog_content {
     height: 90vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     padding-left: 7.625rem;
     padding-right: 7.625rem;
-    .msgs{
+    .msgs {
       height: 100%;
       overflow: auto;
       width: 100%;
@@ -155,8 +167,8 @@ export default {
       align-items: start;
       gap: 1rem;
     }
-  
-    .dialog_textfield{
+
+    .dialog_textfield {
       display: flex;
       flex-direction: row;
       align-items: center;
@@ -164,44 +176,41 @@ export default {
       gap: 0.5rem;
       margin-bottom: 2rem;
       border-radius: 8px;
-  
-      input{
+
+      input {
         box-sizing: border-box;
-  
+
         display: flex;
         flex-direction: row;
         align-items: center;
         padding: 10px;
         gap: 10px;
-  
+
         width: 100%;
         height: 39px;
-  
-        border: 1px solid #F4EEEE;
+
+        border: 1px solid #f4eeee;
       }
-  
-      .msg_button_send{
+
+      .msg_button_send {
         width: 112px;
         height: 39px;
-  
-        background: #404B62;
+
+        background: #404b62;
         border-radius: 8px;
-  
+
         padding: 10px;
-  
-        font-family: 'Inter';
+
+        font-family: "Inter";
         font-style: normal;
         font-weight: 400;
         font-size: 16px;
         line-height: 19px;
         text-align: center;
-  
-        color: #FFFFFF;
+
+        color: #ffffff;
       }
     }
   }
-
-  
 }
 </style>
-
