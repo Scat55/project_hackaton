@@ -21,7 +21,7 @@ export default function Api() {
   async function query(data, link) {
     return fetch("http://26.72.40.57:7000/" +link, {
       method: "POST",
-      body: data,
+      body: JSON.stringify(data),
     })
       .then((response) => response.json())
       .then((responseData) => {
@@ -38,7 +38,7 @@ export default function Api() {
   };
 
   this.login = async (login, password) => {
-    return query({ login: login, password: password }, "auth/login")
+    return query({ email: login, password: password }, "auth/login")
       .then((response) => {
         if(response.token)
         saveToken(response.token);
@@ -86,7 +86,9 @@ export default function Api() {
 
   this.Msgs = () => {
     this.Get = (dialogueId) => {
-      return query({token:getLocalToken(), id:dialogueId})
+      return query({token:getLocalToken(), id:dialogueId},
+      "dialogues//messages"
+      )
     };
     this.New = () => {
       return query({})
