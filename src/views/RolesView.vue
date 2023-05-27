@@ -10,9 +10,8 @@ export default {
     return {
       isShowNewRoles: false,
       showRoleInfo: false,
-      roles: [
-      ],
-      choosenRole:null
+      roles: [],
+      choosenRole: null,
     };
   },
   methods: {
@@ -20,28 +19,26 @@ export default {
       this.isShowNewRoles = false;
     },
     showAddRoleDialog(e) {
-    
       this.isShowNewRoles = true;
     },
     createDialog(e) {
       const idRole = e.target.id;
       const api = new Api();
-      api.Dialogs.Create(idRole).then((result) => {
-        router.push({ name: "openDialog", params: { id: result.id } });
-      }).catch((err) => {
-        
-      });
-    
+      api.Dialogs.Create(idRole)
+        .then((result) => {
+          router.push({ name: "openDialog", params: { id: result.id } });
+        })
+        .catch((err) => {});
     },
     openInfo(e) {
-        this.showRoleInfo = !this.showRoleInfo;
-     if( this.showRoleInfo){
-        this.choosenRole = this.roles.find((role)=>role.id==e.currentTarget.id);
-     }
-     else{
-        this.choosenRole =null;
-     }
-
+      this.showRoleInfo = !this.showRoleInfo;
+      if (this.showRoleInfo) {
+        this.choosenRole = this.roles.find(
+          (role) => role.id == e.currentTarget.id
+        );
+      } else {
+        this.choosenRole = null;
+      }
     },
   },
   components: {
@@ -49,15 +46,14 @@ export default {
     NewRole,
     RoleInfo,
   },
-  created(){
-     const api = new Api();
-     api.Roles.Get().then((result) => {
+  created() {
+    const api = new Api();
+    api.Roles.Get()
+      .then((result) => {
         this.roles.push(...result);
-
-     }).catch((err) => {
-        
-     });
-  }
+      })
+      .catch((err) => {});
+  },
 };
 </script>
 
@@ -80,7 +76,7 @@ export default {
 
       <ul class="roles_list">
         <li v-for="role in roles" :id="role.id" @click="openInfo">
-          <RoleItem :name="role.name" ></RoleItem>
+          <RoleItem :name="role.name"></RoleItem>
         </li>
         <li>
           <div class="add_roleItem" @click="showAddRoleDialog">
@@ -144,7 +140,6 @@ export default {
   }
 
   .roles_list {
-    
     display: flex;
     flex-direction: row;
     align-items: flex-start;

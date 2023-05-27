@@ -49,14 +49,25 @@ import Lk from "./lk.vue";
 
 export default {
   name: "chat",
+
   created() {
     const api = new Api();
-    api.Dialogs.GetAll()
+    
+      ;
+      this.$watch(
+      () => this.$route.params,
+      () => {
+        api.Dialogs.GetAll()
       .then((result) => {
         console.log(result);
         this.dialogs = result;
       })
-      .catch((err) => {});
+
+      },
+      // fetch the data when the view is created and the data is
+      // already being observed
+      { immediate: true }
+    );
   },
   data() {
     return {
@@ -68,7 +79,7 @@ export default {
   methods: {
     chooseDialog(e) {
       const dialogId = e.currentTarget.id;
-      router.push({ name: "openDialog", params: { id:dialogId } });
+      router.push({ name: "openDialog", params: { id: dialogId } });
     },
     hideDeleteAllDialogs() {
       this.isShowDialogDeleteAll = false;
@@ -106,7 +117,7 @@ export default {
 }
 
 .aside {
-  ul{
+  ul {
     overflow: auto;
     height: 60vh;
   }

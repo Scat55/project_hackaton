@@ -21,6 +21,7 @@
           :timeAndDate="msg.createdAt"
           :sender="msg.role"
           :text="msg.content"
+          :GptName="title"
         ></Msg>
       </div>
       <div class="dialog_textfield">
@@ -61,47 +62,43 @@ export default {
   components: {
     Msg,
   },
-  updated(){
+  updated() {
     const list = this.$refs.list;
-             list.scrollTop = list.scrollHeight
+    list.scrollTop = list.scrollHeight;
   },
   methods: {
     load() {
       this.dialogId = this.$route.params.id;
       console.log(this.dialogId);
       const api = new Api();
-      api.Dialogs.GetById(this.dialogId).then((response)=>{
+      api.Dialogs.GetById(this.dialogId).then((response) => {
         this.title = response.name;
-      })   
+      });
       api.Msgs.Get(this.dialogId)
         .then((result) => {
           this.msgs = result;
         })
         .catch((err) => {});
-     
-     
-      
     },
     newMsg() {
       if (this.msgText) {
         const list = this.$refs.list;
-        list.scrollTop = list.scrollHeight
+        list.scrollTop = list.scrollHeight;
         this.msgs.push({ role: "user", content: this.msgText });
         const api = new Api();
         api.Msgs.New(this.dialogId, this.msgText)
           .then((result) => {
             this.msgs.push({ role: "assistent", content: result });
-            
-            console.log(this.$refs.list)
-             
-         
-          })
-          .then(()=>{const list = this.$refs.list;
-             list.scrollTop = list.scrollHeight})
 
-          
+            console.log(this.$refs.list);
+          })
+          .then(() => {
+            const list = this.$refs.list;
+            list.scrollTop = list.scrollHeight;
+          })
+
           .catch((err) => {});
-          this.msgText = "";
+        this.msgText = "";
       }
     },
   },
@@ -160,12 +157,13 @@ export default {
     .msgs {
       height: 100%;
       overflow: auto;
-      width: 100%;
+
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
       align-items: start;
       gap: 1rem;
+      color: black;
     }
 
     .dialog_textfield {
@@ -189,7 +187,10 @@ export default {
         width: 100%;
         height: 39px;
 
-        border: 1px solid #f4eeee;
+        //
+        border: 0;
+        border-bottom: 1px solid gray;
+        outline: none;
       }
 
       .msg_button_send {
