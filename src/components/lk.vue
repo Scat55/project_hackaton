@@ -34,7 +34,7 @@
           <p class="change__pass-text" @click="changeInfoOfPerson">Сохранить изменения</p>
         </div>
       </div>
-      <div class="subs">
+      <footer>  <div class="subs">
         <div class="subs__info">
           <p class="subs__text">У вас не оформлена премиум подписка</p>
           <a href="#" class="subs__pay">Оформить</a>
@@ -47,7 +47,8 @@
       <div class="person__out">
         <img src="../assets/images/log-out.svg" alt="ArrowOut" class="out__img" />
         <p class="person__text">Выйти</p>
-      </div>
+      </div></footer>
+    
     </div>
   </div>
 </template>
@@ -92,6 +93,8 @@ export default {
 }
 .person {
   position: absolute;
+  display: flex;
+  flex-direction: column;
   top: 0;
   left: 0;
   background-color: #161515;
@@ -112,7 +115,11 @@ export default {
       border-radius: 50px;
     }
   }
-
+  footer{
+    position: absolute;
+    bottom: 1rem;
+    width: 100%;
+    }
   &__inputs {
     position: relative;
     display: flex;
