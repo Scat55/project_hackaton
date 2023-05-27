@@ -49,9 +49,12 @@ import NewRole from '@/components/newRole.vue';
             };
         },
         methods:{
+            hideAddRoleDialog()
+            {
+                this.isShowNewRoles =false;
+            },
             showAddRoleDialog()
             {
-                console.log("ol");
                 this.isShowNewRoles = true;
             },
             openDialog(e)
@@ -70,7 +73,7 @@ import NewRole from '@/components/newRole.vue';
 
 <template>
     <div class="content">
-        <NewRole v-if="isShowNewRoles"></NewRole>
+        <NewRole v-if="isShowNewRoles" :onHide="hideAddRoleDialog"></NewRole>
    
     <div class="roles">
         <div class="roles_header">

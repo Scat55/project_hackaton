@@ -2,7 +2,7 @@ import DialogView from '../views/DialogView.vue';
 import RolesView from '../views/RolesView.vue';
 import RegistrationView from '../views/RegistrationView.vue';
 import SignInView from '../views/SignInView.vue';
-
+import SettinsUser from '../views/SettingsUser.vue'
 import { createRouter, createWebHistory } from 'vue-router';
 const routes = [
   {
@@ -19,6 +19,11 @@ const routes = [
     path: '/registration',
     name: 'registration',
     component: RegistrationView,
+  },
+  {
+    path: '/settings',
+    name: 'settings',
+    component: SettinsUser,
   },
   {
     path: '/dialog/:id',
