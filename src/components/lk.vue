@@ -50,12 +50,16 @@
       </div></footer>
     
     </div>
+    <PremiumModal></PremiumModal>
+    
   </div>
 </template>
 
 <script>
+import PremiumModal from "@/components/PremiumModal.vue";
 export default {
   props:["onHide"],
+  components:{PremiumModal},
   data() {
     return {
       isShow: true,
@@ -94,7 +98,7 @@ export default {
 }
 .person {
   
-  position: absolute;
+
   display: flex;
   flex-direction: column;
   top: 0;
@@ -103,7 +107,7 @@ export default {
   height: 100vh;
   overflow: auto;
   width: 25.188rem;
- 
+ position: relative;
   &__img {
     display: flex;
     justify-content: center;
@@ -118,6 +122,9 @@ export default {
     }
   }
   footer{
+    display: flex;
+    flex-direction: column;
+    
     position: absolute;
     bottom: 1rem;
     width: 100%;
@@ -207,7 +214,19 @@ export default {
     border-radius: 0.5rem;
     width: 16.688rem;
     height: 9.438rem;
-    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    margin-left: 4rem;
+    gap: 0.813rem;
+    border-top: 0.063rem solid #413e3e;
+    margin-top: 2.625rem;
+    padding-top: 0.75rem;
+    font-weight: 400;
+    font-size: 1.25rem;
+    cursor: pointer;
+    line-height: 1.188rem;
+    color: #ffffff;
+    
 
     &__info {
       text-align: center;
