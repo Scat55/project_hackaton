@@ -18,7 +18,33 @@ export default function Api() {
     }
   }
 
-  async function query(data, link) {
+  async function query( link,) {
+    return fetch("http://26.72.40.57:7000/" +link, {
+      method: "GET", // *GET, POST, PUT, DELETE, etc.
+      mode: "cors", // no-cors, *cors, same-origin
+      cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+      credentials: "same-origin", // include, *same-origin, omit
+      headers: {
+        "Content-Type": "application/json",
+        "authorization": "Bearer "+ getLocalToken(),
+        // 'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      redirect: "follow", // manual, *follow, error
+      referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+      //body: JSON.stringify(data), // body data type must match "Content-Type" header
+      
+    })
+      .then((response) => response.json())
+      .then((responseData) => {
+        console.log(responseData);
+        return responseData;
+      })
+      .catch((error) => {
+        console.warn(error);
+        return false;
+      });
+  }
+  async function queryPOST(data, link,) {
     return fetch("http://26.72.40.57:7000/" +link, {
       method: "POST", // *GET, POST, PUT, DELETE, etc.
       mode: "cors", // no-cors, *cors, same-origin
@@ -26,12 +52,13 @@ export default function Api() {
       credentials: "same-origin", // include, *same-origin, omit
       headers: {
         "Content-Type": "application/json",
+        "authorization": "Bearer "+ getLocalToken(),
         // 'Content-Type': 'application/x-www-form-urlencoded',
       },
       redirect: "follow", // manual, *follow, error
       referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
       body: JSON.stringify(data), // body data type must match "Content-Type" header
-  
+      
     })
       .then((response) => response.json())
       .then((responseData) => {
@@ -88,24 +115,21 @@ export default function Api() {
   this.Dialogs = () => {}
     this.Dialogs.GetAll = () => {
       return query(
-        {
-          token:getLocalToken(),
-        },
         "dialogues"
         )
         
     };
     this.Dialogs.Create = (roleId) => {
-      return query(
+      return queryPOST(
         {
-          token:getLocalToken(), role:roleId
+          role:roleId
         },
         "dialogues"
         )
     };
 
     this.Dialogs.Delete = () => {
-      return query({},"")
+      return queryPOST({},"")
     }
 
     this.Dialogs.DeleteAll = () => {
@@ -115,12 +139,10 @@ export default function Api() {
 
   this.Msgs = () => {}
     this.Msgs.Get = (dialogueId) => {
-      return query({token:getLocalToken()},
-      "dialogues/"+ dialogueId +"/messages"
-      )
+      return query("dialogues/"+ dialogueId +"/messages")
     };
     this.Msgs.New = (dialogueId, messageContent) => {
-      return query({token:getLocalToken(), content:messageContent},
+      return queryPOST({content:messageContent},
         "dialogues/"+ dialogueId +"/messages"
       )
     };
@@ -129,9 +151,6 @@ export default function Api() {
   this.User = () => {}
     this.User.Get = () => {
       return query(
-        {
-          token:getLocalToken(),
-        },
         "users/"
       )
     };
@@ -143,9 +162,6 @@ export default function Api() {
   this.Roles = () => {}
     this.Roles.Get = () => {
       return query(
-        {
-          token:getLocalToken(),
-        },
         "roles"
       )
     }
