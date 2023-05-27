@@ -18,9 +18,9 @@ export default function Api() {
     }
   }
 
-  async function query( link,) {
+  async function query( link, type) {
     return fetch("http://26.72.40.57:7000/" +link, {
-      method: "GET", // *GET, POST, PUT, DELETE, etc.
+      method: type, // *GET, POST, PUT, DELETE, etc.
       mode: "cors", // no-cors, *cors, same-origin
       cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
       credentials: "same-origin", // include, *same-origin, omit
@@ -117,7 +117,7 @@ export default function Api() {
   this.Dialogs = () => {}
     this.Dialogs.GetAll = () => {
       return query(
-        "dialogues"
+        "dialogues","GET"
       )
         
     };
@@ -132,17 +132,17 @@ export default function Api() {
     };
 
     this.Dialogs.Delete = (chatId) => {
-      return queryPOST({},"dialogues/" + chatId,"DELETE")
+      return query("dialogues/" + chatId,"DELETE")
     }
 
     this.Dialogs.DeleteAll = () => {
-      return queryPOST(null, "dialogues","DELETE")
+      return query("dialogues","DELETE")
     }
   
 
   this.Msgs = () => {}
     this.Msgs.Get = (dialogueId) => {
-      return query("dialogues/"+ dialogueId +"/messages")
+      return query("dialogues/"+ dialogueId +"/messages", "GET")
     };
     this.Msgs.New = (dialogueId, messageContent) => {
       return queryPOST({content:messageContent},
@@ -155,7 +155,7 @@ export default function Api() {
   this.User = () => {}
     this.User.Get = () => {
       return query(
-        "users"
+        "users","GET"
       )
     };
     this.User.Set = (userId, changes) => {
@@ -166,22 +166,22 @@ export default function Api() {
   this.Roles = () => {}
     this.Roles.Get = () => {
       return query(
-        "roles"
+        "roles","GET"
       )
     }
 
     this.Roles.GetById = (userId) =>{
       return query(
-        "roles/"+userId
+        "roles/"+userId,"GET"
       )
     }
-    
+
     this.Roles.Add = (firstPrompt, roleName) => {
       return queryPOST({value:firstPrompt, name:roleName}, "roles", "POST")
     }
 
     this.Roles.Delete = () => {
-      return queryPOST({},"","DELETE")
+      return query({},"","DELETE")
     }
   
 }
