@@ -153,7 +153,7 @@ export default {
     padding: 1rem;
     gap: 1rem;
     //row-gap: 1rem;
-    max-height: 40vh;
+    max-height: 19rem;
     overflow: auto;
 
     li {
