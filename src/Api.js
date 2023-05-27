@@ -44,9 +44,9 @@ export default function Api() {
         return false;
       });
   }
-  async function queryPOST(data, link,) {
+  async function queryPOST(data, link, type) {
     return fetch("http://26.72.40.57:7000/" +link, {
-      method: "POST", // *GET, POST, PUT, DELETE, etc.
+      method: type, // *GET, POST, PUT, DELETE, etc.
       mode: "cors", // no-cors, *cors, same-origin
       cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
       credentials: "same-origin", // include, *same-origin, omit
@@ -70,6 +70,7 @@ export default function Api() {
         return false;
       });
   }
+
   this.checkToken = () => {
     return getLocalToken();
   };
@@ -124,16 +125,17 @@ export default function Api() {
         {
           role:roleId
         },
-        "dialogues"
+        "dialogues",
+        "POST"
         )
     };
 
     this.Dialogs.Delete = () => {
-      return queryPOST({},"")
+      return queryPOST({},"","DELETE")
     }
 
     this.Dialogs.DeleteAll = () => {
-      return query({}, "")
+      return queryPOST({}, "","DELETE")
     }
   
 
@@ -143,7 +145,8 @@ export default function Api() {
     };
     this.Msgs.New = (dialogueId, messageContent) => {
       return queryPOST({content:messageContent},
-        "dialogues/"+ dialogueId +"/messages"
+        "dialogues/"+ dialogueId +"/messages", 
+        "POST"
       )
     };
 
@@ -154,8 +157,8 @@ export default function Api() {
         "users/"
       )
     };
-    this.User.Set = (userId, []) => {
-      return query({token:getLocalToken()}, "users/profile/"+userId)
+    this.User.Set = (userId, changes) => {
+      return queryPOST(changes, "users/profile/"+userId, "PATCH")
     };
   
 
@@ -167,11 +170,11 @@ export default function Api() {
     }
 
     this.Roles.Add = (firstPrompt, roleName) => {
-      return query({token:getLocalToken(), value:firstPrompt, name:roleName}, "roles")
+      return queryPOST({value:firstPrompt, name:roleName}, "roles", "POST")
     }
 
     this.Roles.Delete = () => {
-      return query({},"")
+      return queryPOST({},"","PATCH")
     }
   
 }
