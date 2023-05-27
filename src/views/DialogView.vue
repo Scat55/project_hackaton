@@ -45,7 +45,7 @@ export default {
       props: "",
       msgs: [],
       msgText: "",
-      status:""
+      status:"Загрузка диалога"
     };
   },
   created() {
@@ -64,11 +64,13 @@ export default {
     Msg,
   },
   updated() {
+  
     const list = this.$refs.list;
     list.scrollTop = list.scrollHeight;
   },
   methods: {
     load() {
+      this.status="Загрузка диалога";
       this.dialogId = this.$route.params.id;
       console.log(this.dialogId);
       const api = new Api();
@@ -78,6 +80,7 @@ export default {
       api.Msgs.Get(this.dialogId)
         .then((result) => {
           this.msgs = result;
+          this.status = ""
         })
         .catch((err) => {});
     },
