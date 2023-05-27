@@ -18,11 +18,11 @@
         <div class="back"></div>
         <div class="box">
           <div class="header">
-            <img class="logo" :src="role.logo">   
+            <img class="logo" src="/icons/iconRole.svg">   
             <span type="text" class="title">{{role.name}}</span>
           </div>
           <div class="text">
-            <span>{{role.firstPrompt}}</span>
+            <span>{{role.value}}</span>
           </div>
           <div class="footer">
             <button :id="role.id" @click="open">Создать чат</button>
