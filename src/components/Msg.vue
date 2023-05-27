@@ -29,7 +29,7 @@ export default {
     const dT = new Date(this.createAt)
     this.date = dT.getDay()+"."+dT.getMonth()+"."+dT.getFullYear();
     this.time = dT.getHours()+":"+dT.getMinutes();
-    console.log(this.date)
+   
   },
   methods: {
 

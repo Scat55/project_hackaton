@@ -12,6 +12,7 @@ export default {
       showRoleInfo: false,
       roles: [
       ],
+      choosenRole:null
     };
   },
   methods: {
@@ -22,15 +23,25 @@ export default {
     
       this.isShowNewRoles = true;
     },
-    openDialog(e) {
-      console.log(e.target.id);
+    createDialog(e) {
       const idRole = e.target.id;
       const api = new Api();
-      router.push({ name: "openDialog", params: { id: idRole } });
+      api.Dialogs.Create(idRole).then((result) => {
+        router.push({ name: "openDialog", params: { id: result.id } });
+      }).catch((err) => {
+        
+      });
+    
     },
-    openInfo() {
-      //const idRole  = e.currentTarget.id;
-      this.showRoleInfo = !this.showRoleInfo;
+    openInfo(e) {
+        this.showRoleInfo = !this.showRoleInfo;
+     if( this.showRoleInfo){
+        this.choosenRole = this.roles.find((role)=>role.id==e.currentTarget.id);
+     }
+     else{
+        this.choosenRole =null;
+     }
+
     },
   },
   components: {
@@ -42,6 +53,7 @@ export default {
      const api = new Api();
      api.Roles.Get().then((result) => {
         this.roles.push(...result);
+
      }).catch((err) => {
         
      });
@@ -55,8 +67,8 @@ export default {
     <RoleInfo
       v-if="showRoleInfo"
       :onHide="openInfo"
-      :onOpen="openDialog"
-      :role="roles[0]"
+      :onOpen="createDialog"
+      :role="choosenRole"
     ></RoleInfo>
     <div class="roles">
       <div class="roles_header">
@@ -68,7 +80,7 @@ export default {
 
       <ul class="roles_list">
         <li v-for="role in roles" :id="role.id" @click="openInfo">
-          <RoleItem :name="role.name"></RoleItem>
+          <RoleItem :name="role.name" ></RoleItem>
         </li>
         <li>
           <div class="add_roleItem" @click="showAddRoleDialog">
