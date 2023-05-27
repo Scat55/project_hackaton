@@ -112,27 +112,38 @@ export default function Api() {
       .catch((err) => alert(err));
   };
 
-  this.Dialogs = () => {};
-  this.Dialogs.GetAll = () => {
-    return query('dialogues');
-  };
-  this.Dialogs.Create = (roleId) => {
-    return queryPOST(
-      {
-        role: roleId,
-      },
-      'dialogues',
-      'POST',
-    );
-  };
+  this.Dialogs = () => {}
+    this.Dialogs.GetAll = () => {
+      return query(
+        "dialogues","GET"
+      )
+        
+    };
 
-  this.Dialogs.Delete = (chatId) => {
-    return queryPOST({}, 'dialogues/' + chatId, 'DELETE');
-  };
+    this.Dialogs.GetById = (dialogId) => {    
+      return query(
+        "dialogues/" + dialogId,"GET"
+      )
+    }
 
-  this.Dialogs.DeleteAll = () => {
-    return queryPOST({}, '', 'DELETE');
-  };
+    this.Dialogs.Create = (roleId) => {
+      return queryPOST(
+        {
+          roleId:roleId
+        },
+        "dialogues",
+        "POST"
+        )
+    };
+
+    this.Dialogs.Delete = (chatId) => {
+      return query("dialogues/" + chatId,"DELETE")
+    }
+
+    this.Dialogs.DeleteAll = () => {
+      return query("dialogues","DELETE")
+    }
+  
 
   this.Msgs = () => {};
   this.Msgs.Get = (dialogueId) => {
