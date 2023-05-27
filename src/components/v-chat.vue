@@ -1,4 +1,7 @@
 <template>
+  <div hidden class="PremuimM">
+    <PremiumModal v-if="isShowPremiumModal" :onHide="hidePremiumModal"></PremiumModal>
+  </div>
   <div id="chat">
     <aside class="aside">
       <div>
@@ -46,11 +49,12 @@ import router from "@/router";
 import DialogWindowDeleteAllChat from "./dialogWindowDeleteAllChat.vue";
 import DialogItem from "./dialogItem.vue";
 import Lk from "./lk.vue";
-
+import PremiumModal from "@/components/PremiumModal.vue";
 export default {
   name: "chat",
 
   created() {
+   
     const api = new Api();
     
       ;
@@ -59,6 +63,17 @@ export default {
       () => {
         api.Dialogs.GetAll()
       .then((result) => {
+        api.User.Get().then((responses)=>{
+        if(responses.premium)
+        {
+          setTimeout(
+  () => {
+   this.showPremiumModal();
+  },
+  5 * 1000
+);
+        }
+         })
         console.log(result);
         this.dialogs = result;
       })
@@ -74,9 +89,16 @@ export default {
       isShowDialogDeleteAll: false,
       dialogs: [],
       isShowLk: false,
+      isShowPremiumModal:false
     };
   },
   methods: {
+    showPremiumModal(){
+      this.isShowPremiumModal= true;
+    },
+    hidePremiumModal(){
+      this.isShowPremiumModal= false;
+    },
     chooseDialog(e) {
       const dialogId = e.currentTarget.id;
       router.push({ name: "openDialog", params: { id: dialogId } });
@@ -101,7 +123,7 @@ export default {
       this.isShowLk = true;
     },
   },
-  components: { DialogWindowDeleteAllChat, DialogItem, Lk },
+  components: { DialogWindowDeleteAllChat, DialogItem, Lk,PremiumModal}, 
 };
 </script>
 
@@ -111,7 +133,11 @@ export default {
   margin: 0;
   box-sizing: border-box;
 }
+.PremuimM {
+ top: 0;
+  display: flex;
 
+}
 .chat {
   display: flex;
 }
