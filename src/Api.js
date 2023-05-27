@@ -76,7 +76,7 @@ export default function Api() {
   };
 
   this.login = async (login, password) => {
-    return query({ email: login, password: password }, "auth/login")
+    return queryPOST({ email: login, password: password }, "auth/login", "POST")
       .then((response) => {
         if (response.token) {
           saveToken(response.token);
