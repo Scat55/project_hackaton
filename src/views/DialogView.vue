@@ -147,7 +147,7 @@ export default {
     return {
       title: "Name 1",
       user: "User (You)",
-      logoUrl: "./icons/iconRole.svg",
+      logoUrl: "../icons/iconRole.svg",
       dialogId: 0,
       props: "",
       msgs: [],
