@@ -1,7 +1,15 @@
 <script>
     export default {
-        props: ['role'],
-
+        props: ['role', 'onHide', 'onOpen'],
+        methods:{
+            cancel(){
+                this.onHide();
+            },
+            open(e)
+            {
+                this.onOpen(e);
+            }
+            }
     };
 </script>
 
@@ -17,9 +25,9 @@
             <span>{{role.firstPrompt}}</span>
           </div>
           <div class="footer">
-            <button>Создать чат</button>
+            <button :id="role.id" @click="open">Создать чат</button>
             
-            <button>Отмена</button>
+            <button @click="cancel">Отмена</button>
           </div>
         </div>
         <div class="back"></div>
@@ -30,14 +38,14 @@
 <style scoped lang="scss">
 .role_info {
     display: flex;
-    align-items: center;
-    padding: 0;
-    margin: 0;
-    position: relative;
-    width: 100%;
-    height: 100%;
-    flex-direction: column;
-    justify-content: center;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  justify-content: center;
     
     
     .back {
