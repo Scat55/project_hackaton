@@ -3,7 +3,11 @@
     <div class="header">
       <div class="container">
         <div class="header__logo">
-          <img src="../assets/images/logo.svg" alt="Logo" class="header__logo-img" />
+          <img
+            src="../assets/images/logo.svg"
+            alt="Logo"
+            class="header__logo-img"
+          />
           <p class="header__logo-text">Gachi <span>Chat</span></p>
         </div>
       </div>
@@ -14,7 +18,9 @@
         <img src="../assets/images/cup.svg" alt="Cup" class="registr__img" />
         <div class="signin__text">
           <div class="signin__title">Войдите в аккаунт</div>
-          <div class="signin__subtitle">Введите логин и пароль в форме ниже</div>
+          <div class="signin__subtitle">
+            Введите логин и пароль в форме ниже
+          </div>
         </div>
 
         <form action="#" class="signin__form">
@@ -47,7 +53,9 @@
 
           <button class="form__btn" type="button" @click="auth">Войти</button>
           <p class="form__text">
-            Нет аккаунта?<a href="/registration" class="form__registr"> Зарегистрироваться </a>
+            Нет аккаунта?<a href="/registration" class="form__registr">
+              Зарегистрироваться
+            </a>
           </p>
         </form>
       </div>
@@ -56,16 +64,16 @@
 </template>
 
 <script>
-import Api from '@/Api';
-import router from '../router';
+import Api from "@/Api";
+import router from "../router";
 
 export default {
-  name: 'SignInView',
+  name: "SignInView",
   data() {
     return {
-      typeInput: 'password',
-      dataLogin: '',
-      dataPassword: '',
+      typeInput: "password",
+      dataLogin: "",
+      dataPassword: "",
       borderPassword: null,
       borderLogin: null,
       validForm: false,
@@ -77,10 +85,10 @@ export default {
   created() {},
   methods: {
     showYourPass() {
-      if (this.typeInput == 'password') {
-        this.typeInput = 'text';
+      if (this.typeInput == "password") {
+        this.typeInput = "text";
       } else {
-        this.typeInput = 'password';
+        this.typeInput = "password";
       }
     },
     auth() {
@@ -90,24 +98,24 @@ export default {
         const api = new Api();
         api
           .login(this.dataLogin, this.dataPassword)
-          .then((response) => (response ? router.go(0) : alert('ошибка')))
+          .then((response) => (response ? router.go(0) : alert("ошибка")))
           .catch((err) => alert(err));
       } else {
-        alert('Ты ');
+        alert("Ты ");
       }
     },
 
     checkValidForm() {
       if (this.dataPassword.length === 0) {
-        this.borderPassword = 'border';
+        this.borderPassword = "border";
       } else {
-        this.borderPassword = '';
+        this.borderPassword = "";
       }
 
       if (this.dataLogin.length === 0) {
-        this.borderLogin = 'border';
+        this.borderLogin = "border";
       } else {
-        this.borderLogin = '';
+        this.borderLogin = "";
       }
       if (this.dataLogin.length !== 0 && this.dataPassword.length !== 0) {
         this.validForm = true;

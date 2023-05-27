@@ -3,7 +3,11 @@
     <div class="header">
       <div class="container">
         <div class="header__logo">
-          <img src="../assets/images/logo.svg" alt="Logo" class="header__logo-img" />
+          <img
+            src="../assets/images/logo.svg"
+            alt="Logo"
+            class="header__logo-img"
+          />
           <p class="header__logo-text">Gachi <span>Chat</span></p>
         </div>
       </div>
@@ -71,13 +75,17 @@
           <div class="form__info">
             <p class="form__info__text">
               Нажимая кнопку «Зарегистрироваться» вы даёте согласие на
-              <span class="form__info-red">обработку своих персональных данных</span>
+              <span class="form__info-red"
+                >обработку своих персональных данных</span
+              >
             </p>
           </div>
           <button class="form__btn" :type="typeBtn" @click="registr">
             Зарегистрироваться
           </button>
-          <p class="form__text">Есть аккаунт?<a href="/auth" class="form__registr"> Войти </a></p>
+          <p class="form__text">
+            Есть аккаунт?<a href="/auth" class="form__registr"> Войти </a>
+          </p>
         </form>
       </div>
     </div>
@@ -85,25 +93,25 @@
 </template>
 
 <script>
-import Api from '@/Api';
-import router from '../router';
+import Api from "@/Api";
+import router from "../router";
 
 export default {
-  name: 'RegistrationView',
+  name: "RegistrationView",
 
   data() {
     return {
-      typeInput: 'password',
-      typeBtn: 'submit',
-      dataLogin: '',
-      dataPassword: '',
-      dataPasswordDouble: '',
-      dataEmail: '',
-      borderPassword: '',
-      borderPasswordDouble: '',
-      borderLogin: '',
-      borderEmail: '',
-      border: '',
+      typeInput: "password",
+      typeBtn: "submit",
+      dataLogin: "",
+      dataPassword: "",
+      dataPasswordDouble: "",
+      dataEmail: "",
+      borderPassword: "",
+      borderPasswordDouble: "",
+      borderLogin: "",
+      borderEmail: "",
+      border: "",
       validForm: false,
     };
   },
@@ -113,25 +121,25 @@ export default {
   methods: {
     checkValidForm() {
       if (this.dataPassword.length === 0) {
-        this.borderPassword = 'border';
+        this.borderPassword = "border";
       } else {
-        this.borderPassword = '';
+        this.borderPassword = "";
       }
       if (this.dataPasswordDouble.length === 0) {
-        this.borderPasswordDouble = 'border';
+        this.borderPasswordDouble = "border";
       } else {
-        this.borderPasswordDouble = '';
+        this.borderPasswordDouble = "";
       }
 
       if (this.dataLogin.length === 0) {
-        this.borderLogin = 'border';
+        this.borderLogin = "border";
       } else {
-        this.borderLogin = '';
+        this.borderLogin = "";
       }
       if (this.dataEmail.length === 0) {
-        this.borderEmail = 'border';
+        this.borderEmail = "border";
       } else {
-        this.borderEmail = '';
+        this.borderEmail = "";
       }
       if (
         this.dataLogin.length !== 0 &&
@@ -145,19 +153,23 @@ export default {
       }
     },
     showYourPass() {
-      if (this.typeInput == 'password') {
-        this.typeInput = 'text';
+      if (this.typeInput == "password") {
+        this.typeInput = "text";
       } else {
-        this.typeInput = 'password';
+        this.typeInput = "password";
       }
     },
     correctedPasswords() {
-      if (token && this.validForm && this.dataPassword === this.dataPasswordDouble) {
+      if (
+        token &&
+        this.validForm &&
+        this.dataPassword === this.dataPasswordDouble
+      ) {
         //успешно
-       // router.push('roles');
+        // router.push('roles');
       }
       if (this.dataPassword !== this.dataPasswordDouble) {
-        alert('Пароли не совпадают');
+        alert("Пароли не совпадают");
       }
     },
     registr() {
@@ -167,10 +179,10 @@ export default {
         const api = new Api();
         api
           .registration(this.dataEmail, this.dataLogin, this.dataPassword)
-          .then((response) => (response ? router.go(0) : alert('ошибка')))
+          .then((response) => (response ? router.go(0) : alert("ошибка")))
           .catch((err) => alert(err));
       } else {
-        alert('Ты ');
+        alert("Ты ");
       }
     },
   },

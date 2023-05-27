@@ -53,6 +53,9 @@ export default {
 </script>
 
 <style lang="scss">
+body{
+  overflow: hidden;
+}
 @font-face {
   font-family: Inter;
   /* Гарнитура шрифта */
@@ -69,5 +72,6 @@ export default {
   display: flex;
   width: 100%;
   height: 100vh;
+
 }
 </style>
