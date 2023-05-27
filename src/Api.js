@@ -117,7 +117,7 @@ export default function Api() {
     this.Dialogs.GetAll = () => {
       return query(
         "dialogues"
-        )
+      )
         
     };
     this.Dialogs.Create = (roleId) => {
@@ -130,8 +130,8 @@ export default function Api() {
         )
     };
 
-    this.Dialogs.Delete = () => {
-      return queryPOST({},"","DELETE")
+    this.Dialogs.Delete = (chatId) => {
+      return queryPOST({},"dialogues/" + chatId,"DELETE")
     }
 
     this.Dialogs.DeleteAll = () => {
@@ -154,7 +154,7 @@ export default function Api() {
   this.User = () => {}
     this.User.Get = () => {
       return query(
-        "users/"
+        "users"
       )
     };
     this.User.Set = (userId, changes) => {
@@ -174,7 +174,7 @@ export default function Api() {
     }
 
     this.Roles.Delete = () => {
-      return queryPOST({},"","PATCH")
+      return queryPOST({},"","DELETE")
     }
   
 }
