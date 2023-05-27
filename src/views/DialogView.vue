@@ -142,6 +142,7 @@
 </style>
 <script>
 import Msg from '@/components/Msg.vue';
+//import RoleInfo from '@/components/RoleInfo.vue';
 export default {
   data() {
     return {
@@ -151,6 +152,7 @@ export default {
       dialogId: 0,
       props: "",
       msgs: [],
+      
     };
   },
   created() {
@@ -158,7 +160,8 @@ export default {
     
   },
   components:{
-    Msg
+    Msg,
+    
   },
   methods: {
     load() {
