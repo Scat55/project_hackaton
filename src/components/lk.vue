@@ -55,6 +55,7 @@
 
 <script>
 export default {
+  props:["onHide"],
   data() {
     return {
       isShow: true,
@@ -66,12 +67,12 @@ export default {
     };
   },
   methods: {
-    closePerson() {
-      this.isShow = !this.isShow;
+   
+    closePerson(){
+      this.onHide()
     },
-
     changeInfoOfPerson() {
-      this.isActive = true;
+    
       console.log(this.userName);
     },
     test() {
