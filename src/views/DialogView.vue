@@ -89,7 +89,7 @@ export default {
     },
     newMsg() {
       if (this.msgText) {
-        this.status = "Генерируем ответ";
+        this.status = "Печатает...";
         const list = this.$refs.list;
         list.scrollTop = list.scrollHeight;
         this.msgs.push({ role: "user", content: this.msgText });
