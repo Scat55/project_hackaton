@@ -39,6 +39,7 @@
             <input
               class="form__password-outline"
               placeholder="Введите пароль"
+              :type="typeInput"
               :class="{border :   v$.dataPassword.$error}"
               v-model="v$.dataPassword.$model"
               required
