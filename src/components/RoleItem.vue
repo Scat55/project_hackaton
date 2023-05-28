@@ -10,6 +10,7 @@ export default {
       <img src="/icons/iconRole.svg" />
     </div>
     <span class="role_name">{{ name }}</span>
+    
   </div>
 </template>
 

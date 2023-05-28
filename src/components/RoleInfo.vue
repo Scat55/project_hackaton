@@ -70,6 +70,7 @@ export default {
     max-width: 50rem;
     .header {
       display: flex;
+      align-items: center;
       width: 40rem;
       margin-bottom: 1rem;
       .logo {
@@ -83,12 +84,13 @@ export default {
         margin: 0;
         padding: 0;
         display: inline-block;
-        height: 2rem;
         width: 38rem;
       }
     }
     .text {
       margin-bottom: 1rem;
+  
+      
       span {
         height: 20rem;
 
