@@ -25,31 +25,27 @@
         ></Msg>
       </div>
       <div class="dialog_textfield">
-        <input
-          @keypress.enter="newMsg"
-          placeholder="Введите сообщение..."
-          v-model="msgText"
-        />
+        <input @keypress.enter="newMsg" placeholder="Введите сообщение..." v-model="msgText" />
         <button @click="newMsg" class="msg_button_send">Отправить</button>
       </div>
     </div>
   </div>
 </template>
 <script>
-import Api from "@/Api";
-import Msg from "@/components/Msg.vue";
+import Api from '@/Api';
+import Msg from '@/components/Msg.vue';
 //import RoleInfo from '@/components/RoleInfo.vue';
 export default {
   data() {
     return {
-      title: "Name 1",
-      user: "User (You)",
-      logoUrl: "../icons/iconRole.svg",
+      title: 'Name 1',
+      user: 'User (You)',
+      logoUrl: '../icons/iconRole.svg',
       dialogId: 0,
-      props: "",
+      props: '',
       msgs: [],
-      msgText: "",
-      status: "Загрузка диалога",
+      msgText: '',
+      status: 'Загрузка диалога',
     };
   },
   created() {
@@ -57,11 +53,11 @@ export default {
       () => this.$route.params,
       () => {
         this.load();
-        this.title = sessionStorage.getItem("dialog" + this.dialogId);
+        this.title = sessionStorage.getItem('dialog' + this.dialogId);
       },
       // fetch the data when the view is created and the data is
       // already being observed
-      { immediate: true }
+      { immediate: true },
     );
   },
   components: {
@@ -73,7 +69,7 @@ export default {
   },
   methods: {
     load() {
-      this.status = "Загрузка диалога";
+      this.status = 'Загрузка диалога';
       this.dialogId = this.$route.params.id;
 
       const api = new Api();
@@ -83,21 +79,21 @@ export default {
       api.Msgs.Get(this.dialogId)
         .then((result) => {
           this.msgs = result;
-          this.status = "";
+          this.status = '';
         })
         .catch((err) => {});
     },
     newMsg() {
       if (this.msgText) {
-        this.status = "Печатает...";
+        this.status = 'Печатает...';
         const list = this.$refs.list;
         list.scrollTop = list.scrollHeight;
-        this.msgs.push({ role: "user", content: this.msgText });
+        this.msgs.push({ role: 'user', content: this.msgText });
         const api = new Api();
         api.Msgs.New(this.dialogId, this.msgText)
           .then((result) => {
-            this.msgs.push({ role: "assistent", content: result });
-            this.status = "";
+            this.msgs.push({ role: 'assistent', content: result });
+            this.status = '';
           })
           .then(() => {
             const list = this.$refs.list;
@@ -105,7 +101,7 @@ export default {
           })
 
           .catch((err) => {});
-        this.msgText = "";
+        this.msgText = '';
       }
     },
   },
@@ -147,9 +143,6 @@ export default {
         border: 0;
         border-bottom: 1px solid black;
         outline: none;
-      }
-
-      .find {
       }
     }
   }
@@ -203,20 +196,23 @@ export default {
       .msg_button_send {
         width: 112px;
         height: 39px;
-
         background: #404b62;
         border-radius: 8px;
-
         padding: 10px;
-
-        font-family: "Inter";
+        font-family: 'Inter';
         font-style: normal;
         font-weight: 400;
         font-size: 16px;
         line-height: 19px;
         text-align: center;
-
         color: #ffffff;
+        cursor: pointer;
+        border: none;
+        transition: all 0.3s;
+
+        &:hover {
+          box-shadow: 0 0 10px 1px #404b62;
+        }
       }
     }
   }
