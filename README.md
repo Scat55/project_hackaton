@@ -10,7 +10,8 @@ Backend: https://github.com/Anastatha/gptBack
 
 Frontend:https://github.com/Scat55/project_hackaton<br>
 <ul>
- </ul>
-Антон:https://t.me/LRDronio48</br>
+ Антон:https://t.me/LRDronio48</br>
 Дима:https://t.me/Scat_1</br>
 Данила:https://t.me/suzenebl teamlead</br>
+ </ul>
+
