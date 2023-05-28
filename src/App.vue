@@ -66,6 +66,9 @@ body{
   padding: 0;
   margin: 0;
   font-family: Inter;
+  ::-webkit-scrollbar{
+    width: 0;
+  }
 }
 
 .app {

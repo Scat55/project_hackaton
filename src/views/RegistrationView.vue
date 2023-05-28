@@ -174,7 +174,7 @@ export default {
     },
     registr() {
       if (this.validForm) {
-        console.log(this.dataLogin, this.dataPassword);
+      
 
         const api = new Api();
         api

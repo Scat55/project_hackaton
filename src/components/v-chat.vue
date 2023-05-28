@@ -1,6 +1,9 @@
 <template>
   <div hidden class="PremuimM">
-    <PremiumModal v-if="isShowPremiumModal" :onHide="hidePremiumModal"></PremiumModal>
+    <PremiumModal
+      v-if="isShowPremiumModal"
+      :onHide="hidePremiumModal"
+    ></PremiumModal>
   </div>
   <div id="chat">
     <aside class="aside">
@@ -24,7 +27,7 @@
         </ul>
       </div>
       <div class="aside__text">
-        <lk v-if="isShowLk"  :onHide="hideLkWindow"/>
+        <lk v-if="isShowLk" :onHide="hideLkWindow" />
         <DialogWindowDeleteAllChat
           v-if="isShowDialogDeleteAll"
           :onHide="hideDeleteAllDialogs"
@@ -54,30 +57,22 @@ export default {
   name: "chat",
 
   created() {
-   
     const api = new Api();
-    
-      ;
-      this.$watch(
+
+    this.$watch(
       () => this.$route.params,
       () => {
-        api.Dialogs.GetAll()
-      .then((result) => {
-        api.User.Get().then((responses)=>{
-        if(!responses.premium)
-        {
-          setTimeout(
-  () => {
-   this.showPremiumModal();
-  },
-  5 * 1000
-);
-        }
-         })
-        console.log(result);
-        this.dialogs = result;
-      })
+        api.Dialogs.GetAll().then((result) => {
+          api.User.Get().then((responses) => {
+            if (!responses.premium) {
+              setTimeout(() => {
+                this.showPremiumModal();
+              }, 5 * 1000);
+            }
+          });
 
+          this.dialogs = result;
+        });
       },
       // fetch the data when the view is created and the data is
       // already being observed
@@ -89,18 +84,17 @@ export default {
       isShowDialogDeleteAll: false,
       dialogs: [],
       isShowLk: false,
-      isShowPremiumModal:false
+      isShowPremiumModal: false,
     };
   },
   methods: {
-    showPremiumModal(){
-      this.isShowPremiumModal= true;
+    showPremiumModal() {
+      this.isShowPremiumModal = true;
     },
-    hidePremiumModal(){
-      this.isShowPremiumModal= false;
+    hidePremiumModal() {
+      this.isShowPremiumModal = false;
     },
     chooseDialog(e) {
-      console.log(e,"asd");
       const dialogId = e;
       router.push({ name: "openDialog", params: { id: dialogId } });
     },
@@ -124,7 +118,7 @@ export default {
       this.isShowLk = true;
     },
   },
-  components: { DialogWindowDeleteAllChat, DialogItem, Lk,PremiumModal}, 
+  components: { DialogWindowDeleteAllChat, DialogItem, Lk, PremiumModal },
 };
 </script>
 
@@ -135,9 +129,8 @@ export default {
   box-sizing: border-box;
 }
 .PremuimM {
- top: 0;
+  top: 0;
   display: flex;
-
 }
 .chat {
   display: flex;

@@ -97,7 +97,7 @@ export default {
     const api = new Api();
     api.User.Get()
       .then((result) => {
-        console.log(result.name);
+       
         this.id = result.id;
         this.userName = result.name;
         this.userEmail = result.email;
@@ -126,7 +126,7 @@ export default {
       api.logOut();
     },
     changeInfoOfPerson() {
-      console.log(this.userName);
+    
       const api = new Api();
       if (this.userEmail.length > 0 && this.userEmail !== this.oldEmail)
         api.User.SetEmail(this.id, this.userEmail).then((result) => {

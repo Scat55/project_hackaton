@@ -159,7 +159,7 @@ export default {
   methods: {
     load() {
       this.dialogId = this.$route.params.id;
-      console.log(this.dialogId);
+     
       this.msgs = [
         {
           id: 0,

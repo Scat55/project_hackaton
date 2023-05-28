@@ -24,12 +24,12 @@
         </div>
 
         <form action="#" class="signin__form">
-          <label>Имя</label>
+          <label>Email</label>
           <input
             class="form__name"
             :class="borderLogin"
             type="text"
-            placeholder="Введите имя пользователя"
+            placeholder="Введите email"
             v-model="dataLogin"
             required
           />
@@ -93,7 +93,7 @@ export default {
     },
     auth() {
       if (this.validForm) {
-        console.log(this.dataLogin, this.dataPassword);
+       
 
         const api = new Api();
         api

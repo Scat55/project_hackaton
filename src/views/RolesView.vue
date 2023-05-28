@@ -52,6 +52,11 @@ export default {
   },
   created() {
     const api = new Api();
+    api.User.Get().then((result) => {
+        this.premium = result.premium;
+    }).catch((err) => {
+        
+    });
     api.Roles.Get()
       .then((result) => {
         this.roles.push(...result);

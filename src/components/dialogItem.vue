@@ -30,7 +30,7 @@ export default {
     deleteD() {
     const api  = new Api();
     api.Dialogs.Delete(this.id).then((result) => {
-      console.log(result);
+    
       router.push("/");
      // router.go(0);
     }).catch((err) => {

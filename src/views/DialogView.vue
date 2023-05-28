@@ -72,7 +72,7 @@ export default {
     load() {
       this.status="Загрузка диалога";
       this.dialogId = this.$route.params.id;
-      console.log(this.dialogId);
+     
       const api = new Api();
       api.Dialogs.GetById(this.dialogId).then((response) => {
         this.title = response.name;
@@ -96,7 +96,7 @@ export default {
           
             this.msgs.push({ role: "assistent", content: result });
             this.status = ""
-            console.log(this.$refs.list);
+           
           })
           .then(() => {
             const list = this.$refs.list;

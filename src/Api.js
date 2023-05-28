@@ -34,11 +34,9 @@ export default function Api() {
     })
       .then((response) => response.json())
       .then((responseData) => {
-        console.log(responseData);
         return responseData;
       })
       .catch((error) => {
-        console.warn(error);
         return false;
       });
   }
@@ -59,11 +57,11 @@ export default function Api() {
     })
       .then((response) => response.json())
       .then((responseData) => {
-        console.log(responseData);
+      
         return responseData;
       })
       .catch((error) => {
-        console.warn(error);
+
         return false;
       });
   }
@@ -80,8 +78,6 @@ export default function Api() {
           return true;
         }
         return false;
-
-        console.log(response);
       })
       .catch((err) => alert(err));
   };
@@ -107,7 +103,6 @@ export default function Api() {
         }
         return false;
 
-        console.log(response);
       })
       .catch((err) => alert(err));
   };
