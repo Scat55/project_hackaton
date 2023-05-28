@@ -5,8 +5,10 @@
         <img class="person__image" src="../assets/images/avatar.svg" alt="PersonAvatar" />
       </div>
       <div class="person__inputs">
-        <input class="input__name" placeholder="Введите имя пользователя" v-model="userName" />
-        <input class="input__email" type="email" placeholder="Введите email" v-model="userEmail" />
+        <input class="input__name" placeholder="Введите имя пользователя"  :class="{border : v$.userName.$error}"
+        v-model="v$.userName.$model" />
+        <input class="input__email" type="email" placeholder="Введите email"  :class="{border : v$.userPassword.$error}"
+        v-model="v$.userPassword.$model" />
         <div class="change__pass">
           <input
             class="input__pass"
@@ -48,9 +50,12 @@
 import Api from '@/Api';
 import router from '@/router';
 import PremiumModal from './PremiumModal.vue';
+import { email, required, minLength } from '@vuelidate/validators'
+import { useVuelidate } from '@vuelidate/core'
 export default {
   props: ['onHide'],
   components: { PremiumModal },
+  setup: () => ({ v$: useVuelidate() }),
   data() {
     return {
       isShow: true,
@@ -64,6 +69,12 @@ export default {
 
       isActive: false,
       premium: false,
+    };
+  },
+  validations() {
+    return {
+      userName: { required }, // Matches this.firstName
+      userEmail: { required, email}, // Matches this.lastName
     };
   },
   beforeCreate() {
@@ -81,6 +92,7 @@ export default {
       .catch((err) => {});
   },
   methods: {
+
     getPremium() {
       const api = new Api();
       api.User.SetPremium(this.id, true).then((response) => {
@@ -124,6 +136,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.border {
+  border: 1px solid red !important;
+  border-radius: 0.5rem;
+}
 .person__shadow {
   position: absolute;
   top: 0;
