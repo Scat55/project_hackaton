@@ -14,7 +14,7 @@
         </button>
         <ul>
           <DialogItem
-            @click="chooseDialog"
+            :onClick="chooseDialog"
             v-for="dialog in dialogs"
             :id="dialog.id"
             :name="dialog.name"
@@ -100,7 +100,8 @@ export default {
       this.isShowPremiumModal= false;
     },
     chooseDialog(e) {
-      const dialogId = e.currentTarget.id;
+      console.log(e,"asd");
+      const dialogId = e;
       router.push({ name: "openDialog", params: { id: dialogId } });
     },
     hideDeleteAllDialogs() {
