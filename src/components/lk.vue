@@ -34,7 +34,7 @@
         </div>
       </div>
       <footer>
-        <div class="subs activePrenium" v-if="(premium)">
+        <div class="activePrenium subs " v-if="(premium)">
           <div class="subs__info">
             <p class="subs__text">Подписка на премиум оформлена успешно</p>
             <a href="#" class="subs__pay">Отключить</a>
@@ -106,6 +106,14 @@ export default {
       .catch((err) => {});
   },
   methods: {
+    getPremium(){
+      const api = new Api();
+      api.User.SetPremium(this.id,true);
+    },
+    deletePremium(){
+      const api = new Api();
+      api.logOut();
+    },
     closePerson() {
       this.onHide();
     },
@@ -252,9 +260,7 @@ export default {
       cursor: pointer;
     }
   }
-  .activePrenium{
-
-  }
+  
   .subs {
     display: flex;
     justify-content: center;
@@ -300,6 +306,12 @@ export default {
       padding: 0.5rem;
       margin-top: 1.125rem;
       border-radius: 0.25rem;
+    }
+  }
+  .activePrenium{
+    background: #917173;
+    button{
+      background: #785254;
     }
   }
   .person__comeback {
