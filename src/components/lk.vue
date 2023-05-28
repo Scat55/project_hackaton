@@ -126,10 +126,15 @@ export default {
       console.log(this.userName);
       const api = new Api();
       if (this.userEmail.length > 0 && this.userEmail !== this.oldEmail)
-        api.User.SetEmail(this.id, this.userEmail);
+        api.User.SetEmail(this.id, this.userEmail).then((result) => {
+              alert("Данные сохранены");
+            });
       if (this.userName.length > 0 && this.oldName !== this.userName)
+      api.User.SetName(this.id, this.userName).then((result) => {
+              alert("Данные сохранены");
+            });
         if (this.userPassword.length > 0) {
-          api.User.SetName(this.id, this.userName)
+          api.User.SetPassword(this.id, this.userPassword)
             .then((result) => {
               alert("Данные сохранены");
             })
