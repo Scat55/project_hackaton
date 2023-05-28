@@ -37,13 +37,13 @@
         <div class="activePrenium subs " v-if="(premium)">
           <div class="subs__info">
             <p class="subs__text">Подписка на премиум оформлена успешно</p>
-            <a href="#" class="subs__pay">Отключить</a>
+            <a href="#" class="subs__pay" @click="deletePremium">Отключить</a>
           </div>
         </div>
         <div class="subs " v-else>
           <div class="subs__info">
             <p class="subs__text">У вас не оформлена премиум подписка</p>
-            <a href="#" class="subs__pay">Оформить</a>
+            <a href="#" class="subs__pay" @click="getPremium">Оформить</a>
           </div>
         </div>
         <div class="person__comeback">
@@ -70,6 +70,7 @@
 
 <script>
 import Api from "@/Api";
+import router from "@/router";
 
 export default {
   props: ["onHide"],
@@ -86,7 +87,7 @@ export default {
       userPassword: "",
 
       isActive: false,
-      premium: true,
+      premium: false,
 
     };
   },
@@ -108,11 +109,11 @@ export default {
   methods: {
     getPremium(){
       const api = new Api();
-      api.User.SetPremium(this.id,true);
+      api.User.SetPremium(this.id,true).then((response)=>{router.go(0)});
     },
     deletePremium(){
       const api = new Api();
-      api.logOut();
+      api.User.SetPremium(this.id,false).then((response)=>{router.go(0)});
     },
     closePerson() {
       this.onHide();
