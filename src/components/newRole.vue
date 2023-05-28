@@ -34,11 +34,12 @@ export default {
     },
     save() {
       const api = new Api();
+      this.onHide();
       api.Roles.Add(this.promt, this.name)
         .then((result) => {
           this.addRole();
-          this.onHide();
-          router.go(0);
+         
+        //   router.go(0);
         })
         .catch((err) => {});
     },
