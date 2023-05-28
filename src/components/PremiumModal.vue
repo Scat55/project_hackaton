@@ -2,6 +2,17 @@
 export default
 {
     props: ["onHide"],
+    methods:{
+      getPremium(){
+      const api = new Api();
+      api.User.Get().then((result) => {
+        api.User.SetPremium(result.id,true).then((response)=>{router.go(0)});
+      }).catch((err) => {
+        
+      });
+    
+    },
+    }
 }</script>
 
 <template>
@@ -27,7 +38,7 @@ export default
             <h2>месяца</h2>
             <h3>169 р</h3>
           </div>
-          <button class="subscribe">Подключить</button>
+          <button class="subscribe" @click="getPremium">Подключить</button>
         </div>
           <div >
           <div class="red">
@@ -35,7 +46,7 @@ export default
             <h2>месяца</h2>
             <h3>359 р</h3>
           </div>
-          <button class="subscribe">Подключить</button>
+          <button class="subscribe" @click="getPremium">Подключить</button>
         </div>
           <div >
             <div>
@@ -43,7 +54,7 @@ export default
                 <h2>год</h2>
                 <h3>699 р</h3>
             </div>
-            <button class="subscribe">Подключить</button>
+            <button class="subscribe" @click="getPremium">Подключить</button>
           </div>
         </div>
        
