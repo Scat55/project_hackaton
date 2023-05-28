@@ -33,10 +33,10 @@
           <div class="form__password">
             <input
               class="form__password-outline"
-              :class="borderPassword"
+              :class="{border :   v$.dataPassword.$error}"
               :type="typeInput"
               placeholder="Введите пароль"
-              v-model="dataPassword"
+              v-model="v$.dataPassword.$model"
               required
             />
             <img
@@ -50,12 +50,13 @@
           <div class="form__password">
             <input
               class="form__password-outline"
-              :class="borderPasswordDouble"
+              :class="{border :   v$.dataPasswordDouble.$error}"
               :type="typeInput"
               placeholder="Введите пароль"
-              v-model="dataPasswordDouble"
+              v-model="v$.dataPasswordDouble.$model"
               required
             />
+        
             <img
               class="form__password-img"
               src="../assets/images/eye.svg"
@@ -99,7 +100,7 @@ import { email, required, minLength } from '@vuelidate/validators'
 import { useVuelidate } from '@vuelidate/core'
 export default {
   name: "RegistrationView",
-
+  setup: () => ({ v$: useVuelidate() }),
   data() {
     return {
       typeInput: "password",
@@ -118,8 +119,9 @@ export default {
   },
   validations() {
     return {
-      dataLogin: { required, email }, // Matches this.firstName
-      dataPassword: { required,  minLength: minLength(5)}, // Matches this.lastName
+      dataEmail: { required, email }, // Matches this.firstName
+      dataPassword: { required,  minLength: minLength(5)},
+      dataPasswordDouble: { required,  minLength: minLength(5)}, // Matches this.lastName
     };
   },
   updated() {
