@@ -27,19 +27,20 @@
           <label>Email</label>
           <input
             class="form__name"
-            :class="borderLogin"
+            :class="{border :   v$.dataLogin.$error}"
             type="text"
             placeholder="Введите email"
-            v-model="dataLogin"
+            v-model="v$.dataLogin.$model"
             required
           />
+          
           <label>Пароль*</label>
           <div class="form__password" :class="borderPassword">
             <input
               class="form__password-outline"
-              :type="typeInput"
               placeholder="Введите пароль"
-              v-model="dataPassword"
+              :class="{border :   v$.dataPassword.$error}"
+              v-model="v$.dataPassword.$model"
               required
             />
             <img
@@ -66,9 +67,11 @@
 <script>
 import Api from "@/Api";
 import router from "../router";
-
+import { email, required, minLength } from '@vuelidate/validators'
+import { useVuelidate } from '@vuelidate/core'
 export default {
   name: "SignInView",
+  setup: () => ({ v$: useVuelidate() }),
   data() {
     return {
       typeInput: "password",
@@ -77,6 +80,13 @@ export default {
       borderPassword: null,
       borderLogin: null,
       validForm: false,
+    };
+  },
+ 
+  validations() {
+    return {
+      dataLogin: { required, email }, // Matches this.firstName
+      dataPassword: { required,  minLength: minLength(5)}, // Matches this.lastName
     };
   },
   updated() {

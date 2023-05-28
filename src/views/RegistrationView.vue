@@ -95,7 +95,8 @@
 <script>
 import Api from "@/Api";
 import router from "../router";
-
+import { email, required, minLength } from '@vuelidate/validators'
+import { useVuelidate } from '@vuelidate/core'
 export default {
   name: "RegistrationView",
 
@@ -113,6 +114,12 @@ export default {
       borderEmail: "",
       border: "",
       validForm: false,
+    };
+  },
+  validations() {
+    return {
+      dataLogin: { required, email }, // Matches this.firstName
+      dataPassword: { required,  minLength: minLength(5)}, // Matches this.lastName
     };
   },
   updated() {
