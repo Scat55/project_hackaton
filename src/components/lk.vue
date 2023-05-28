@@ -109,7 +109,7 @@ export default {
   methods: {
     getPremium(){
       const api = new Api();
-      api.User.SetPremium(this.id,true).then((response)=>{console.log(response)});
+      api.User.SetPremium(this.id,true).then((response)=>{router.go(0)});
     },
     deletePremium(){
       const api = new Api();

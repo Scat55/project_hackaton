@@ -1,4 +1,6 @@
 <script>
+import Api from "@/Api";
+import router from "@/router";
 export default
 {
     props: ["onHide"],
