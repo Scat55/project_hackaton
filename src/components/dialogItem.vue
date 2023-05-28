@@ -1,5 +1,5 @@
 <template>
-  <div class="dialogItem" :class="isActive ?? active" :id="id">
+  <div class="dialogItem" >
     <img src="/icons/iconRole.svg" @click="Cl" />
     <div class="text" @click="Cl">
       <h4>{{ name }}</h4>
@@ -62,8 +62,5 @@ export default {
     float: right;
     cursor: pointer;
   }
-}
-.active {
-  background: #413e3e;
 }
 </style>
