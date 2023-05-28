@@ -38,6 +38,7 @@ export default {
         .then((result) => {
           this.addRole();
           this.onHide();
+          router.go(0);
         })
         .catch((err) => {});
     },
