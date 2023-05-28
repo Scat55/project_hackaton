@@ -148,7 +148,7 @@ export default {
     flex-direction: row;
     align-items: flex-start;
     flex-wrap: wrap;
-    max-width: 59rem;
+    width: 60rem;
     padding: 1rem;
     gap: 1rem;
     //row-gap: 1rem;
