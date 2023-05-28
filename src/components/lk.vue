@@ -23,8 +23,8 @@
         <div class="change__pass">
           <input
             class="input__pass"
-            type="password"
-            placeholder="Введите пароль"
+            type="password1"
+            placeholder="Введите новый пароль"
             v-model="userPassword"
           />
 
@@ -37,7 +37,7 @@
         <div class="activePrenium subs " v-if="(premium)">
           <div class="subs__info">
             <p class="subs__text">Подписка на премиум оформлена успешно</p>
-            <a href="#" class="subs__pay" @click="deletePremium">Отключить</a>
+            <!-- <a href="#" class="subs__pay" @click="deletePremium">Отключить</a> -->
           </div>
         </div>
         <div class="subs " v-else>
@@ -109,7 +109,7 @@ export default {
   methods: {
     getPremium(){
       const api = new Api();
-      api.User.SetPremium(this.id,true).then((response)=>{router.go(0)});
+      api.User.SetPremium(this.id,true).then((response)=>{console.log(response)});
     },
     deletePremium(){
       const api = new Api();
