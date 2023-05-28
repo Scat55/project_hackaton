@@ -5,10 +5,11 @@
         <img class="person__image" src="../assets/images/avatar.svg" alt="PersonAvatar" />
       </div>
       <div class="person__inputs">
-        <input class="input__name" placeholder="Введите имя пользователя"  :class="{border : v$.userName.$error}"
+        <input class="input__name" placeholder="Введите имя пользователя"
+        :class="{border : v$.userName.$error}"
         v-model="v$.userName.$model" />
-        <input class="input__email" type="email" placeholder="Введите email"  :class="{border : v$.userPassword.$error}"
-        v-model="v$.userPassword.$model" />
+        <input class="input__email" type="email" placeholder="Введите email"  :class="{border : v$.userEmail.$error}"
+        v-model="v$.userEmail.$model" />
         <div class="change__pass">
           <input
             class="input__pass"
@@ -114,7 +115,8 @@ export default {
     },
     changeInfoOfPerson() {
       const api = new Api();
-      if (this.userEmail.length > 0 && this.userEmail !== this.oldEmail)
+    
+      if (!this.userEmail !== this.oldEmail)
         api.User.SetEmail(this.id, this.userEmail).then((result) => {
           alert('Данные сохранены');
         });
@@ -122,7 +124,8 @@ export default {
         api.User.SetName(this.id, this.userName).then((result) => {
           alert('Данные сохранены');
         });
-      if (this.userPassword.length > 0) {
+      if (this.userPassword.length !==0) {
+        if(this.userPassword.length >4){
         api.User.SetPassword(this.id, this.userPassword)
           .then((result) => {
             alert('Данные сохранены');
@@ -130,6 +133,9 @@ export default {
           .catch((err) => {});
         this.userPassword = '';
       }
+      else{
+        alert("Минимальная длина пароля 5 символов");
+      }}
     },
   },
 };
