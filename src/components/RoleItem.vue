@@ -46,7 +46,7 @@ export default {
     align-items: center;
     padding: 0px;
     gap: 0.25rem;
-
+    text-align: center;
     height: 1.188rem;
   }
 }
