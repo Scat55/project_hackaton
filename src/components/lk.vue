@@ -1,5 +1,7 @@
 <template>
+  
   <div class="person__shadow" v-show="isShow">
+    <PremiumModal v-if="!premium" :onHide="hidePremiumModal"></PremiumModal>
     <div class="person">
       <div class="person__img">
         <img
@@ -71,10 +73,10 @@
 <script>
 import Api from "@/Api";
 import router from "@/router";
-
+import PremiumModal from "./PremiumModal.vue";
 export default {
   props: ["onHide"],
- 
+  components: {PremiumModal}, 
   data() {
     return {
       isShow: true,
@@ -158,6 +160,7 @@ export default {
   
 }
 .person {
+  z-index: 9999;
   display: flex;
   flex-direction: column;
   top: 0;
