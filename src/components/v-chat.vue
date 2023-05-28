@@ -64,7 +64,7 @@ export default {
         api.Dialogs.GetAll()
       .then((result) => {
         api.User.Get().then((responses)=>{
-        if(responses.premium)
+        if(!responses.premium)
         {
           setTimeout(
   () => {
