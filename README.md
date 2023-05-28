@@ -9,6 +9,7 @@ Backend: https://github.com/Anastatha/gptBack
 Настя:https://t.me/Anastatha
 
 Frontend
+
 Антон:https://t.me/LRDronio48
 Дима:https://t.me/Scat_1
 Данила:https://t.me/suzenebl teamlead
