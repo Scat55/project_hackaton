@@ -4,11 +4,10 @@
 <hr>
 Дизайн: https://www.figma.com/file/m4pFGl26UycM3wfD028Nte/GPT-Chat?type=design&node-id=0%3A1&t=WZSaUw12lbuSdoeh-1
 <ul>Алла:https://t.me/allaisaulova171</ul>
-
+<hr>
 Backend: https://github.com/Anastatha/gptBack
 <ul>Настя:https://t.me/Anastatha</ul>
-
-
+<hr>
 Frontend:https://github.com/Scat55/project_hackaton<br>
 <ul>
  Антон:https://t.me/LRDronio48</br>
