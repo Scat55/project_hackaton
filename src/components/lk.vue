@@ -1,7 +1,7 @@
 <template>
   
   <div class="person__shadow" v-show="isShow">
-    <PremiumModal v-if="!premium" :onHide="hidePremiumModal"></PremiumModal>
+
     <div class="person">
       <div class="person__img">
         <img
@@ -107,6 +107,7 @@ export default {
         this.oldEmail = this.userEmail;
       })
       .catch((err) => {});
+    
   },
   methods: {
     getPremium(){

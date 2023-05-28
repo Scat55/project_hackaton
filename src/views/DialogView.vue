@@ -25,7 +25,7 @@
         ></Msg>
       </div>
       <div class="dialog_textfield">
-        <input placeholder="Введите сообщение..." v-model="msgText" />
+        <input @keypress.enter="newMsg" placeholder="Введите сообщение..." v-model="msgText" />
         <button @click="newMsg" class="msg_button_send">Отправить</button>
       </div>
     </div>
