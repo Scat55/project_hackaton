@@ -169,7 +169,10 @@ export default function Api() {
     this.User.SetPassword = (userId, newPassword) => {
       return queryPOST({password:newPassword}, "users/profile/"+userId, "PATCH")
     };
-    this.User.SetPremium = (userId, newPremium) => {
+    this.User.SetPremium = (userId) => {
+      return queryPOST({}, "users/profile/", "PATCH")
+    }
+    this.User.DeletePremium = (userId) => {
       return queryPOST({}, "users/profile/"+userId, "PATCH")
     }
     
