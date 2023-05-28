@@ -34,7 +34,7 @@ export default {
     },
     save() {
       const api = new Api();
-      this.onHide();
+     
       api.Roles.Add(this.promt, this.name)
         .then((result) => {
           this.addRole();
@@ -42,6 +42,7 @@ export default {
         //   router.go(0);
         })
         .catch((err) => {});
+        this.onHide();
     },
     saveAndOpen() {
       const api = new Api();
