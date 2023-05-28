@@ -1,19 +1,12 @@
 <template>
   <div hidden class="PremuimM">
-    <PremiumModal
-      v-if="isShowPremiumModal"
-      :onHide="hidePremiumModal"
-    ></PremiumModal>
+    <PremiumModal v-if="isShowPremiumModal" :onHide="hidePremiumModal"></PremiumModal>
   </div>
   <div id="chat">
     <aside class="aside">
       <div>
         <button class="aside__btn" @click="addNewDialog">
-          <img
-            class="aside__btn-plus"
-            src="../assets/images/plus.svg"
-            alt="Plus"
-          />Новый чат
+          <img class="aside__btn-plus" src="../assets/images/plus.svg" alt="Plus" />Новый чат
         </button>
         <ul>
           <DialogItem
@@ -47,14 +40,14 @@
 </template>
 
 <script>
-import Api from "@/Api";
-import router from "@/router";
-import DialogWindowDeleteAllChat from "./dialogWindowDeleteAllChat.vue";
-import DialogItem from "./dialogItem.vue";
-import Lk from "./lk.vue";
-import PremiumModal from "@/components/PremiumModal.vue";
+import Api from '@/Api';
+import router from '@/router';
+import DialogWindowDeleteAllChat from './dialogWindowDeleteAllChat.vue';
+import DialogItem from './dialogItem.vue';
+import Lk from './lk.vue';
+import PremiumModal from '@/components/PremiumModal.vue';
 export default {
-  name: "chat",
+  name: 'chat',
 
   created() {
     const api = new Api();
@@ -76,7 +69,7 @@ export default {
       },
       // fetch the data when the view is created and the data is
       // already being observed
-      { immediate: true }
+      { immediate: true },
     );
   },
   data() {
@@ -96,7 +89,7 @@ export default {
     },
     chooseDialog(e) {
       const dialogId = e;
-      router.push({ name: "openDialog", params: { id: dialogId } });
+      router.push({ name: 'openDialog', params: { id: dialogId } });
     },
     hideDeleteAllDialogs() {
       this.isShowDialogDeleteAll = false;
@@ -105,7 +98,7 @@ export default {
       this.isShowDialogDeleteAll = true;
     },
     addNewDialog() {
-      router.push({ name: "roles" });
+      router.push({ name: 'roles' });
     },
     logOut() {
       const api = new Api();
@@ -201,8 +194,11 @@ export default {
       font-weight: 400;
       font-size: 1.125rem;
       line-height: 1.188rem;
-
+      transition: all 0.3s;
       cursor: pointer;
+      &:hover {
+        transform: scale(1.1);
+      }
     }
     &-logOut {
       display: flex;
@@ -212,7 +208,12 @@ export default {
       font-size: 1.125rem;
       line-height: 1.188rem;
       margin-bottom: 1.25rem;
+      transition: all 0.3s;
       cursor: pointer;
+
+      &:hover {
+        transform: scale(1.1);
+      }
     }
   }
 }
