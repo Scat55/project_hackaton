@@ -1,6 +1,6 @@
 <script>
 export default {
-  props: ["role", "onHide", "onOpen"],
+  props: ['role', 'onHide', 'onOpen'],
   methods: {
     cancel() {
       this.onHide();
@@ -89,8 +89,7 @@ export default {
     }
     .text {
       margin-bottom: 1rem;
-  
-      
+
       span {
         height: 20rem;
 
@@ -107,6 +106,13 @@ export default {
         background: #404b62;
         border-radius: 0.4rem;
         padding: 0.7rem;
+        cursor: pointer;
+        border: none;
+        transition: all 0.3s;
+
+        &:hover {
+          box-shadow: 0 0 10px 1px #404b62;
+        }
       }
     }
   }
