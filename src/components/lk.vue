@@ -2,24 +2,11 @@
   <div class="person__shadow" v-show="isShow">
     <div class="person">
       <div class="person__img">
-        <img
-          class="person__image"
-          src="../assets/images/avatar.svg"
-          alt="PersonAvatar"
-        />
+        <img class="person__image" src="../assets/images/avatar.svg" alt="PersonAvatar" />
       </div>
       <div class="person__inputs">
-        <input
-          class="input__name"
-          placeholder="Введите имя пользователя"
-          v-model="userName"
-        />
-        <input
-          class="input__email"
-          type="email"
-          placeholder="Введите email"
-          v-model="userEmail"
-        />
+        <input class="input__name" placeholder="Введите имя пользователя" v-model="userName" />
+        <input class="input__email" type="email" placeholder="Введите email" v-model="userEmail" />
         <div class="change__pass">
           <input
             class="input__pass"
@@ -28,9 +15,7 @@
             v-model="userPassword"
           />
 
-          <p class="change__pass-text" @click="changeInfoOfPerson">
-            Сохранить изменения
-          </p>
+          <p class="change__pass-text" @click="changeInfoOfPerson">Сохранить изменения</p>
         </div>
       </div>
       <footer>
@@ -47,19 +32,11 @@
           </div>
         </div>
         <div class="person__comeback">
-          <img
-            src="../assets/images/arrow-left.svg"
-            alt="Arrow__comeback"
-            class="arrow__img"
-          />
+          <img src="../assets/images/arrow-left.svg" alt="Arrow__comeback" class="arrow__img" />
           <p class="person__text" @click="closePerson">Вернуться в диалог</p>
         </div>
         <div class="person__out">
-          <img
-            src="../assets/images/log-out.svg"
-            alt="ArrowOut"
-            class="out__img"
-          />
+          <img src="../assets/images/log-out.svg" alt="ArrowOut" class="out__img" />
           <p class="person__text" @click="logOut">Выйти</p>
         </div>
       </footer>
@@ -68,22 +45,22 @@
 </template>
 
 <script>
-import Api from "@/Api";
-import router from "@/router";
-import PremiumModal from "./PremiumModal.vue";
+import Api from '@/Api';
+import router from '@/router';
+import PremiumModal from './PremiumModal.vue';
 export default {
-  props: ["onHide"],
+  props: ['onHide'],
   components: { PremiumModal },
   data() {
     return {
       isShow: true,
       id: 0,
-      userName: "",
-      userEmail: "",
+      userName: '',
+      userEmail: '',
 
-      oldName: "",
-      oldEmail: "",
-      userPassword: "",
+      oldName: '',
+      oldEmail: '',
+      userPassword: '',
 
       isActive: false,
       premium: false,
@@ -127,19 +104,19 @@ export default {
       const api = new Api();
       if (this.userEmail.length > 0 && this.userEmail !== this.oldEmail)
         api.User.SetEmail(this.id, this.userEmail).then((result) => {
-          alert("Данные сохранены");
+          alert('Данные сохранены');
         });
       if (this.userName.length > 0 && this.oldName !== this.userName)
         api.User.SetName(this.id, this.userName).then((result) => {
-          alert("Данные сохранены");
+          alert('Данные сохранены');
         });
       if (this.userPassword.length > 0) {
         api.User.SetPassword(this.id, this.userPassword)
           .then((result) => {
-            alert("Данные сохранены");
+            alert('Данные сохранены');
           })
           .catch((err) => {});
-        this.userPassword = "";
+        this.userPassword = '';
       }
     },
   },
@@ -333,6 +310,13 @@ export default {
     cursor: pointer;
     line-height: 1.188rem;
     color: #ffffff;
+
+    &:hover img {
+      transform: translateX(-5px);
+    }
+    img {
+      transition: all 0.3s;
+    }
   }
   .person__out {
     display: flex;
@@ -344,7 +328,14 @@ export default {
     font-size: 1.25rem;
     line-height: 1.188rem;
     color: #ffffff;
+    transition: all 0.3s;
     cursor: pointer;
+    &:hover img {
+      transform: translateX(-5px);
+    }
+    img {
+      transition: all 0.3s;
+    }
   }
 }
 </style>
