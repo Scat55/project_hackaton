@@ -3,7 +3,12 @@
     <div class="back"></div>
     <div class="box">
       <div class="header">
-        <input v-model="name" type="text" class="title" placeholder="Название роли" />
+        <input
+          v-model="name"
+          type="text"
+          class="title"
+          placeholder="Название роли"
+        />
       </div>
       <div class="text">
         <textarea v-model="promt" placeholder="Описание роли"> </textarea>
@@ -45,9 +50,7 @@ export default {
       const api = new Api();
       api.Roles.Add(this.promt, this.name)
         .then((response) => {
-       
           api.Dialogs.Create(response.id).then((result) => {
-
             router.push({ name: "openDialog", params: { id: result.id } });
           });
         })
@@ -92,7 +95,7 @@ export default {
     width: 40rem;
     .header {
       display: flex;
-     
+
       margin-bottom: 1rem;
       .logo {
         margin: 0;

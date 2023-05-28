@@ -12,7 +12,7 @@ export default {
       showRoleInfo: false,
       roles: [],
       choosenRole: null,
-      premium:false
+      premium: false,
     };
   },
   methods: {
@@ -20,10 +20,8 @@ export default {
       this.isShowNewRoles = false;
     },
     showAddRoleDialog(e) {
-      if(this.premium)
-      this.isShowNewRoles = true;
-      else
-      alert("Доступно с Premium")
+      if (this.premium) this.isShowNewRoles = true;
+      else alert("Доступно с Premium");
     },
     createDialog(e) {
       const idRole = e.target.id;
@@ -52,11 +50,11 @@ export default {
   },
   created() {
     const api = new Api();
-    api.User.Get().then((result) => {
+    api.User.Get()
+      .then((result) => {
         this.premium = result.premium;
-    }).catch((err) => {
-        
-    });
+      })
+      .catch((err) => {});
     api.Roles.Get()
       .then((result) => {
         this.roles.push(...result);

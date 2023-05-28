@@ -1,21 +1,22 @@
 <script>
 import Api from "@/Api";
 import router from "@/router";
-export default
-{
-    props: ["onHide"],
-    methods:{
-      getPremium(){
+export default {
+  props: ["onHide"],
+  methods: {
+    getPremium() {
       const api = new Api();
-      api.User.Get().then((result) => {
-        api.User.SetPremium(result.id,true).then((response)=>{router.go(0)});
-      }).catch((err) => {
-        
-      });
-    
+      api.User.Get()
+        .then((result) => {
+          api.User.SetPremium(result.id, true).then((response) => {
+            router.go(0);
+          });
+        })
+        .catch((err) => {});
     },
-    }
-}</script>
+  },
+};
+</script>
 
 <template>
   <div class="premium_modal">
@@ -34,32 +35,31 @@ export default
           >
         </div>
         <div class="cards">
-            <div >
-          <div >
-            <h1>3</h1>
-            <h2>месяца</h2>
-            <h3>169 р</h3>
-          </div>
-          <button class="subscribe" @click="getPremium">Подключить</button>
-        </div>
-          <div >
-          <div class="red">
-            <h1>6</h1>
-            <h2>месяца</h2>
-            <h3>359 р</h3>
-          </div>
-          <button class="subscribe" @click="getPremium">Подключить</button>
-        </div>
-          <div >
+          <div>
             <div>
-                <h1>1</h1>
-                <h2>год</h2>
-                <h3>699 р</h3>
+              <h1>3</h1>
+              <h2>месяца</h2>
+              <h3>169 р</h3>
+            </div>
+            <button class="subscribe" @click="getPremium">Подключить</button>
+          </div>
+          <div>
+            <div class="red">
+              <h1>6</h1>
+              <h2>месяца</h2>
+              <h3>359 р</h3>
+            </div>
+            <button class="subscribe" @click="getPremium">Подключить</button>
+          </div>
+          <div>
+            <div>
+              <h1>1</h1>
+              <h2>год</h2>
+              <h3>699 р</h3>
             </div>
             <button class="subscribe" @click="getPremium">Подключить</button>
           </div>
         </div>
-       
       </div>
     </div>
   </div>
@@ -138,15 +138,13 @@ export default
           font-size: 4rem;
           line-height: 4.183rem;
           text-align: right;
-
-         
         }
 
         .close {
-            position: absolute;
-            border: none;
-            right: 1rem;
-            cursor: pointer;
+          position: absolute;
+          border: none;
+          right: 1rem;
+          cursor: pointer;
         }
       }
 
@@ -165,80 +163,71 @@ export default
         position: relative;
         display: flex;
         flex-direction: row;
-       gap: 2rem;
-        
+        gap: 2rem;
 
-        div{
-           width: 20rem;
-            div{
-             
-               display: flex;
-               flex-direction: column;
-               align-items: stretch;
-               justify-content: space-evenly;
+        div {
+          width: 20rem;
+          div {
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            justify-content: space-evenly;
             width: 100%;
-               
-                height: 20rem;
-      
-                /* Hovered */
-      
-                background: #f4eeee;
-                box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-                border-radius: 8px;
-                
-                h1{
-                    margin:0 2rem ;
-                    font-size: 6rem;
-                    padding: 0;
-                    line-height: 0;
-                  }
-                  h2{
-                    margin:0 2rem ;
-                    font-size: 4rem;
-                    text-align: start;
-                    padding: 0;
-                    line-height: 0;
-                  }
-                  h3{
-                    margin:0 2rem ;
-                    font-size: 3rem;
-                    text-align: end;
-                    padding: 0;
-                    line-height: 0;
-                  }
-                 
-              }
-             
-              .red {
-              color:white;
-                background: #ed5761;
-          
-              }
+
+            height: 20rem;
+
+            /* Hovered */
+
+            background: #f4eeee;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            border-radius: 8px;
+
+            h1 {
+              margin: 0 2rem;
+              font-size: 6rem;
+              padding: 0;
+              line-height: 0;
             }
-        
-        
-        button {
-            
-          
-            width: 100%;
-            font-size: 1.5rem;
-             margin-top: 3rem;
-             padding:1rem 0 ;
-             border: 0;
-             border-radius: 0.5rem;
-            background: #ed5761;
-           
-            /* identical to box height */
-  
-            text-align: center;
-  
-            /* Backgraund */
-  
-            color: #ffffff;
+            h2 {
+              margin: 0 2rem;
+              font-size: 4rem;
+              text-align: start;
+              padding: 0;
+              line-height: 0;
+            }
+            h3 {
+              margin: 0 2rem;
+              font-size: 3rem;
+              text-align: end;
+              padding: 0;
+              line-height: 0;
+            }
           }
-      }
 
-   
+          .red {
+            color: white;
+            background: #ed5761;
+          }
+        }
+
+        button {
+          width: 100%;
+          font-size: 1.5rem;
+          margin-top: 3rem;
+          padding: 1rem 0;
+          border: 0;
+          border-radius: 0.5rem;
+          background: #ed5761;
+
+          /* identical to box height */
+
+          text-align: center;
+
+          /* Backgraund */
+
+          color: #ffffff;
+        }
+      }
     }
   }
 }

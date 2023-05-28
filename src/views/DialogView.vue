@@ -25,7 +25,11 @@
         ></Msg>
       </div>
       <div class="dialog_textfield">
-        <input @keypress.enter="newMsg" placeholder="Введите сообщение..." v-model="msgText" />
+        <input
+          @keypress.enter="newMsg"
+          placeholder="Введите сообщение..."
+          v-model="msgText"
+        />
         <button @click="newMsg" class="msg_button_send">Отправить</button>
       </div>
     </div>
@@ -45,7 +49,7 @@ export default {
       props: "",
       msgs: [],
       msgText: "",
-      status:"Загрузка диалога"
+      status: "Загрузка диалога",
     };
   },
   created() {
@@ -64,15 +68,14 @@ export default {
     Msg,
   },
   updated() {
-  
     const list = this.$refs.list;
     list.scrollTop = list.scrollHeight;
   },
   methods: {
     load() {
-      this.status="Загрузка диалога";
+      this.status = "Загрузка диалога";
       this.dialogId = this.$route.params.id;
-     
+
       const api = new Api();
       api.Dialogs.GetById(this.dialogId).then((response) => {
         this.title = response.name;
@@ -80,23 +83,21 @@ export default {
       api.Msgs.Get(this.dialogId)
         .then((result) => {
           this.msgs = result;
-          this.status = ""
+          this.status = "";
         })
         .catch((err) => {});
     },
     newMsg() {
       if (this.msgText) {
-        this.status = "Генерируем ответ"
+        this.status = "Генерируем ответ";
         const list = this.$refs.list;
         list.scrollTop = list.scrollHeight;
         this.msgs.push({ role: "user", content: this.msgText });
         const api = new Api();
         api.Msgs.New(this.dialogId, this.msgText)
           .then((result) => {
-          
             this.msgs.push({ role: "assistent", content: result });
-            this.status = ""
-           
+            this.status = "";
           })
           .then(() => {
             const list = this.$refs.list;

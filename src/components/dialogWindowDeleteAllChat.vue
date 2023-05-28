@@ -2,7 +2,7 @@
   <div class="deleteAllDi">
     <label>Вы действительно хотите удалить все чаты?</label>
     <div>
-      <button id="yes" @click="deleteAllDi" >Да</button>
+      <button id="yes" @click="deleteAllDi">Да</button>
       <button id="no" @click="onHide">Нет</button>
     </div>
   </div>
@@ -17,7 +17,7 @@ export default {
       api.Dialogs.DeleteAll()
         .then((result) => {})
         .catch((err) => {});
-        this.onHide();
+      this.onHide();
     },
   },
   data() {},

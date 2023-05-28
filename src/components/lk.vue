@@ -1,7 +1,5 @@
 <template>
-  
   <div class="person__shadow" v-show="isShow">
-
     <div class="person">
       <div class="person__img">
         <img
@@ -36,13 +34,13 @@
         </div>
       </div>
       <footer>
-        <div class="activePrenium subs " v-if="(premium)">
+        <div class="activePrenium subs" v-if="premium">
           <div class="subs__info">
             <p class="subs__text">Подписка на премиум оформлена успешно</p>
             <!-- <a href="#" class="subs__pay" @click="deletePremium">Отключить</a> -->
           </div>
         </div>
-        <div class="subs " v-else>
+        <div class="subs" v-else>
           <div class="subs__info">
             <p class="subs__text">У вас не оформлена премиум подписка</p>
             <a href="#" class="subs__pay" @click="getPremium">Оформить</a>
@@ -66,7 +64,6 @@
         </div>
       </footer>
     </div>
-
   </div>
 </template>
 
@@ -76,7 +73,7 @@ import router from "@/router";
 import PremiumModal from "./PremiumModal.vue";
 export default {
   props: ["onHide"],
-  components: {PremiumModal}, 
+  components: { PremiumModal },
   data() {
     return {
       isShow: true,
@@ -90,14 +87,12 @@ export default {
 
       isActive: false,
       premium: false,
-
     };
   },
   beforeCreate() {
     const api = new Api();
     api.User.Get()
       .then((result) => {
-       
         this.id = result.id;
         this.userName = result.name;
         this.userEmail = result.email;
@@ -107,16 +102,19 @@ export default {
         this.oldEmail = this.userEmail;
       })
       .catch((err) => {});
-    
   },
   methods: {
-    getPremium(){
+    getPremium() {
       const api = new Api();
-      api.User.SetPremium(this.id,true).then((response)=>{router.go(0)});
+      api.User.SetPremium(this.id, true).then((response) => {
+        router.go(0);
+      });
     },
-    deletePremium(){
+    deletePremium() {
       const api = new Api();
-      api.User.SetPremium(this.id,false).then((response)=>{router.go(0)});
+      api.User.SetPremium(this.id, false).then((response) => {
+        router.go(0);
+      });
     },
     closePerson() {
       this.onHide();
@@ -126,24 +124,23 @@ export default {
       api.logOut();
     },
     changeInfoOfPerson() {
-    
       const api = new Api();
       if (this.userEmail.length > 0 && this.userEmail !== this.oldEmail)
         api.User.SetEmail(this.id, this.userEmail).then((result) => {
-              alert("Данные сохранены");
-            });
+          alert("Данные сохранены");
+        });
       if (this.userName.length > 0 && this.oldName !== this.userName)
-      api.User.SetName(this.id, this.userName).then((result) => {
-              alert("Данные сохранены");
-            });
-        if (this.userPassword.length > 0) {
-          api.User.SetPassword(this.id, this.userPassword)
-            .then((result) => {
-              alert("Данные сохранены");
-            })
-            .catch((err) => {});
-          this.userPassword = "";
-        }
+        api.User.SetName(this.id, this.userName).then((result) => {
+          alert("Данные сохранены");
+        });
+      if (this.userPassword.length > 0) {
+        api.User.SetPassword(this.id, this.userPassword)
+          .then((result) => {
+            alert("Данные сохранены");
+          })
+          .catch((err) => {});
+        this.userPassword = "";
+      }
     },
   },
 };
@@ -158,7 +155,6 @@ export default {
   height: 100vh;
   background-color: rgba(22, 21, 21, 0.5);
   z-index: 999;
-  
 }
 .person {
   z-index: 9999;
@@ -270,7 +266,7 @@ export default {
       cursor: pointer;
     }
   }
-  
+
   .subs {
     display: flex;
     justify-content: center;
@@ -318,9 +314,9 @@ export default {
       border-radius: 0.25rem;
     }
   }
-  .activePrenium{
+  .activePrenium {
     background: #917173;
-    button{
+    button {
       background: #785254;
     }
   }

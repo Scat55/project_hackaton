@@ -93,8 +93,6 @@ export default {
     },
     auth() {
       if (this.validForm) {
-       
-
         const api = new Api();
         api
           .login(this.dataLogin, this.dataPassword)

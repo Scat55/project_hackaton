@@ -1,48 +1,44 @@
 <template>
   <div class="dialogItem" :class="isActive ?? active" :id="id">
-    <img src="/icons/iconRole.svg" @click="Cl"/>
+    <img src="/icons/iconRole.svg" @click="Cl" />
     <div class="text" @click="Cl">
       <h4>{{ name }}</h4>
       <label>{{ status }}</label>
-    
     </div>
-    <img class="trash" @click="deleteD" src="@/assets/images/trash.svg" alt="">
+    <img
+      class="trash"
+      @click="deleteD"
+      src="@/assets/images/trash.svg"
+      alt=""
+    />
   </div>
 </template>
 <script>
-import Api from '@/Api';
-import router from '@/router';
+import Api from "@/Api";
+import router from "@/router";
 
 export default {
   data() {
-    return {
-    };
+    return {};
   },
-  props: ["id", "name", "status", "isActive","onClick"],
+  props: ["id", "name", "status", "isActive", "onClick"],
   created() {
     sessionStorage.setItem("dialog" + this.id, this.name);
- 
   },
-  methods:{
-    Cl(){
-      this.onClick(this.id)
-;    },
+  methods: {
+    Cl() {
+      this.onClick(this.id);
+    },
     deleteD() {
-    const api  = new Api();
-    api.Dialogs.Delete(this.id).then((result) => {
-    
-      router.push("/");
-     // router.go(0);
-    }).catch((err) => {
-      
-    });
-    
-   
+      const api = new Api();
+      api.Dialogs.Delete(this.id)
+        .then((result) => {
+          router.push("/");
+          // router.go(0);
+        })
+        .catch((err) => {});
+    },
   },
-  },
- 
-  
-
 };
 </script>
 <style scoped lang="scss">
@@ -60,12 +56,11 @@ export default {
   &:hover {
     background: #302e2e;
   }
-  .trash{
+  .trash {
     position: absolute;
     right: 1rem;
     float: right;
     cursor: pointer;
-   
   }
 }
 .active {
