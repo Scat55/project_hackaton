@@ -3,12 +3,7 @@
     <div class="back"></div>
     <div class="box">
       <div class="header">
-        <input
-          v-model="name"
-          type="text"
-          class="title"
-          placeholder="Название роли"
-        />
+        <input v-model="name" type="text" class="title" placeholder="Название роли" />
       </div>
       <div class="text">
         <textarea v-model="promt" placeholder="Описание роли"> </textarea>
@@ -23,14 +18,14 @@
   </div>
 </template>
 <script>
-import router from "@/router";
-import Api from "@/Api";
+import router from '@/router';
+import Api from '@/Api';
 export default {
-  props: ["onHide", "addRole"],
+  props: ['onHide', 'addRole'],
   data() {
     return {
-      promt: "",
-      name: "",
+      promt: '',
+      name: '',
     };
   },
   methods: {
@@ -51,7 +46,7 @@ export default {
       api.Roles.Add(this.promt, this.name)
         .then((response) => {
           api.Dialogs.Create(response.id).then((result) => {
-            router.push({ name: "openDialog", params: { id: result.id } });
+            router.push({ name: 'openDialog', params: { id: result.id } });
           });
         })
         .catch((err) => {});
@@ -130,6 +125,13 @@ export default {
         background: #404b62;
         border-radius: 0.4rem;
         padding: 0.7rem;
+        cursor: pointer;
+        outline: none;
+        border: none;
+        transition: all 0.3s;
+        &:hover {
+          box-shadow: 0 0 10px 1px #404b62;
+        }
       }
     }
   }
