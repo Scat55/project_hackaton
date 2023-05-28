@@ -182,7 +182,7 @@ export default {
           .then((response) => (response ? router.go(0) : alert("ошибка")))
           .catch((err) => alert(err));
       } else {
-        alert("Ты ");
+        alert("Валидация не пройдена. Проверьте правильность ввода данных.");
       }
     },
   },
